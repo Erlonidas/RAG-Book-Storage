@@ -5,7 +5,6 @@ from markdownify import markdownify as md
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Tags que são intencionalmente ignoradas na indexação
 TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header'}
 
 
@@ -77,10 +76,8 @@ def get_section_hierarchy(chunks: list[dict]) -> dict[str, list[str]]:
         
         hierarchy[sec_1].add(sec_2)
     
-    # Converte sets para listas ordenadas
     result = {}
     for sec_1, sec_2_set in hierarchy.items():
-        # Ordena: "" (vazio) primeiro, depois alfabético
         sec_2_list = sorted(sec_2_set, key=lambda x: (x != "", x))
         result[sec_1] = sec_2_list
     
@@ -109,7 +106,7 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
 
     # machine state
     current_sec_0 = ""
-    current_sec_1 = "Seção Inicial"
+    current_sec_1 = "Initial Section"
     current_sec_2 = ""
     buffer_para: str | None = None
     buffer_table: str | None = None
@@ -128,9 +125,6 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 logger.debug(f"Item sem conteúdo ignorado: tipo={tipo}")
                 continue
 
-            # ----------------------------------------------------------------
-            # 1. ATUALIZAÇÃO DE CONTEXTO (Hierarquia)
-            # ----------------------------------------------------------------
             if tipo == 'sec_0':
                 _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
                 _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
@@ -171,9 +165,6 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 #new
                 current_sec_2 = conteudo
 
-            # ----------------------------------------------------------------
-            # 2. PARÁGRAFO (salva tabelas e figuras pendentes)
-            # ----------------------------------------------------------------
             elif tipo == 'para':
                 _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
                 _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
@@ -224,10 +215,6 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                     buffer_table = conteudo
                     buffer_code = conteudo
                     
-
-            # ----------------------------------------------------------------
-            # 6. "COLA" (salva tabelas/figuras, cola no texto)
-            # ----------------------------------------------------------------
             elif tipo == 'code':
                 buffer_table = None
                 
@@ -270,13 +257,12 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 else:
                     buffer_para = conteudo
 
-            # TAGS IGNORADAS
             elif tipo in TAGS_IGNORADAS:
                 logger.debug(f"Tag ignorada: tipo={tipo}")
             else:
                 logger.warning(f"Tag desconhecida: tipo='{tipo}' em book_id={book_id}")
 
-    # Salva buffers finais
+    # Saves final buffers
     _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
     _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
     _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
