@@ -1,0 +1,14 @@
+opensearch-py
+python-dotenv
+ipykernel
+langgraph==0.4.8
+langgraph-prebuilt==0.2.2
+langgraph-sdk==0.1.70
+langchain==0.3.26
+langchain-core==0.3.66
+langchain-community==0.3.26
+langchain_openai==0.3.27
+faiss-cpu
+sentence-transformers
+pandas
+markdownify
