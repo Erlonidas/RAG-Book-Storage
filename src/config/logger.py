@@ -5,16 +5,6 @@ import logging
 import sys
 
 def setup_logger(name: str, level: int = logging.INFO) -> logging.Logger:
-    """
-    Configura e retorna um logger com formato padronizado.
-    
-    Args:
-        name: Nome do logger (geralmente __name__ do módulo)
-        level: Nível de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-    
-    Returns:
-        Logger configurado
-    """
     logger = logging.getLogger(name)
     logger.setLevel(level)
     

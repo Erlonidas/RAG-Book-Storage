@@ -26,11 +26,11 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # Paths
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
+EVERY_FIGS_PDF = RAW_DATA_DIR / "figs"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 
-# Índices OpenSearch
+# OpenSearch Indexes
 METADATA_INDEX = "metadata-index"
 CONTENT_INDEX = "content-index"
 
-# Tags ignoradas no processamento
 TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header'}
