@@ -1,0 +1,2432 @@
+{
+  "source_file": "_ICSA_2026__Argus_Architecture.pdf",
+  "total_pages": 12,
+  "pages": [
+    {
+      "page_number": 1,
+      "elements": [
+        {
+          "label": "sec_0",
+          "bbox": [
+            66,
+            57,
+            624,
+            120
+          ],
+          "text": "ARGUS: A Context-Aware Software Architecture\nfor Smart Environments",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            291,
+            137,
+            399,
+            154
+          ],
+          "text": "Anonymous Authors",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            177,
+            341,
+            349
+          ],
+          "text": "Abstract — The paradigm of Smart Environment (SE) has tran-\nsitioned from simple remote automation to proactive, context-\naware ecosystems driven by Artificial Intelligence. However,\nSecuring Smart Environments requires an intelligence-based and\nhigh-frequency sensor streams to computationally intensive Large\nLanguage Models (LLMs), imposes significant challenges regard-\ning latency, interoperability, and data privacy. To address these\nissues, we present ARGUS, a distributed, event-driven software\npackage implemented as part of the larger open source community\nacross the Edge-Cloud continuum. We validate the architecture\nthrough a reference implementation and performance evaluation,\ndemonstrating that ARGUS effectively accommodates heavy\ncomputational workloads, such as those used in generative AI\nenvironments, by providing smart and intelligent environments\nthat dynamically adapt to user needs.",
+          "reading_order": 2,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            348,
+            340,
+            384
+          ],
+          "text": "Index Terms — Smart Environments, Edge-Cloud Continuum,\nMultimedia Webcasting, Language Models, Event-Driven Architec-\nture, Internet of Things",
+          "reading_order": 3,
+          "tags": [
+            "paper_keywords"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            149,
+            399,
+            243,
+            414
+          ],
+          "text": "I. Introduction NTRODUCTION",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            420,
+            341,
+            611
+          ],
+          "text": "In the last few decades, Smart Environment (SE) technology\nhas advanced substantially in both industry and research [1] .\nThe concept of physical environments that interact intelligently\nand unobtrusively with people has gained significant attention,\nlargely due to the rapid expansion of Internet of Things (IoT)\ntechnologies and the increasing affordability of connected\ndevices [2], [3] . In such smart environments, users can monitor\nand control IoT devices individually or through automation\nrules via smartphones and other interfaces, achieving finer-\ngrained control over their surroundings while enhancing secu-\nrity, comfort, and accessibility. These innovations are particu-\nlarly promising for diverse user groups, including people with\ndisabilities and older adults, for whom adaptive environments\ncan support greater autonomy and safety [4], [5] .",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            611,
+            341,
+            720
+          ],
+          "text": "A central challenge in this landscape is designing context-\naware solutions capable of running real-time recommendation\nand decision-making systems within smart environments [6] .\nIn fact, beyond simple If-This-Then-That rules, next-generation\nsmart environments must integrate heterogeneous subsystems\nso that they can learn from user behavior, continuously modify\ntheir internal configuration, and proactively adapt the environ-\nment to predicted user needs [1], [5]–[7] .",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            720,
+            341,
+            789
+          ],
+          "text": "This study leverages a reference implementation developed\nin collaboration between a large industry partner and our\nresearch group. We deployed an AI-oriented smart home that\nutilizes IoT techniques to effectively control and enforce our\ninferred living habits, thereby creating a cohesive, intelligent",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            176,
+            638,
+            259
+          ],
+          "text": "behavioral layer 1. Illustrative scenarios include context-aware\nlighting, where opening a door prompts a recommendation to\nactivate external lights, while closing it suggests deactivation,\nand synchronized maintenance, where opening a window\nsignals the system to deploy a robot vacuum, automatically\nconcluding the cleaning cycle when the window is closed.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            259,
+            638,
+            410
+          ],
+          "text": "Realizing these scenarios requires an architecture capable\nof reconciling modern Ambient Intelligence (AmI) conflicts;\nspecifically, the tension between massive data processing de-\nmands—such as analyzing high-bandwidth video streams or\nrunning generative AI models—and the strict latency con-\nstraints of real-time device control. Furthermore, the system\nmust兼顾 privacy by which it protects users' personal informa-\ntion, the effort of human offloading to it centralized cloud, while\nsimultaneously providing robust orchestration to ensure that\n“slow” reasoning agents do not block “fast” reactive loops.\nConsequently, this research is driven by two primary questions:",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            348,
+            412,
+            639,
+            453
+          ],
+          "text": "RQ1 It is possible to orchestrate heterogeneous AI modules for\nexample by effectively combining Edge and\nCloud functionality.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            453,
+            638,
+            521
+          ],
+          "text": "This question addresses the architectural tension between\nthe massive computational resources required by genera-\ntive models—such as LLMs and Computer Vision—and\ntheir inherent limitations, addressing issues for Ambient\nIntelligence and it's usability requirements.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            348,
+            521,
+            639,
+            562
+          ],
+          "text": "RQ2 How do throughput limits interact with processing latency\nin an event-driven architecture? (0/1) [0/1] 0/1 0/1",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            562,
+            638,
+            657
+          ],
+          "text": "This inquiry is driven by the performance costs of the sys-\ntem’s “proactive adaptation” capacity. Since incremental\nlearning algorithms must update internal models in real-\ntime, they introduce blocking operations into the event\nhotspot and may be critical to quantify the precise point at\nwhich model training saturation begins to degrade system\nresponsiveness.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            659,
+            638,
+            769
+          ],
+          "text": "To answer these questions, we propose ARGUS, a dis-\ntributed architecture that integrates real-time decision-making\nmodules—such as machine learning systems and large lan-\nguage models—with smart IoT devices operating at the edge.\nARGUS enables context-aware, closed-loop control in smart\nenvironments by orchestrating services across the Edge-Cloud\ncontinuum. The main contributions of this paper are summa-\nrized as follows:",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            350,
+            780,
+            638,
+            814
+          ],
+          "text": "Due to Non-Disclosure Agreement (NDA) restrictions on our principal\noperations, the information about personal use of personal use of existing proprietary\nimplementation details could not be made publicly available.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            62,
+            802,
+            288,
+            814
+          ],
+          "text": "Identify applicable funding agency here. If none, delete this.",
+          "reading_order": 16,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "elements": [
+        {
+          "label": "list",
+          "bbox": [
+            63,
+            53,
+            342,
+            260
+          ],
+          "text": "• We define an event-driven microservices architecture that\nsuccessfully integrates distinct AI paradigms—from de-\nterministic computer vision to generative Large Language\nModels (LLMs)—without compromising the latency of\nsafety-critical control loops.\n• We demonstrate a mechanism for processing high-\nbandwidth video streams locally at the edge, identifying\ncritical threats ( e.g., weapons or intruders) in real-time\nwhile ensuring sensitive data never leaves the local net-\nwork.\n• We provide a quantitative analysis of the throughput\nand latency trade-offs involved in deploying synchronous\nincremental learning systems for proactive home automa-\ntion, identifying specific saturation points in sequential\nprocessing pipelines.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            97,
+            267,
+            297,
+            282
+          ],
+          "text": "Ⅱ. BACKGROUND AND RELATED WORK",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            286,
+            341,
+            435
+          ],
+          "text": "The transition from basic home automation to fully au-\ntonomous Smart Environments (SE) requires a convergence of\ndistributed systems, robust middleware, and advanced artificial\nintelligence. In this section, we first provide background on the\narchitectural foundations of the Edge-Cloud continuum, the\nevolution of intelligent agents in residential settings, and the\nrequirements for smart home automation among distributed\nsystems in these areas relate to our proposal and highlight\nthe remaining gaps that motivate the ARGUS architecture\n(Section II-D ).",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            53,
+            443,
+            321,
+            459
+          ],
+          "text": "A. Architectural Paradigms: The Edge-Cloud Continuum",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            462,
+            340,
+            529
+          ],
+          "text": "A smart home is defined not merely by connectivity, but\nby its ability to enhance resident autonomy through interl-\nement interaction [6] . While early implementations relied on\nmanual operations to control and maintain the environment,\nincreasingly distributed across the Edge-Cloud continuum [9] .",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            529,
+            340,
+            624
+          ],
+          "text": "Industrial surveys indicate that while cloud deployments\npredominate, accounting for approximately 75 % of compu-\ntational capacity in typical IoT architectures, there is a critical\nreliance on the edge (approximately 25 % ) for tasks requiring\nsignificant computational resources [9] . This hybrid approach\nis driven by four competing capacity attributes: reliability,\nperformance, security, and cost [9] .",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            624,
+            340,
+            733
+          ],
+          "text": "To manage this distributed complexity, modern systems\nincreasingly adopt the Microservices architectural style [10] .\nBy decomposing monolithic controllers into independently\ndeployable services, architects can isolate failures and scale\ncomponents independently. In the context of SE, this allows\nresource-intensive modules (such as computer vision) to run\non specialized edge hardware, while management interfaces\nreside in the cloud, integrated via API Gateways [11] .",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            732,
+            340,
+            815
+          ],
+          "text": "In existing smart-home platforms, these microservice and\nAPI Gateway patterns are typically employed to modularize\ndevice management and user-facing interfaces, while treating\nAI components as opaque services. However, they rarely make\nthe orchestration of heterogeneous AI workloads—such as\ncomputer vision, recommendation systems, and LLM-based",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            55,
+            638,
+            126
+          ],
+          "text": "agents—a first-class architectural concern across the Edge-\nCloud continuum, particularly under strict latency and privacy\nconstraints. In contrast, ARGUS builds on this microservices\nfoundation but explicitly models the life-cycle and placement\nof these diverse AI sub-systems, as detailed in Section IV .",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            136,
+            567,
+            151
+          ],
+          "text": "B. From Reactive Rules to Agentic Reasoning",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            155,
+            638,
+            225
+          ],
+          "text": "The \"intelligence\" in Ambient Intelligence (AmI) has\nevolved significantly. First-generation systems relied on simple\nRoute Based Systems (RBS) or trigger-action paradigms (e.g.,\nIFETs) which often respond better in dynamic environments\n[6], [12] .",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            225,
+            638,
+            333
+          ],
+          "text": "Second-generation systems introduced classical Machine\nLearning (ML) and Deep Learning (DL) to model user behav-\nior patterns [13] . Research has demonstrated the efficacy of\nmodels such as Long Short-Term Memory (LSTM) networks\nfor capturing temporal sequences in sensor data, enabling\nproactive recommendations rather than purely reactive controls\n[6], [12] . However, these models often lack flexibility when\nfacing novel situations or ambiguous user intents.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            333,
+            638,
+            482
+          ],
+          "text": "Recent advancements in Large Language Models (LLMs)\nhave enabled a third generation: Agentic Systems [14] . Un-\nlike static classifiers, LLM-based agents can employ natural\nlanguage planning to decompose complex, abstract goals into\nexecutable steps [15], [16] . Emerging patterns such as ReAct\n(Reasoning and Acting) allow agents to interleave reasoning\ntraces with calls to external tools to analyze intermediate condi-\ntions and predict future behavior [17], [18] . By combining\nsemantic memory structures, these agents can maintain long-\nterm context, transforming the smart home from a probabilistic\npredictor into a reasoning partner [19], [20] .",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            482,
+            638,
+            591
+          ],
+          "text": "Most of these works focus on the design of the agent\nand its memory mechanisms in isolation, assuming an ab-\nstract tool interface and leaving the underlying smart-home\ninfrastructure largely unspecified. ARGUS complements this\nline of research by embedding LLM-based agents into a con-\ncrete, event-driven microservices architecture, where reasoning\ntraces trigger and coordinate multiple perception and actuation\nservices without blocking low-latency control loops.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            604,
+            584,
+            620
+          ],
+          "text": "C. Data Exchange and Event-Driven Middleware",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            623,
+            638,
+            705
+          ],
+          "text": "The efficacy of distributed AI depends heavily on the\nunderlying data exchange mechanisms. The Publish/Subscribe\n(pub/sub) paradigm, mediated by protocols such as Message\nQueuing Telemetry Transport (MQTT), has become the de\nfacto standard for decoupling sensors from reasoning engines\n[6], [9], [21] .",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            705,
+            638,
+            815
+          ],
+          "text": "However, traditional brokers often lack the flexibility re-\nquired for heterogeneous AI workloads. High-frequency sen-\nsor data (e.g., accelerometers) and high-bandwidth streams\n(e.g., video metadata) compete for bandwidth [21] . Research\ninto Adaptive Message Broker Architectures suggests that\nregulating data flows at the subscription level, using AI\nplanning to dynamically adjust priorities and drop rates, can\nsignificantly improve Quality of Service (QoS) [21] .",
+          "reading_order": 16,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "elements": [
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            56,
+            341,
+            152
+          ],
+          "text": "Furthermore, data heterogeneity poses a challenge for deep\nstream learning. A single device message often encodes mul-\ntiple state properties (e.g., brightness, color, and temperature).\nEffective architectures must therefore implement robust nor-\nmalization methods to encode independent and/or-specific payoffs\ninto structured tabular representations suitable for multi-label\nclassification and incremental training [22] .",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            53,
+            155,
+            220,
+            170
+          ],
+          "text": "D. Related Work and Gap Analysis",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            172,
+            341,
+            280
+          ],
+          "text": "To the best of our knowledge, existing systems typically\naddress architecture, AI reasoning, and middleware in isola-\ntion: architectural work focuses on modularity and scalability\nbut treats AI workloads as black-box services; AI-oriented\nwork emphasizes models and agents but assumes an abstract\ninfrastructure; and middleware work optimizes data flows\nwithout integrating high-level reasoning and recommendation\nmodules.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            280,
+            341,
+            429
+          ],
+          "text": "ARGUS is proposed to bridge these gaps by providing an\nend-to-end software architecture that (1) orchestrates multiple\nAI subsystems—including computer vision, recommendation,\nand LLM-based agents—across the Edge-Cloud continuum,\n(2) enforces privacy-by-design for high-bandwidth sensing by\ncolocating sensitive processing at the edge, and (3) exposes a\nbroad range of events to which alternative technologies and\nmodels and agent systems to consume the same normalized\nrepresentation of the environment. The next section details\nthe design principles and concrete services that realize this\narchitecture.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            137,
+            432,
+            257,
+            447
+          ],
+          "text": "III. Research ESEARCH Design ESIGN",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            450,
+            341,
+            518
+          ],
+          "text": "This study follows a multi-stage research design to inves-\ntigate how heterogeneous AI modules can be orchestrated for\nAntagent Intelligence across the Edge-Cloud continuum. To\nanswer our research questions, we planned a total of four\nstages:",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            518,
+            341,
+            653
+          ],
+          "text": "Literature Review. We first conducted a targeted liter-\nature review on (i) software architectures for IoT and the\nEdge-Cloud continuum, (ii) AI-based automation and agent\nsystems for smart homes, and (iii) pub/sub middleware for\nheterogeneous sensor data, as summarized in Section II . This\nsynthesis revealed that existing work typically treats archi-\ntecture, AI reasoning, and middleware in isolation, motivating\nthe need for an end-to-end architecture that explicitly supports\nheterogeneous AI subsystems and incremental learning, thus\nshaping RQ1 and RQ2.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            653,
+            341,
+            760
+          ],
+          "text": "Discussions with Experts and Industrial Partners. We\nthen held structured discussions with domain experts and\npractitioners from our industrial partner to elicit real-world\nconstraints regarding device ecosystems, privacy requirements,\ndeployment topologies, and user experience. The resulting\ninformation was key for the definition of the functional and\nnon-functional requirements, later consolidated in Table I ,\nrefined the architectural goals associated with RQ1.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            760,
+            341,
+            815
+          ],
+          "text": "Exploratory Prototyping. Next, we developed small-scale\nprototypes of key components, including message-broker con-\nfigurations, an initial recommendation pipeline with incre-\nmental learning, and a basic computer vision service. These",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            56,
+            639,
+            124
+          ],
+          "text": "prototypes exposed practical trade-offs between end-to-end\nlatency, throughput, and resource utilization in an event-driven\nsetting, informing design choices such as asynchronous com-\nposite interconnects, and the implementation of high-bandwidth processing,\nwhich are central to RQ.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            124,
+            639,
+            273
+          ],
+          "text": "Architecture Definition and Evaluation. Finally, we con-\nsolidated the insights from the previous stages into the AR-\nGUS architecture, detailed in Sections IV and V , and de-\nsigned an empirical evaluation focused on vision inference\nand recommendation performance (Section VI ). In this way,\nRQ1 is addressed by demonstrating a common architecture\nand implementation that outperforms heterogeneous\nAI-based approaches, and finally, RQ2 is evaluated\nby quantifying the interaction between throughput and latency\nin the synchronous incremental learning pipeline embedded\nin our event-driven architecture.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            358,
+            281,
+            631,
+            296
+          ],
+          "text": "IV. ARGUS: Architecture RCHITECTURE and Design ESIGN Principles RINCIPLES",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            300,
+            639,
+            383
+          ],
+          "text": "To address the challenges of integrating heterogeneous AI\nsystems with real-time IoT constraints, we propose ARGUS:\na modular, distributed architecture designed for the edge-cloud\ncontinuum. ARGUS is not a monolithic application but a\nset of microservices orchestrated to provide context-aware\ndecision-making.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            390,
+            587,
+            405
+          ],
+          "text": "A. Architectural Requirements and Design Drivers",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            407,
+            639,
+            518
+          ],
+          "text": "The architectural design of ARGUS is governed by a set\nof requirements derived from the limitations of existing smart\nenvironment frameworks. These requirements, detailed in Ta-\nble I , ensure that the system provides advanced intelligence\nwhile maintaining the reliability and usability necessary for\ndomestic adoption. They serve as the primary design drivers,\ninfluencing the selection of the microservices pattern and the\nhybrid deployment topology.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            524,
+            562,
+            539
+          ],
+          "text": "B. Architectural Style and Design Principles",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            542,
+            639,
+            666
+          ],
+          "text": "To satisfy these requirements, ARGUS adopts a Microser-\nvices Architecture with an Asynchronous Event-Driven com-\nmunication pattern [23] . This decoupling is critical for latency\nissolation, ensuring that heavy inference tasks, such as an\nLLM reasoning cycle, do not block low-latency sensors or\nprocesses. Furthermore, the use of different encryption techniques,\nagnosticity, allowing the use of diverse techniques and tools\ntailored to each domain, such as Python for Machine Learning\nand Rust for high-performance middleware.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            674,
+            483,
+            689
+          ],
+          "text": "C. Context Level (Level 1)",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            691,
+            639,
+            815
+          ],
+          "text": "At the highest level of abstraction, ARGUS acts as an\nintelligent intermediary between the physical environment and\nthe resident. The system operates within a context defined by\nthree primary entities. First, Residents and Administrators\ninteract with the system via natural language (voseocho) or\nhuman-based instructions (human speech) through a Web Server.\nSecond, the system integrates with Vendor IoT Clouds\nto manage standard commercial devices like switches and\nthermostats; since many commodity devices lack local APIs,",
+          "reading_order": 18,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "elements": [
+        {
+          "label": "cap",
+          "bbox": [
+            156,
+            56,
+            533,
+            81
+          ],
+          "text": "TABLE I\nFUNCTIONAL AND NON-FUNCTIONAL REQUIREMENTS DRIVING THE ARGUS ARCHITECTURE.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            53,
+            90,
+            648,
+            412
+          ],
+          "text": "<table><tr><td>ID</td><td>Requirement Type</td><td>Description</td><td>Design Driver (User Advantage)</td></tr><tr><td colspan=\"4\">Functional Requirements</td></tr><tr><td>FR1</td><td>Device Integration</td><td>Normalization of diverse protocols (Cloud APIs, RTSP, MQTT) into a unified event schema.</td><td>Eliminates vendor lock-in: allows mix-and-match of best-class devices.</td></tr><tr><td>FR2</td><td>Multimodal Perception</td><td>Detection of entities and events from high-bandwidth video streams and scalar sensors.</td><td>Enables the environment to “see” context beyond simple binary triggers.</td></tr><tr><td>FR3</td><td>Proactive Recommendation</td><td>Prediction of future actuator states based on historical behavior and temporal context.</td><td>Automates routine tasks without requiring manual rule configuration.</td></tr><tr><td>FR4</td><td>Agentic Reasoning</td><td>Semantic reason for performing planning and tool execution via Large Language Models.</td><td>Allows the user to make an interpreted scenarios (e.g., “secure the house”) dynamically.</td></tr><tr><td>FR5</td><td>Dynamic Orchestration</td><td>Dynamic lifecycle management and workload distribution for inference nodes.</td><td>Ensures optimal resource usage across distributed hardware.</td></tr><tr><td>FR6</td><td>Observability &amp; Admin</td><td>Real-time configuration and visual monitoring of distributed system health.</td><td>Prevents black-box syndrome; increases trust and manageability.</td></tr><tr><td colspan=\"4\">Non-Functional Requirements</td></tr><tr><td>NFR1</td><td>Low Latency</td><td>Handle requests and device updates in low latency.</td><td>Guarantees “smart” features do not degrade fundamental home utility.</td></tr><tr><td>NFR2</td><td>Privacy by Design</td><td>Local processing of sensitive high-bandwidth data (specifically raw video) at the edge.</td><td>Protects the data from residents.</td></tr><tr><td>NFR3</td><td>Scalability</td><td>Support for horizontal addition of edge nodes and sensor inputs.</td><td>Allows the system to handle many smart environments simultaneously.</td></tr><tr><td>NFR4</td><td>Resilience</td><td>Automatic recovery from transient failures in reasoning agents or cloud APIs.</td><td>Ensures continuous operation of core functions during outages.</td></tr><tr><td>NFR5</td><td>Interactive Usability</td><td>Support for intuitive, multimodal interaction (VoiceChat) for non-technical users.</td><td>Increases responsibility for diverse user groups (e.g., elderly).</td></tr><tr><td>NFR6</td><td>Deployment Flexibility</td><td>Support for heterogeneous infrastructure topologies (Edge, On-Premise, Cloud, or Hybrid).</td><td>Allows deployment optimization for cost, price, or hardware availability specific to the site.</td></tr></table>",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_004_figure_002.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_004_figure_002.png",
+          "bbox": [
+            40,
+            436,
+            341,
+            562
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            52,
+            569,
+            340,
+            592
+          ],
+          "text": "Fig. 1. Context Diagram of the ARGUS architecture, showing Residents,\nAdministrators, Vendor Cloud, and Cameras interacting with ARGUS .",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            613,
+            342,
+            709
+          ],
+          "text": "ARGUS exchanges command payloads with these external\nclouds. Finally, High-Bandwidth Local Sensors , such as\nIP Cameras, connect directly to ARGUS Edge nodes via\nRFS or WebRTC. This direct link bypasses external clouds\nand ensures that the connections are latency and\npreserves the privacy of sensitive video data. Figure 1 shows\nthe architecture in this level of abstraction.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            52,
+            715,
+            191,
+            730
+          ],
+          "text": "D. Container Level (Level 2)",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            732,
+            341,
+            760
+          ],
+          "text": "ARGUS is internally composed of containerized services\norganized into four logical layers, as illustrated in Figure 2 .",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            760,
+            341,
+            814
+          ],
+          "text": "1) Layer 1: Data Infrastructure and Persistence : The back-\nbone of the system is the Data Infrastructure Layer, which han-\ndles state management and inter-service communication. The\ncentral communication service is the Message Broker (Eclipse",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            436,
+            638,
+            492
+          ],
+          "text": "Mosquitto) [24] , which implements the MQTT protocol. All\nsensor events, telemetry, and control commands are published\nhere, allowing subsystems to react to state changes without\ndirect coupling.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            492,
+            638,
+            640
+          ],
+          "text": "Complementing the broker, we employ a heterogeneous\npersistence strategy to match the data storage requirements\nof each service with the appropriate technology. We utilize\nMongoDB [25] as a document store for semi-structured data\nsuch as user profiles and event history, while Redis [26]\nprovides an in-memory key-value store for high-speed syn-\nchronization of transactions by making use of a highly reliable\nfor real-time components. Binary artifacts, including Machine\nLearning model weights and camera snapshots, are managed\nby MinIO (Object Storage) [27] , and structured metadata for\norchestration logic are stored in MariaDB [28] .",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            640,
+            638,
+            787
+          ],
+          "text": "2) Layer 2: Core Services : These services abstract the\ncomplexity of real-world devices and external interfaces. The\nIoT Cloud Adapter acts as the translation layer, normalizing\nheterogeneous payloads (e.g., vendor-specific JSON) into a\nstandardized internal event schema, ensuring downstream con-\nsumers remain agnostic to hardware protocols. The Orches-\nter service acts as the central hub for data sources, consisting\nof distributed servers and dynamically routing computational\ntasks. External access is managed by an API Gateway (GINNX\n[29] ), which handles TLS termination, rate limiting, and\nrouting.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            787,
+            638,
+            815
+          ],
+          "text": "3) Layer 3: The Intelligence Layer: This layer contains\nstateless, horizontally scalable reasoning engine that trans-",
+          "reading_order": 11,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "elements": [
+        {
+          "label": "half_para",
+          "bbox": [
+            53,
+            56,
+            341,
+            150
+          ],
+          "text": "form raw data into insight. The Computer Vision Subsystem \nprocesses video streams to detect occupancy and entities. The \nRecommendation Engine (RecSys) performs incremental \nlearning on event streams to predict future user needs. Finally, \nthe system textently extracts Language Models (LLMs) and \nRetrieval-Awareness Networks (RAN) to extract complex \nreasoning and multi-step automation planning.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            150,
+            340,
+            217
+          ],
+          "text": "4) Layer 4: Presentation : The interface layer comprises\nthe Chatbot Application , written in Flutter, for multimodal\nstudent interaction, and the Management UI made with\nFlutter, for system administration and visualization of\ntelemetry data.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            53,
+            224,
+            264,
+            239
+          ],
+          "text": "E. Deployment: The Edge-Cloud Continuum",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            241,
+            340,
+            364
+          ],
+          "text": "A distinguishing feature of the ARGUS architecture is\nits design, enabling multiple deployment strategies (NFR6).\nIndeed, when considering factors like privacy and heteroge-\nneous processing nodes, ARGUS services can be deployed\non Edge Nodes, in the Cloud, and on Open Server™s. For\nexample, an Edge node can process only one task as necessary\nrequired, computational power can be obtained to the Cloud,\nenabling heavy tasks such as LLM inference and continuous\nvideo stream processing.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            364,
+            340,
+            417
+          ],
+          "text": "However, some IoT vendors require the use of their public\ncloud to control their devices. In this case, information is\nproxied through the vendor's Cloud, leveraging existing in-\nfrastructure for command propagation.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            132,
+            423,
+            257,
+            437
+          ],
+          "text": "V. ARGUS subsystems",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            439,
+            340,
+            468
+          ],
+          "text": "The ARGUS architecture is divided into six important sub-\nsystems which will be individually presented in this section.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            53,
+            473,
+            221,
+            488
+          ],
+          "text": "A. Real-time Recommendation Eng",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            490,
+            340,
+            625
+          ],
+          "text": "The Recommendation Engine (RecSys) establishes the\nsystem's proactive control loop by continuously analyzing\nevent streams to predict future user needs. As illustrated\nin Figure 3 , the module operates downstream from the IoT\ninfrastructure. Raw sensor events are first normalized by\nthe Third-Party IoT API Adapter into a unified internal\nrepresentation and published to the message broker. This\nadapter layer decouples the recommender from specific vendor\nprotocols, ensuring a reliable, ordered stream of standardized\ndevice events for consumption.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            625,
+            340,
+            787
+          ],
+          "text": "Upon consumption, the engine transforms the continuous\nevent stream into a structured format suitable for supervised\nlearning. Incoming events are converted into tabular records,\nwhere devices are categorized as either predictors (sensors)\nor control targets (actuators). These records are enriched via\ntemporal transformation , which encodes timestamps into fea-\ntures ( e.g., time-of-day) and lagged states to capture sequential\nusage patterns. To handle the irregular frequency of IoT data,\nthe system employs dynamic window construction . Instead of\nfixed time intervals, training windows are defined by event\ndensity, ensuring that each update batch maintains temporal\ncoherence and sufficient information density.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            787,
+            340,
+            815
+          ],
+          "text": "These dynamic windows feed the incremental model train-\ning phase. To address the non-stationary nature of human",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            56,
+            638,
+            150
+          ],
+          "text": "habits, the model updates its weights online using the most\nrecent window rather than retraining from scratch, allowing the\nsystem to adapt to behavioral drifts in real-time. Finally, the\nprediction module offers optimal actuator states based on the\ncurrent observations but does not update them until after being\nthe message broker, closing the control loop, mitigating back-\ning-in-the-mask.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            350,
+            162,
+            523,
+            177
+          ],
+          "text": "B. Edge Computer Vision Subsystem",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            182,
+            638,
+            331
+          ],
+          "text": "The Computer Vision (CV) subsystem is a major subsystem\nlocated in the Intelligence Layer (see Figure 2 ). It serves\nas the primary high-bandwidth perception engine within the\nARGUS architecture. It is designed to reconcile the critical\ntension between multimodal perception (FR2) and privacy-by-\ndesign (NFR2). Unlike cloud-based vision APIs that require\ntransmitting sensitive footage over the internet, this system is\none of the first to use the power of low-cost NVIDIA\nJetson nodes), ensuring that raw video streams are fully pro-\ncessed locally. Our CV subsystem design is twofold, focusing\non Inference Orchestration and on Resilience and Isolation.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            332,
+            638,
+            386
+          ],
+          "text": "Concerning to inference orchestration , the subsystem ar-\nchitecturally acts as a wrapper around the NVIDIA Triton\nInference Server 2 , providing a unified abstraction for hetero-\ngeneous models. It implements the following pipeline:",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            356,
+            388,
+            639,
+            647
+          ],
+          "text": "1) Ingestion: The module connects directly to local IP\ncameras via RTSP, bypassing the central message broker\nto avoid network congestion. It employs a \"latest-frame\"\nsampling strategy, discarding stale buffers to minimize\nprocessing latency.\n2) Inference: Frames are submitted to Triton, which orches-\ntrates the concurrent execution of multiple loaded mod-\nels (e.g., YOLOv11 for object detection, VGGFace for\nface recognition, etc.). The subsystem supports dynamic\nmodel swapping at runtime via MQTT control messages,\nallowing the Orchestrator to load heavier models only\nwhen specific requests require.\n3) Publication: The raw data from the models are ag-\ngregated and transformed into lightweight, structured\nJSON events (e.g., event: \"person detected\",\nconfidence: 0.95 ). Only these metadata packets\nare published to the MQTT bus, resulting in a reduction\nof network bandwidth usage by orders of magnitude\ncompared to video streaming.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            649,
+            638,
+            758
+          ],
+          "text": "Regarding resilience and isolation , aiming to ensure con-\ntinuous operation in safety-critical environments, the module\nimplements fault isolation at the model level. If a specific\nneural network fails to converge or crashes (e.g., due to an\nout-of-memory error), the wrapper isolates the failure, allow-\ning other active models to continue processing the stream.\nFurthermore, the subsystem includes automated watchdog\nmechanisms that re-establish RTSP connections upon stream",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            350,
+            771,
+            638,
+            814
+          ],
+          "text": "• NVIDIA Triton Inference Server is a multi-framework model serving\nsystem that provides a unified interface for loading and executing machine\nlearning models in production environments. More information available at:\nhttps://docs.nvidia.com/deeplearning/triton-inference-server.",
+          "reading_order": 17,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_006_figure_000.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_006_figure_000.png",
+          "bbox": [
+            80,
+            54,
+            577,
+            394
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            52,
+            401,
+            638,
+            425
+          ],
+          "text": "Fig. 2. The ARGUS simplified container-level architecture visualization. The diagram highlights the separation between the Data Infrastructure, Core\nServices, and the Intelligence Layer, connected via an MQTT Event Bus.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            53,
+            447,
+            340,
+            476
+          ],
+          "text": "interruption, ensuring autonomous recovery without adminis-\ntrative intervention.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            53,
+            485,
+            223,
+            500
+          ],
+          "text": "C. Agentic Reasoning and Planning",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            503,
+            340,
+            597
+          ],
+          "text": "While the Recommendation Engine handles runtime, pattern-\nbased automation, the AI Agents Subsystem addresses com-\nplex, ambiguous, or unscrilled scenarios (F84). This module\nacts as the system's \"Slow Thinking\" engine, utilizing Lager\nMode, an automated version of the Intel language tagents,\ndecompose abstract goals into actionable steps, and orchestrate\nthe execution of other ARGUS subsystems.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            597,
+            341,
+            705
+          ],
+          "text": "To overcome the non-deterministic nature of LLMs, the\narchitecture rejects monolithic “ black box ” agent implemen-\ntations. Instead, reasoning workflows are modeled as Directed\nAcyclic Graphs (DAGs) executed via a low-code orchestration\nruntime (n8n). This graph-based design formalizes the Chain-\nof-Thought prompting technique [15] , forcing the model to\ngenerate intermediate reasoning steps before committing to an\naction.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            705,
+            341,
+            815
+          ],
+          "text": "Furthermore, the system implements the React (Reasoning\n+ Acting) pattern [17] . Rather than hallucinating device states,\nthe agents interleave reasoning traces with deterministic tool\ninvocations. For example, to answer \"Is the house secure?\",\nan agent does not guess; it executes a Perception Tool (query-\ning the Computer Vision subsystem), analyzes the returned\nstructured metadata, and then formulates a grounded response.\nThis \"Tool Use\" paradigm [18] effectively treats the rest of the",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            447,
+            638,
+            475
+          ],
+          "text": "ARGUS platform (Vision, IoT Adapter, Persistence) as a set\nof callable API functions exposed to the LLM.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            475,
+            638,
+            529
+          ],
+          "text": "To support long-horizon consistency and personalization,\nthe agents employ a Multi-Store Memory architecture, inspired\nby recent research in generative agents [19], [20] . The state is\npartitioned into three distinct indices:",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            362,
+            529,
+            639,
+            719
+          ],
+          "text": "• Episodic Memory: A time-series log of past environmen-\ntal events (ingested via MQTT) and prior agent actions.\nThis allows the system to answer temporal queries (e.g.,\n\"Who was at the door yesterday?\").\n• Semantic Memory: A vector database containing embed-\ndings of system documentation, policy rules, and entity\ndescriptions. This utilizes Retrie-Augmented Genera-\ntion (rag) [31] to ground agent responses in static factual\nknowledge.\n• Procedural Memory: A collection of successful plan\ntrajectories. When an agent successfully resolves a novel\ntask, the sequence of actions is indexed, allowing the\nsystem to recall and adapt this \"habit\" for future similar\nrequests without re-divering the plan from scratch.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            719,
+            638,
+            815
+          ],
+          "text": "At last, given the high computational cost of LLM inference,\nthe subsystem operates under strict resource quotas enforced\nby the Orchestrator. To mitigate latency, the architecture\nemploys a caching layer for frequent queries, and falls back to\nmore advanced memory latency. Once the LLM finishes, the\nreasoning logic is encoded as explicit DAGs rather than\nopaque code, every step of the decision process—from the",
+          "reading_order": 10,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_007_figure_000.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_007_figure_000.png",
+          "bbox": [
+            112,
+            52,
+            283,
+            395
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            52,
+            397,
+            341,
+            462
+          ],
+          "text": "Fig. 3. Architecture of the smart-home recommender system. Events gen-\nerated by the Arduino are sent to the Compaq SmartThings node, processed\nby the Adapter, and actuated via a message broger to the RecSys hub.\nThe RecSys modem converts events into temporally structured tabulated data,\nwhich are then sent to the Compaq SmartThings node, where further\nrecommendations that are returned to the broker for execution on actuators.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_007_figure_002.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_007_figure_002.png",
+          "bbox": [
+            392,
+            56,
+            594,
+            442
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            350,
+            454,
+            638,
+            477
+          ],
+          "text": "Fig. 4. Camera-captured input frame (top) and structured JSON output\ngenerated by the vision processing pipeline (bottom).",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            52,
+            483,
+            341,
+            538
+          ],
+          "text": "initial prompt to the final tool output—is recorded. This pro-\nvides a complete audit trail (FR6), enabling administrators to\ninspect the \"thought process\" behind every automated decision\nand debug logic failures in the prompt chain.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            53,
+            550,
+            209,
+            565
+          ],
+          "text": "D. Multimodal Chatbot Interface",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            570,
+            341,
+            704
+          ],
+          "text": "The Chatbot Interface functions as the primary Human-\nComputer Interface (HCI) for the ARGUS solution, facili-\ntating bidirectional communication between the resident and\nthe smart environment. It serves a dual purpose: enabling\nthe user to execute complex device commands via natural\nlanguage (text or audio) and acting as the delivery channel for\nproactive insights generated by the Recommendation Engine.\nThese recommendations can be solicited interactively during\nconversation or pushed asynchronously as notifications during\nsafety-critical events.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            52,
+            706,
+            342,
+            814
+          ],
+          "text": "1) Backend Architecture and NLP Pipeline: The subsystem\nis architected as a decoupled client-server model. The backend,\nimplemented in Python, leverages a modular design centered\non the Flask framework to expose RESTful endpoints for\nauthentication and dialogue management. To support low-\nlatency interactions, the system employs a polyglot persistence\nstrategy: MongoDB [25] is utilized for long-term storage of\nconversational records and user profiles, while Redis [26]",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            350,
+            500,
+            638,
+            775
+          ],
+          "text": "manages the real-time synchronization of device states across\nthe ecosystem.\n\nTo enable robust natural language understanding, the\nbackend integrates specialized Transformer-based architec-\ntures [32] . Furthermore, audio inputs are processed by an\nAutomatic Speech Recognition (ASR) pipeline using the\nWave2vec2-XLSR 3 model. For semantic understanding, the\nsystem employs the Serafin-100m 4 sentence encoder to\ngenerate high-dimensional embeddings from user text. These\nembeddings are compared against a pre-computed vector space\nof device capabilities to resolve user intent.\n\n2 Frontend and State Management: The client-side ap-\nplication is developed in Dart using the Flutter framework,\nensuring cross-platform consistency. Furthermore, communi-\ncation with the wider ARGUS architecture is hybrid: the fron-\nteen utilizes HTTPS/REST for transactional operations with the\nbackend (e.g., authentication) while establishing a continuous\nWebSocket subscription for device updates. This allows the\ninterface to reflect the state of the physical environment in\nreal-time without polling.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            361,
+            790,
+            586,
+            801
+          ],
+          "text": "$^{3}$Model: lgris/wav2vec2-large-xlsr-open-brazilian-portuguese",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            361,
+            801,
+            622,
+            813
+          ],
+          "text": "$^{4}$Model: PORTULAN/serafim-100m-portuguese-pl-sentence-encoder-ir",
+          "reading_order": 10,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_008_figure_000.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_008_figure_000.png",
+          "bbox": [
+            95,
+            57,
+            297,
+            164
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            53,
+            181,
+            341,
+            223
+          ],
+          "text": "Fig. 5. Workflow of the Chatbot Recommendation Module. Audio input is\ntranscribed via ASR, vectorized by a Transformer encoder, and compared with\ndevice embeddings via cosine similarity to generate actionable recommenda-\ntions.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            245,
+            341,
+            286
+          ],
+          "text": "3) Operational Control Flow: Operationally, the interface\nmanagement layer oversees the flow of User-Initiated Command\nand Proactive Recommendations.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            286,
+            341,
+            395
+          ],
+          "text": "In the User-Initiated flow, natural language inputs are pro-\ncessed as illustrated in Figure 5 . The system resolves the\nuser's intent against a dynamically updated registry of device\nattributes. Upon validation, the frontend forwards the action\nrequest to the Third-Party IoT API Adapter . This adapter\ntranslates the generic command into the specific payload struc-\nture required by the vendor's external cloud API, executing the\nchange on the physical hardware.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            395,
+            341,
+            476
+          ],
+          "text": "In the Proactive flow, the logic is inverted. The Recom-\nmendation Engine detects a relevant context change (e.g.,\nuser arrival) and pushes a suggestion to the interface via\nthe message bus. These appear as interactive notifications,\nallowing the user to approve or dismiss the system's proposed\nadaptation without needing to issue a prior command.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            476,
+            341,
+            585
+          ],
+          "text": "To support these flows, the synchronization module con-\ntinuously monitors the event bus for device telemetry. It dy-\nnamically constructs a mapping of available devices and their\nmutable attributes (e.g., light_color,brightness) , up-\ndating the Redis store in real-time. This ensures that the natural\nlanguage models always reason over the valid, current state\nspace of the environment, preventing hallucinations regarding\nnon-existent devices or unsupported actions.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            53,
+            592,
+            266,
+            607
+          ],
+          "text": "E. Management and Observability Subsystem",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            611,
+            341,
+            719
+          ],
+          "text": "The Management Interface functions as the centralized\ncontrol plane for the ARGUS ecosystem. While the Chatbot\nserves the end-user, this subsystem provides administrators\nwith deep observability into system health, node lifecycle\nmanagement, and data governance. It is architected to satisfy\nthe requirement for dynamic configuration (FR6) by expos-\ning a unified surface for visualizing real-time telemetry and\nexecuting CRUD operations on models, users, and metrics.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            719,
+            341,
+            815
+          ],
+          "text": "1) Architectural Design : The subsystem adopts a decoupled\nmulti-service pattern via an API Gateway (NGIN) [29] . The\npresentation layer is a server-side rendered application (built\non Flask) that remains stateless to facilitate horizontal scaling.\nThe implementation of the VFS was chosen for this purpose because\na specialized Storage Service (built on top of FastAPI [31] )\nwhich acts as the abstraction layer for the polygon persistence.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            55,
+            638,
+            111
+          ],
+          "text": "stack. This design isolates the frontend from the complexities\nof the underlying database technologies (MongoDB [25] and\nMinIO [27]), enforcing a strict contract-first approach via\nOpenAPI specifications.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            111,
+            638,
+            178
+          ],
+          "text": "2) Observability Pipeline and Flow Reconstruction : A crit-\nical challenge in event-driven architectures is tracing causality\nacross asynchronous components. To address this, the subsys-\ntems that were originally designed observability pipeline consisting\nof two specialized workers:",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            363,
+            180,
+            639,
+            329
+          ],
+          "text": "• The Telemetry Listerer : A service that subscribes to the\nMQTT bus to ingest system metrics.\n• The Flow Processor : An asynchronous worker that re-\nconstructs distributed execution traces. It periodically\nqueries `orphained' execution records from the document\nstore and correlates them using temporal windowing and\nunique transaction IDs. This allows the system to calcula-\nte precise latencies for each operation, and to process\ntimes across the edge-cloud continuum, providing the\ndata necessary to validate the real-time latency require-\nment (NFR1).",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            350,
+            336,
+            560,
+            351
+          ],
+          "text": "E. Orchestration and Resource Management",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            354,
+            639,
+            449
+          ],
+          "text": "The Orchestrator subsystem serves as the entry point for\nrequests into the system, enabling the transition from static\nconfigurations to dynamic, self-healing environments. It is\nresponsible for the lifecycle management of distributed edge\nnodes, ensuring that computational resources are allocated\nefficiently to satisfy the system's real-time latency targets\n(NFRL).",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            449,
+            638,
+            530
+          ],
+          "text": "1) The Control Plane: The subsystem implements a cen-\ntralized control plane based on the Monitor-Analyze-Plan-\nExecute (MAPE) loop [34] . It aggregates high-frequency\ntelemetry—including CPU/GPU saturation, memory pressure,\nand network latency—published by lightweight Monitor\nAgents sidecars deployed on every edge node.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            530,
+            639,
+            638
+          ],
+          "text": "This telemetry flows into the Decision Manager, a heuristic-\nbased policy engine inside the Orchestrator. Unlike static\nschedulers, this engine evaluates the health of the distributed\nfleet in real-time. If a node reports resource exhaustion or fails\nto heartbeat, the Decision Manager triggers dynamic realloca-\ntion routines, such as migrating inference tasks to underutilized\nnodes or, in critical failure scenarios, gracefully degrading\nnon-essential services to preserve core safety functions.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            638,
+            638,
+            732
+          ],
+          "text": "2) Edge Autonomy and Scalability: To support horizontal\nscalability (NPR3), the architecture employs a Sidecast Pattern\n[35] . Each processing node runs a local agent that abstracts the\nhardware specifics from the central orchestrator. These agents\nserve as FCPUs which are used to process data and themselves\nupon boot allowing the system to seamlessly incorporate new\ncompute resources without manual reconfiguration.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            732,
+            639,
+            814
+          ],
+          "text": "3) Resilience Mechanisms: Given the unreliability of resi-\ndential networks, the subsystem incorporates robust fault-\ntolerance mechanisms to ensure availability. Communication\nbetween the central orchestrator and edge agents is governed\nby Circuit Breaker patterns and Exponential Backoff retry\nrules [36] . Messages that fail to be delivered after repeated",
+          "reading_order": 17,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "elements": [
+        {
+          "label": "cap",
+          "bbox": [
+            58,
+            57,
+            335,
+            89
+          ],
+          "text": "TABLE II\n\n\nHardware configuration of heterogeneous nodes used in\nthe evaluation.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            59,
+            99,
+            338,
+            149
+          ],
+          "text": "<table><tr><td>Node ID</td><td>Processor</td><td>Memory</td><td>GPU</td></tr><tr><td>Peer-01</td><td>Intel i9 48000 (32 threads)</td><td>32 GB</td><td>RTX 4060</td></tr><tr><td>Peer-02</td><td>Intel i7 12700 (20 threads)</td><td>24 GB</td><td>None (CPU only)</td></tr><tr><td>Peer-03</td><td>Intel i7 10700 (16 threads)</td><td>32 GB</td><td>None (CPU only)</td></tr></table>",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            52,
+            175,
+            341,
+            257
+          ],
+          "text": "attempts are routed to dead-letter queues for asynchronous\nanalysis, preventing transient network partitions from cascad-\ning into system-wide failures. This isolation ensures that even\nif the orchestration layer becomes temporarily unreachable, the\nlocal edge nodes retain their last known good configuration\nand continue performing local safety checks.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            152,
+            265,
+            241,
+            280
+          ],
+          "text": "VI. Evaluation VALUATION",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            284,
+            341,
+            340
+          ],
+          "text": "To evaluate the designed architecture, we tested the per-\nformance of image processing through the Computer Vision\nService and recommendation generation through the Recom-\nmendation Engine (RecSys).",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            52,
+            348,
+            207,
+            363
+          ],
+          "text": "A. Vision inference performance",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            366,
+            341,
+            461
+          ],
+          "text": "To validate the system's ability to orchestrate high-\nbandwidth perception tasks under real-time constraints and\nvarying loads, we conducted an end-to-end performance eval-\nuation of the Computer Vision pipeline. The experiment aimed\nto assess the impact of the overhead introduced by the orchestration\nlayer and to quantify the benefits of horizontal scaling across\nheterogeneous edge nodes.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            461,
+            341,
+            556
+          ],
+          "text": "1) Experimental Setup and Methodology: The evaluation\nenvironment consisted of three heterogeneous edge nodes,\ndetailed in Table II . The diversity in hardware specifica-\ntions—ranging from high-performance I9 processors with del-\nterious features to smartphones—was intentionally designed\nto test the orchestrators' ability to distribute load across\nasymmetric compute resources.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            556,
+            341,
+            664
+          ],
+          "text": "The experiment followed a strictly defined request-response\ncycle. An administrative client published single-shot inference\ncommands to the system at controlled rates. Upon receipt,\nthe Orchestrator executed its decision logic (Node Selection),\ndispatched the task to the selected node's sidecar agent, and\ntriggered the Computer Vision module. The pipeline concluded\nwhen the inference metadata (the vision _ response ) was\npublished back to the message bus.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            664,
+            341,
+            759
+          ],
+          "text": "To measure latency without inducing observer effects, we\nemployed an out-of-hand MQTT telemetry sniffer. This tool\nsubscribed to all workflow topics, timestamping events at\nmillisecond precision to reconstruct the critical path of each\nrequest, thus defining End-to-End Latency as the total elapsed\ntime between issuance of the command and the receipt of\nthe inference result.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            52,
+            759,
+            341,
+            815
+          ],
+          "text": "2) Workload Profile: We executed the experiment across\nthree topological configurations: (1) Single Node, (2) Two\nNodes, and (3) Three Nodes. For each topology, we subjected\nthe system to increasing load intensities ranging from 0.25",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            55,
+            638,
+            97
+          ],
+          "text": "to 5 Requests Per Second (RPS). Each run consisted of 150\ndiscrete requests, generating a dataset that allowed us to\nanalyze latency distribution and failure rates under stress.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            96,
+            638,
+            192
+          ],
+          "text": "3) Analysis of Orchestration Overhead: A primary concern\nin microservices architectures is whether the orchestration\nlayer introduces unacceptable latency. Our results indicate that\nthe overhead is negligible. Under low-to-moderate load (0.25–\n0.75), the average overhead of the荣耀 Web is significantly\nless than that of the other orchestrators, indicating that the\ntransition from New Request → Orchestrator and Orchestrator\n→ Vision Instance—averaged approximately 7 ms.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            192,
+            638,
+            272
+          ],
+          "text": "In contrast, the actual inference execution (Vision Request\n→ Response) averaged 1.50 s. Consequently, the orchestration\nlogic accounts for less than 1 % of the total transaction time.\nThis confirms that the ARGUS orchestration middleware is\nlightweight and does not bottleneck the high-value perception\ntasks.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            272,
+            637,
+            313
+          ],
+          "text": "4) Scalability and Horizontal Elasticity: The system's re-\nsults are improved by observing latency decreas-\ning as request rates increase.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            361,
+            314,
+            638,
+            451
+          ],
+          "text": "• Single Node Saturation : With only one node (Peer-01),\nthe system maintained stability up to 1 RPS. However, at\nloads exceeding 2 RPS, we observed a significant increase\nin latency variance (jitter) and a rise in dropped responses,\nindicating processor saturation.\n• Impact of Horizontal Scaling : Adding a second and third\nnode dramatically mitigated these saturation effects. In\nthe 3-node configuration, the system sustained loads of\n5 RPS with near-zero failure rates and stabilized p95\nlatency.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            452,
+            638,
+            520
+          ],
+          "text": "These results demonstrate that the orchestrator effectively\nutilizes available peer nodes to absorb demand. By distributing\ntasks across the heterogeneous cluster, ARGUS transforms a\nmore dynamic workload distribution, while reducing resource\nstream, satisfying the scalability requirement (NIR3).",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            349,
+            526,
+            509,
+            540
+          ],
+          "text": "B. Recommendation performance",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            544,
+            638,
+            651
+          ],
+          "text": "To evaluate the scalability of the proactive control loop\n(FR3), we conducted a load capacity analysis of the Recom-\nmendation Engine. Unlike the stateless Computer Vision mod-\nule, the RecSys component performs Incremental Learning ,\nmeaning it must update its internal model weights in near real-\ntime while processing incoming events. This experiment aims\nto quantify the latency trade-offs inherent in this continuous\nlearning approach.",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            651,
+            638,
+            760
+          ],
+          "text": "1) Experimental Setup and Hardware: Consistent with the\n\"Edge-Cloud Continuum\" architecture proposed in Section 3,\nthe Recommendation Engine was deployed on a centralized\nprivate cloud server rather than an edge node. The evalua-\ntion environment was hosted on a high-performance server\nequipped with an AMD EPYC 7SF3 processor (16-Core, 3.2\nGHz), 62GB of 320Mhz DDR4 ECC memory, and NVME\nSSD storage (Micro 7450 PRO).",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            349,
+            760,
+            638,
+            815
+          ],
+          "text": "It is important to note that the reference implementation\nevaluated here operates under a Sequential Processing Model .\nTo ensure data consistency during incremental training steps,\nmessages in the current prototype are processed synchronously",
+          "reading_order": 20,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "elements": [
+        {
+          "label": "half_para",
+          "bbox": [
+            53,
+            56,
+            340,
+            84
+          ],
+          "text": "in a strict pipeline: Device Event → Preprocessing → Persis-\ntence → Incremental Training → Inference.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            84,
+            341,
+            165
+          ],
+          "text": "2) Methodology and Metrics: The experiment simulated a\nmulti-home environment by injecting a controlled stream of\nsynthetic IoT events into the message broker. We fixed the total\nvolume at 1000 messages per trial while varying the message\ninjection rate across five levels: [0.25, 0.5, 1.0, 2.0, 3.0] M/s\n(messages per second).",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            64,
+            164,
+            310,
+            179
+          ],
+          "text": "We captured four key metrics to assess performance",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            64,
+            180,
+            341,
+            277
+          ],
+          "text": "• Logical Processing Latency ($T_{proc}$): The time elapsed\nbetween data ingestion and the generation of a prediction.\nThis includes the time spent updating the model.\n• Queue Execution Time ($T_{queue}$): The duration a message\nwarmed or processed before its processing begins.\n• Resource Utilization: CPU and RAM consumption per-\ncentages during the batch execution.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            278,
+            341,
+            321
+          ],
+          "text": "3) Performance Analysis: The results, visualized in Figure\n6 , reveal a distinct performance boundary dictated by the\nsequential nature of the implementation.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/_ICSA_2026__Argus_Architecture_page_010_figure_005.png)",
+          "figure_path": "figures/_ICSA_2026__Argus_Architecture_page_010_figure_005.png",
+          "bbox": [
+            55,
+            333,
+            338,
+            478
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            53,
+            487,
+            341,
+            531
+          ],
+          "text": "Fig. 6. Performance metrics of the Recommendation Engine under varying\nload (Injection Rate in $M/s$ ). The graphs illustrate the exponential growth\nin queue time ($T_{queue}$) beyond the saturation point (2 $M/s$ ) and the high\nvariance in processing time ($T_{proc}$) caused by incremental training steps.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            540,
+            341,
+            691
+          ],
+          "text": "a) Saturation Point: At injection rates below 1.0 M/s/s,\nthe system maintained parity between arrival and service rates.\nHowever, at $\\geq$ 2.0 M/s/s, we observed an exponential growth\nin $L_{\\text{queue}}$ (as shown in the top-right quadrant of Figure 6 ). This\nindicates that the service rate ($\\mu$) of the incremental learning\npipeline is approximately 1.5 seconds per message. Once the\narrival rate ($\\lambda$) exceeds this threshold, the system enters a\nstable state, creating an unbalanced long-horizon, from\nwhich the whole sensing signal for single-hop deployments,\nmulti-home scalability will require parallelizing the training\nstep in future iterations.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            691,
+            341,
+            815
+          ],
+          "text": "b) Variance and Incremental Learning: A critical find-\ning is the high standard deviation in $T_{proc}$. This volatility\nis intrinsic to the Incremental Learning requirement (FR3).\nPeriodic model updates are computationally intensive, causing\nintermittent latency spikes interspersed with fast inference.\nThe memory overhead of a typical FLtr system's APU usage is\nretained exceptionally stable across all load levels, suggesting\nthat the memory footprint of the online learning algorithms is\nconstant and predictable.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            351,
+            55,
+            411,
+            70
+          ],
+          "text": "C. Summary",
+          "reading_order": 9,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            76,
+            639,
+            265
+          ],
+          "text": "Our evaluation validates RQ1 , demonstrating that the or-\nchestration middleware introduces negligible overhead (< 1 %\nof transaction time) and effectively leverages horizontal scal-\ning to stabilize latency under load. Addressing RQ2 , we\nidentified a critical saturation point of $\\approx$ 1.5 messages per\nsecond in the Recommendation Engine, where the coupling of\nthroughput limits and processing latency in the synchronous\nincremental learning pipeline causes exponential degradation.\nWhile this constitutes a bottleneck for individual instances, the\nARGUS Orchestrator overcomes this limitation by horizon-\ntally sharing recommendation services ( e.g. , per House ID)\nacross distributed containers, ensuring ecosystem-wide real-\ntime responsiveness despite the sequential constraints of the\nunderlying learning algorithm.",
+          "reading_order": 10,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            396,
+            276,
+            592,
+            291
+          ],
+          "text": "Ⅶ. Conclusion ONCLUSION and Future UTURE Work ORK",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            298,
+            639,
+            543
+          ],
+          "text": "This paper presented ARGUS, a context-aware software\narchitecture designed to orchestrate heterogeneous AI subsys-\ntems within the Edge-Cloud continuum. The research vali-\ndated that a distributed, event-driven approach successfully\nreconciles the conflicting requirements of processing high-\nbandwidth sensor streams and maintaining low-latency device\ncontrol. By enforcing privacy-by-design through local edge\nprocessing of sensitive video data, the architecture ensures\nresident privacy without compromising perception capabilities.\nThe experimental evaluation of the orchestration subsystem\ndemonstrated that the system introduces negligible overhead\nand scales effectively. The addition of edge nodes significantly\nreduced latency variance and eliminated failures under load,\nconfirming the resilience and scalability of the proposed solu-\ntion. Furthermore, the integration of Large Language Models\nmarks a significant evolution from static automation rules to\nproactive, agentic reasoning capable of interpreting natural\nlanguage and dynamically adapting to user needs.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            350,
+            543,
+            639,
+            747
+          ],
+          "text": "Future research will address the limitations identified in\nthe current implementation. First, the sequential processing\nbottleneck observed in the Recommendation Engine at higher\nloads will be mitigated by refactoring the module into a\nfully asynchronous, parallelized architecture, thereby enhanc-\ning throughput. Second, while the architecture supports dis-\ntributed deployment, the integration of Federated Learning\nwill be prioritized to enable privacy-preserving model updates\nwithout becoming stunted.第三, model pruning and finetuning\nwill be extended to incorporate energy consumption metrics,\noptimizing workload distribution for both power efficiency\nand latency. Finally, the capabilities of the AI agents will be\nexpanded to support long-horizon planning and deeper multi-\nmodal integration, such as Visual Question Answering, to\nimprove robustness in ambiguous real-world scenarios.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            461,
+            758,
+            526,
+            773
+          ],
+          "text": "REFERENCES",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            351,
+            782,
+            637,
+            814
+          ],
+          "text": "[3] C. Ramos, J. C. Augusto, and D. Shapiro, \"Antibiotic Intelligence--the\nCurrent and Future,\" IEEE Intelligent Systems, vol. 23,\nno. 2, pp. 15-18, 2007.",
+          "reading_order": 15,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "elements": [
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            57,
+            338,
+            100
+          ],
+          "text": "[2] K. J. Kaar, A. Hoffer, M. Saeidi, A. Sarma, and R. B. Robba,\n\"Understanding user perceptions of privacy, and configuration challenges\nin home automation,\" in 2017 IEEE Symposium on Visual Languages\nand Human-Centric Computing (VL/HCC) , 2017, pp. 297–301.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            100,
+            338,
+            141
+          ],
+          "text": "[6] W. Fang and C. Zhu, \"Advances in architecture, protocols, and architectures,\" IEEE\nTransactions on Computers, vol. 57, no. 12, pp. 2240-2253, dec. 2018. [Online]. Available:\nApplied Sciences, vol. 11, pp. 1479-1492, 2019. [Online]. Available: https:\n//doi.org/10.3390/e14124661",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            142,
+            338,
+            194
+          ],
+          "text": "[6] W. Li, T. Yigitcanlar, I. Erol, and A. Liu, \"Motivations, barriers\nand risks of smart home adoption: From systematic literature\nreview,\" IEEE Internet of Things Journal, vol. 1, no. 4, pp. 1017-1027,\nScience, vol. 80, p. 102211, 2021. [Online]. Available: https:\n//www.sciencedirect.com/science/article/pii/S2381462921100304",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            195,
+            338,
+            235
+          ],
+          "text": "Challenges for AI: • InCAI’20, 12th International Conference on\nAdvancements in Artificial Intelligence, Online, Malta, Feb. 2020, (Online)\n1",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            235,
+            338,
+            337
+          ],
+          "text": "[6] D. Campos, L. Martins, J. Moia, D. Tavares, J. Pereira, M. Oliveira,\nD. Boaventura, D. Correa, E. Ferreira, G. Pinto, N. Sixeiras, A. Maiau,\nM. Romão, E. Passos, S. Durao, G. Figueiredo, M. Petros,\nT. Socea, 1st International Conference on Smart Home Automation: En-\nplementing, and testing ai-oriented smart home applications: Challenges\nand best practices,” in Software Architecture, ECSA 2024 Tracks and\nWorkshops, A. Ampatizoglou, J. Paze, B. Bułnova, V. Lenanzucci, C. D.\nVentura, U. Zhan, D. Rinaldi, E. Rebelo, D. Di Pongione, M. Tucci, E. V.\nMontan, M. Westphal, J. Navarro, Eds., Cham: Springer Nature Switzerland,\n2024, pp. 83–99.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            338,
+            338,
+            388
+          ],
+          "text": "[7] B. K. Suwace and D. D. Farsuzy Del Rio, \"Smart home technologies\nin europe: A critical review of concepts, benefits, risks and policies,\"\nEuropean Sustainable Energy Reviews, vol. 120, pp. 109664, 2020.\n[Online]. Available: https://www.sciencedirect.com/science/article/pii/S131634612031308688",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            389,
+            338,
+            430
+          ],
+          "text": "[3] P. Gkontis, A. Giannopoulos, P. Tsukada, S. Masui-Bruin, and\nA. Waage, \"Interacting with nature: Sensors and responses to environmental\nchallenges, use cases, and open issues,\" Future Internet, vol. 15, no. 12,\npp. 276-290, December 2017.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            430,
+            338,
+            472
+          ],
+          "text": "[9] F. Alkhababs, R. Spalazero, M. Cerioli, M. Leotta, and G. Reggio,\n\"On the deployment of iot systems: An industrial survey,\" in 2020 IEEE\nInternational Conference on Software Architecture Companion (ICSA-\nC), 2020, pp. 17-24.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            472,
+            338,
+            512
+          ],
+          "text": "M. Fowler and J. Lewis, \"Microservices as a Function of the Internet\"\nhttp://www.microsoft.com/en-us/library/dam/en/library/dam/en-\n14.[Online]. Available: https://microsoftforcer.com/article/microsoft-services-\napi-on-market-of-the-internet/",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            513,
+            338,
+            534
+          ],
+          "text": "[1] C. Richardson, Microservices Patterns: With examples in Java , 1st ed.\nManning Publications, 2018.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            535,
+            338,
+            587
+          ],
+          "text": "[12] L. Martins, D. Campos, J. Mota, D. Tavaras, J. Pereira, M. Oliveira,\nD. Bourovarra, D. Correa, E. Ferreira, G. Pinto, S. A. Maia,\nM. Cardemil, V. Hadzic, M. Guil, A. Musse, J. Aguiar, M. Cardemil,\nM. Peixoto, C. Prazez, I. Machado, and E. Almeida, \"A case study of\nsmart home development,\" IEEE Software , vol. PP, pp. 1-7, 01 2024.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            587,
+            338,
+            626
+          ],
+          "text": "[10] Y. M. Leung, E. H. Lin, and T. L. Lim, \"A review of potential AI\nframeworks for aviation: a survey,\" Artificial Intelligence, vol. 2021,\np. 100043. IEEE, 2021.\n\ncited in Conference on System Engineering and Technology (ICSET)\n2021, pp. 100043. IEEE",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            627,
+            338,
+            699
+          ],
+          "text": "[4] Z. Xi, W. Chen, X. Guo, W. He, Y. Ding, B. Hong, M. Zhang,\nJ. Wang, J. Sun, E. Zhou, R. Zheng, X. Fan, X. Wang, L. Xiong,\nY. Zhou, W. Wang, C. Jiang, J. Zou, X. Liu, Z. Yin, S. Don, R. Weng,\nW. Cheng, Q. Zhang, W. Qin, Y. Zheng, X. Qiu, X. Huang, et\nal., “Text2vec: A generative model for large language model-based agents:\nA survey,” CoRR , vol. abs/2308.10964, 2023. [Online]. Available:\nhttps://arxiv.org/abs/2308.10964",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            699,
+            338,
+            741
+          ],
+          "text": "[7] J. Wei, X. Wang, D. Schuurmans, M. Bosma, I. Chitta, F. Xia, E. Chia,\nQ. Le, and D. Zhou, \"Chain-of-thought prompting elicits reasoning in\nlarge language models,\" CoRR , vol. abs/2201.11903, 2022. [Online].\nAvailable: https://arxiv.org/abs/2201.11903",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            741,
+            338,
+            791
+          ],
+          "text": "[6] A. Zhou, K. Yan, M. Shapletnik-Rothman, H. Wang, and Y.\nX. Wang, “Language agent tree search unifies reasoning, acting\nand planning in language models,” in International Conference\non Machine Learning , 2024. [Online]. Available: https:\n//arxiv.org/abs/2310.04400",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            792,
+            338,
+            813
+          ],
+          "text": "7. S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y. Cao,\n\"React: Synergizing reasoning and acting in language models,\" in",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            372,
+            57,
+            636,
+            79
+          ],
+          "text": "International Conference on Learning Representations, 2023. [Online].\nAvailable: https://arxiv.org/abs/2210.03629",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            80,
+            636,
+            121
+          ],
+          "text": "[10] T. Schick, J. Dwyer, Yu. Desai, R. Baleanu, M. Lomeli, S. Hamprecht,\nT. Zeppenfeld, and A. Waibel, \"Room tempe: A novel transition metal carbide\nmedallic touch techniques in one side,\" CMR, 2008.",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            121,
+            636,
+            183
+          ],
+          "text": "[19] J. S. Park, J. O’Brien, C. J. Cai, M. R. Morris, P. Liang, and\nT. Zeppenfeld, \"Classifying social robots by extracting user\nbehavior,\" in Proceedings of the 5th Annual ACM Symposium on User\nInterface Software and Technology , ser. UIST ’23. New York, NY,\nUSA: ACM, 2023, pp. 1731-1748. 2023. [Online]. Available:\nhttps://doi.org/10.1145/7865183.7860673",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            183,
+            636,
+            224
+          ],
+          "text": "[23] Z. Zhang, Y. Bu, C. Ma, R. Li, X. Chen, Q. Dai, J. Zhu, Z. Ding,\nT. M. Lu, Y. Kushwamy, and A. Waage, \"Gnnet: Graph regularization\nmodel based on Gcn,\" arXiv preprint arXiv:2404.15051 , 2024. (Online).",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            224,
+            636,
+            265
+          ],
+          "text": "[1] H. H. Hassan, G. Boulakia, L. Sallam, N. Khamel, D. Khafar,\nT. M. Elgammal, and A. W. Elgammal, \"Room tempe-\nd exchange in the ion,\" in 2023 IEEE 31st International Conference\non Field-Programmable Custom Computing Machines (FCCM2023) , pp.",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            265,
+            636,
+            337
+          ],
+          "text": "[23] D. C. da Silva, D. Robson Dantas Bouvimara, M. dos Santos Oliveira,\nJ. Pereira Santos Junior, E. Ferreira da Silva, E. S. de Almeida,\nC. V. S. Prazeiro, 1. do Carmo Machado, M. Leone Marcel Piziato,\nG. Bittencott Figueiredo, and F. A. Daria, \"Evaluating multi-label\nmultimodal domain adaptive language models,\" in Conference on\nPractice and Experience , vol. 55, no. 9, pp. 1427–1442, 2025. [Online].\nAvailable: https://onlinelibrary.wiley.com/doi/abs/10.1002/pse.3428",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            337,
+            635,
+            368
+          ],
+          "text": "21. M. Richards and N. Ford. Fundamentals of Software Architectures. Available at:\nhttp://www.microsoft.com/engb/library/cc/briefing/briefing.html?a=116&cd=104867.\nhttps://boshka.google.com/br/docs/umdAt-MD%20AAQBA.",
+          "reading_order": 22,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            368,
+            635,
+            399
+          ],
+          "text": "[12] R. A. Light, \"Mosquitto: server and client implementation of ysos,\" http:\n//www.mosquitto.org/, 2011. [Accessed: August 1, 2017].\n[26] 265.2017, [Online]. Available: http://doi.org/10.2105/ysos.00265",
+          "reading_order": 23,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            399,
+            636,
+            430
+          ],
+          "text": "[25] MongoDB, Inc., MongoDB, MongoDB, Inc., 2023, general purpose, distributed, Online | Available https:\n//www.mongodb.org",
+          "reading_order": 24,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            430,
+            635,
+            452
+          ],
+          "text": "[26] Redis Ltd., \"Redis,\" https://redis.io/, 2025, in-memory data structure\nstore.",
+          "reading_order": 25,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            452,
+            635,
+            472
+          ],
+          "text": "[27] MiniIO, Inc., \"Minio high performance object storage,\" 2025, multi\nCloud Object Storage. [Online]. Available: https://mini.io/ .",
+          "reading_order": 26,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            473,
+            635,
+            494
+          ],
+          "text": "[28] MariaDB Foundation, MariaDB Server, 2025, open source relational\ndatabase. [Online]. Available: https://mariadb.org/",
+          "reading_order": 27,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            494,
+            635,
+            525
+          ],
+          "text": "[7] I. Sysse and F5, INC. GNXG, High Performance Load Balancing\nSystem [Internet], 2023, open source web server. [Online].\nAvailable: https://nginx.com/",
+          "reading_order": 28,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            525,
+            635,
+            556
+          ],
+          "text": "[34] A. Ronacher and Palletts Project, \"Flash\", 2025, lightweight\nweb front-end development. [Online]. Available: http://flash.\npalletts.com/",
+          "reading_order": 29,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            556,
+            636,
+            627
+          ],
+          "text": "[31] H. Soudani, E. Kanoulas, and F. Hasini, “Fine tuned vision vs. retrieval-\naugmented generation for less popular knowledge,” in Proceedings of\nthe 2024 Annual International ACM SIGIR Conference on Research\nand Development in Information Retrieval in the Asia Pacific\nRegion (ASIPR) . ACM, New York, NY, USA, Association\nfor Computing Machinery, 2024, p. 12–22. [Online]. Available:\nhttps://doi.org/10.1145/7633197.7639415",
+          "reading_order": 30,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            628,
+            636,
+            678
+          ],
+          "text": "[3] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez,\nŁ. Kaiser, and I. Polosukhin, \"Attention is all you need,\" in Proceedings\nof the 31st International Conference on Neural Information Processing\nSystems (NIPS) , Red Book, NY, USA: Citran Associates, Inc., 2017, pp. 6000-6010.",
+          "reading_order": 31,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            679,
+            636,
+            711
+          ],
+          "text": "[3] S. Ramirez, \"Fastapi,\" 2025, a modern, fast (high-performance) library\nfor the Internet, available as APIs with Python. [Online]. Available:\nhttps://fastapi.tiangolo.com/",
+          "reading_order": 32,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            711,
+            636,
+            762
+          ],
+          "text": "[34] H. Jildereda and C. Ruholt, \"Mapet v4 based guidelines for designing\nreactive and proactive self-adaptive systems,\" in Software Architectures,\nECSA 2023: Workshop, Theory and Doctoral Symposium , B. Tekin-\ndar, K. Sivakumar, H. Stotzer, and D. Weyts, Eds. Cham:\nSpringer Nature Switzerland, 2024, pp. 53–68.",
+          "reading_order": 33,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            353,
+            762,
+            636,
+            813
+          ],
+          "text": "[53] B. Burns and D. Oppenheimer, \"Design patterns for container based\ndistributed systems,\" in 8th USENIX Workshop on Hot topics in\nCloud Computing (HotCloud '06) . Denver, CO: USENIX Association,\nInc., 2006, pp. 711–723. http://www.usenix.org/conference/\nhotcloud16/workshop/program/presentation/hum",
+          "reading_order": 34,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "elements": [
+        {
+          "label": "reference",
+          "bbox": [
+            53,
+            59,
+            341,
+            90
+          ],
+          "text": "7. M. Nygaard, Release II: Design and Deploy Production ready Software,\nNovember 2013. http://www.mnygaard.com/docs/Releases/2013/\nAvailable:http://web.google.com/book?id=dwUDWjAQACAAA",
+          "reading_order": 0,
+          "tags": []
+        }
+      ]
+    }
+  ]
+}

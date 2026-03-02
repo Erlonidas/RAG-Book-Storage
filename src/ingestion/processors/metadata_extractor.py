@@ -1,9 +1,11 @@
-import logging
-from pathlib import Path
-from typing import Optional
+"""
+Extrator de metadados de artigos (título, abstract, autores).
+Anteriormente: FilterTitleSearch.py
+"""
+from typing import Optional, Dict, Any
+from src.config import setup_logger
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = setup_logger(__name__)
 
 
 def extract_article_metadata(dolphin_json: dict, book_id: str) -> Optional[dict]:

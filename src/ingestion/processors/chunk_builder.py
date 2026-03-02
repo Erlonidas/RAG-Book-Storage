@@ -1,11 +1,12 @@
-import logging
-from typing import Any
+"""
+Construtor de chunks a partir do JSON do Dolphin.
+Anteriormente: FilterChunkGeneration.py
+"""
+from typing import Dict, Any, List, Optional
 from markdownify import markdownify as md
+from src.config import TAGS_IGNORADAS, setup_logger
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header'}
+logger = setup_logger(__name__)
 
 
 def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, doc_type: str = "text") -> dict:
