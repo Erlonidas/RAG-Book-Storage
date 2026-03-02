@@ -13,7 +13,7 @@ def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, doc_
     Monta o documento final para ingestão no OpenSearch.
     """
     partes_contexto = [p for p in [sec_1, sec_2] if p]
-    contexto = " > ".join(partes_contexto) if partes_contexto else "Seção Inicial"
+    contexto = " > ".join(partes_contexto) if partes_contexto else "Initial Session"
 
     return {
         "book_id": book_id,
