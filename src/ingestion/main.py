@@ -1,7 +1,3 @@
-"""
-Script principal de ingestão.
-Orquestra o processamento de JSONs do Dolphin e ingestão no OpenSearch.
-"""
 import json
 from pathlib import Path
 from typing import List, Dict, Any
@@ -17,7 +13,6 @@ logger = setup_logger(__name__)
 
 
 def load_dolphin_json(json_path: Path) -> Dict[str, Any]:
-    """Carrega JSON do Dolphin."""
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 

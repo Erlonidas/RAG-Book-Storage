@@ -1,96 +1,98 @@
 # RAG Book Challenge
 
-Sistema RAG (Retrieval-Augmented Generation) para processamento e busca em documentos acadêmicos usando OpenSearch e LangGraph.
+> ⚠️ **Project Under Construction** - This project is currently in active development.
 
-## 📋 Visão Geral
+RAG (Retrieval-Augmented Generation) system for processing and searching academic documents using OpenSearch and LangGraph.
 
-Este projeto implementa uma arquitetura de agentes autônomos com roteamento semântico e busca híbrida (Map-Reduce) para consulta inteligente em documentos PDF.
+## 📋 Overview
 
-**Stack Tecnológica:**
-- **LangGraph**: Orquestração de agentes
-- **OpenSearch**: Banco de dados vetorial e busca híbrida
-- **Dolphin**: Extração de conteúdo de PDFs (executado no Google Colab)
-- **Docker**: Infraestrutura local
+This project implements an autonomous agent architecture with semantic routing and hybrid search (Map-Reduce) for intelligent querying of PDF documents.
 
-## 🏗️ Estrutura do Projeto
+**Tech Stack:**
+- **LangGraph**: Agent orchestration
+- **OpenSearch**: Vector database and hybrid search
+- **Dolphin**: PDF content extraction (runs on Google Colab)
+- **Docker**: Local infrastructure
+
+## 🏗️ Project Structure
 
 ```
 rag_book_challenge/
 ├── data/
-│   ├── raw/                    # JSONs do Dolphin, PDFs originais, figuras
-│   └── processed/              # Dados processados para ingestão
+│   ├── raw/                    # Dolphin JSONs, original PDFs, figures
+│   └── processed/              # Processed data for ingestion
 ├── src/
-│   ├── config/                 # Configurações globais
-│   ├── services/               # Conectores (OpenSearch, LLM)
-│   ├── ingestion/              # Pipeline de ingestão (ETL)
+│   ├── config/                 # Global configurations
+│   ├── services/               # Connectors (OpenSearch, LLM)
+│   ├── ingestion/              # Ingestion pipeline (ETL)
 │   │   └── processors/         # Chunk builder, metadata extractor
-│   ├── rag/                    # Sistema RAG com LangGraph
-│   └── utils/                  # Funções utilitárias
-├── docs/                       # Documentação e guias
-├── test/                       # Testes e notebooks experimentais
-├── docker-compose.yml          # Configuração OpenSearch
-├── requirements.txt            # Dependências Python
-└── .env                        # Variáveis de ambiente
+│   ├── rag/                    # RAG system with LangGraph (coming soon)
+│   └── utils/                  # Utility functions
+├── docs/                       # Documentation and guides
+├── test/                       # Tests and experimental notebooks
+├── docker-compose.yml          # OpenSearch configuration
+├── requirements.txt            # Python dependencies
+└── .env                        # Environment variables
 ```
 
-## 🚀 Início Rápido
+## 🚀 Quick Start
 
-### 1. Pré-requisitos
+### 1. Prerequisites
 
 - Python 3.10+
-- Docker e Docker Compose
-- Conta Google (para usar Colab na extração de PDFs)
+- Docker and Docker Compose
+- Google Account (for Colab PDF extraction)
 
-### 2. Instalação
+### 2. Installation
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone <repo-url>
 cd rag_book_challenge
 
-# Crie ambiente virtual
+# Create virtual environment
 python -m venv _venv
 source _venv/bin/activate  # Windows: _venv\Scripts\activate
 
-# Instale dependências
+# Install dependencies
 pip install -r requirements.txt
 
-# Configure variáveis de ambiente
+# Configure environment variables
 cp .env.example .env
-# Edite .env com suas credenciais
+# Edit .env with your credentials
 ```
 
-### 3. Subir OpenSearch
+### 3. Start OpenSearch
 
 ```bash
 docker-compose up -d
 ```
 
-Acesse:
+Access:
 - OpenSearch: http://localhost:9200
 - Dashboards: http://localhost:5601
 
-### 4. Processar PDFs (Google Colab)
+### 4. Process PDFs (Google Colab)
 
-Siga o guia em `docs/GUIA_COLAB_DOLPHIN.md` para:
-1. Extrair conteúdo dos PDFs usando Dolphin
-2. Baixar JSONs gerados
-3. Colocar em `data/raw/json_extraction/`
+Follow the guide in `docs/GUIA_COLAB_DOLPHIN.md` to:
+1. Extract PDF content using Dolphin
+2. Download generated JSONs
+3. Place them in `data/raw/json_extraction/`
 
-### 5. Executar Ingestão
+### 5. Run Ingestion (Coming Soon)
 
 ```bash
 python -m src.ingestion.main
 ```
 
-## 📚 Documentação
+## 📚 Documentation
 
-- **[PLANO_DE_ACAO.md](docs/PLANO_DE_ACAO.md)**: Roadmap completo do projeto
-- **[GUIA_COLAB_DOLPHIN.md](docs/GUIA_COLAB_DOLPHIN.md)**: Tutorial de extração de PDFs
+- **[PLANO_DE_ACAO.md](docs/PLANO_DE_ACAO.md)**: Complete project roadmap (Portuguese)
+- **[GUIA_COLAB_DOLPHIN.md](docs/GUIA_COLAB_DOLPHIN.md)**: PDF extraction tutorial (Portuguese)
 
-## 🔧 Configuração
+## 🔧 Configuration
 
-### Variáveis de Ambiente (.env)
+### Environment Variables (.env)
 
 ```env
 # OpenSearch
@@ -104,55 +106,56 @@ OPENSEARCH_USE_SSL=true
 OPENAI_API_KEY=your_key_here
 OPENAI_MODEL=gpt-4o-mini
 
-# Anthropic (opcional)
+# Anthropic (optional)
 ANTHROPIC_API_KEY=your_key_here
 ```
 
-## 🎯 Roadmap
+## 🎯 Development Roadmap
 
-### ✅ Fase 1: Fábrica de Dados (Colab)
-- [x] Setup Dolphin no Colab
-- [x] Pipeline de extração de PDFs
-- [x] Geração de JSONs estruturados
+### ✅ Phase 1: Data Factory (Colab) - COMPLETED
+- [x] Dolphin setup on Colab
+- [x] PDF extraction pipeline
+- [x] Structured JSON generation
 
-### 🚧 Fase 2: Infraestrutura Local
-- [x] Docker Compose para OpenSearch
-- [ ] Scripts de indexação
-- [ ] Criação de índices (metadata + content)
+### 🚧 Phase 2: Chunk Preparation for OpenSearch - IN PROGRESS
+- [x] Docker Compose for OpenSearch
+- [x] Chunk builder processor
+- [x] Metadata extractor
+- [ ] Index creation scripts (metadata + content)
+- [ ] Bulk ingestion to OpenSearch
+- [ ] Embedding generation
 
-### 📋 Fase 3: Sistema RAG (LangGraph)
-- [ ] Definição de estados
-- [ ] Nó Router (decomposer)
-- [ ] Nós Worker (buscadores)
-- [ ] Nó Aggregator (sintetizador)
+### 📋 Phase 3: RAG Agent Workflow (LangGraph) - PLANNED
+- [ ] State definition
+- [ ] Router node (decomposer)
+- [ ] Worker nodes (retrievers)
+- [ ] Aggregator node (synthesizer)
+- [ ] End-to-end query pipeline
 
-## 🧪 Testes
+## 🧪 Testing
 
 ```bash
-# Executar notebooks de teste
+# Run test notebooks
 jupyter notebook test/random_test/
 ```
 
-## 📦 Dependências Principais
+## 📦 Main Dependencies
 
-- `opensearch-py`: Cliente OpenSearch
-- `langgraph`: Orquestração de agentes
-- `langchain`: Framework LLM
+- `opensearch-py`: OpenSearch client
+- `langgraph`: Agent orchestration
+- `langchain`: LLM framework
 - `sentence-transformers`: Embeddings
-- `markdownify`: Conversão HTML → Markdown
+- `markdownify`: HTML → Markdown conversion
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## 📄 Licença
+## 📄 License
 
-[Adicionar licença]
+[To be defined]
 
-## 👥 Autores
-
-[Adicionar autores]
