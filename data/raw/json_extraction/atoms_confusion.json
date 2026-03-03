@@ -1,0 +1,2618 @@
+{
+  "source_file": "atoms_confusion.pdf",
+  "total_pages": 11,
+  "pages": [
+    {
+      "page_number": 1,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_000.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_000.png",
+          "bbox": [
+            0,
+            78,
+            30,
+            111
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_001.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_001.png",
+          "bbox": [
+            53,
+            79,
+            155,
+            104
+          ],
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_002.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_002.png",
+          "bbox": [
+            160,
+            81,
+            223,
+            100
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_003.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_003.png",
+          "bbox": [
+            227,
+            78,
+            294,
+            104
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_004.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_004.png",
+          "bbox": [
+            53,
+            115,
+            72,
+            134
+          ],
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            79,
+            115,
+            366,
+            130
+          ],
+          "text": "Latest updates: https://dl.acm.org/doi/10.1145/3422392.3422437",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_001_figure_006.png)",
+          "figure_path": "figures/atoms_confusion_page_001_figure_006.png",
+          "bbox": [
+            522,
+            77,
+            549,
+            102
+          ],
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            557,
+            77,
+            620,
+            116
+          ],
+          "text": "PDF Download\n\n23423922182437.pdf\n\n01 March 2023\n\nby IEEE Xplore\n\nTotal Download: 225.15",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            522,
+            128,
+            598,
+            136
+          ],
+          "text": "Published: 21 December 2014",
+          "reading_order": 8,
+          "tags": [
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            144,
+            137,
+            154
+          ],
+          "text": "RESEARCH-Article",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            522,
+            147,
+            617,
+            157
+          ],
+          "text": "Citation in BibTeX format",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "sec_0",
+          "bbox": [
+            53,
+            154,
+            312,
+            170
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            181,
+            500,
+            321
+          ],
+          "text": "BENEDITO DE OLIVEIRA, Federal University of Alagoas, Maceio, AL, Brazil\nMÁRCIO RIBEIRO, Federal University of Alagoas, Maceio, AL, Brazil\nJOSÉ ALDO SILVA DA COSTA, Federal University of Campina Grande, Campina Grande, PB,\nBrazil\nROHIT GHEYI, Federal University of Campina Grande, Campina Grande, PB, Brazil\nQUILHERME AMARAL, Federal University of Alagoas, Maceio, AL, Brazil\nRAFAEL DE MELLO, Federal Center for Technological Education Celso Suckow da Fonseca,\nRio de Janeiro, RJ, Brazil",
+          "reading_order": 12,
+          "tags": [
+            "author",
+            "author_affili"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            327,
+            98,
+            341
+          ],
+          "text": "View all",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            352,
+            225,
+            366
+          ],
+          "text": "Open Access Support provided by:",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            371,
+            408,
+            462
+          ],
+          "text": "Federal University of Alagoas\nUniversity of Brasília\nPontifical Catholic University of Rio de Janeiro\nFederal University of Campina Grande\nFederal Center for Technological Education Celso Suckow da Fonseca",
+          "reading_order": 15,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "elements": [
+        {
+          "label": "sec_0",
+          "bbox": [
+            158,
+            89,
+            531,
+            114
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            88,
+            126,
+            230,
+            182
+          ],
+          "text": "Benedito de Oliveira\n\nFederal University of Alagoas\n\nMaceio, Alagoas, Brazil\n\nbfao@ic.ufr.br",
+          "reading_order": 1,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            275,
+            126,
+            414,
+            182
+          ],
+          "text": "Márcio Ribeiro\n\nFederal University of Alagoas\n\nMaceio, Alagoas, Brazil\n\nmarcio@cif.ufa.br",
+          "reading_order": 2,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            455,
+            126,
+            609,
+            197
+          ],
+          "text": "José Aldo Silva da Costa\n\nFederal University of Campina\nGrande\n\nCampina Grande, Paraíba, Brazil\njosealdo@copin.ufcg.edu.br",
+          "reading_order": 3,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            82,
+            207,
+            235,
+            275
+          ],
+          "text": "Rohit Gheyi\nFederal University of Campina\nGranda\nCampina Grande, Brazil\nrohit@disc.ufcg.edu.br",
+          "reading_order": 4,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            276,
+            207,
+            416,
+            261
+          ],
+          "text": "Guilherme Amaral\n\nFederal University of Alagoas\n\nMaceio, Alagoas, Brazil\n\ngyma@ci.utaf.br",
+          "reading_order": 5,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            451,
+            207,
+            617,
+            274
+          ],
+          "text": "Rafael de Mello\n\nFederal Center for Technological\nEducation of Rio de Janeiro,\nRio de Janeiro, Maracatuba, Brazil\nrafael.mello@cefet-rj.br",
+          "reading_order": 6,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            76,
+            286,
+            244,
+            342
+          ],
+          "text": "Anderson Oliveira\n\nPUC-Rio\n\nRio de Janeiro, Rio de Janeiro, Brazil\naoliveira@inf.puc-riro.br",
+          "reading_order": 7,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            289,
+            285,
+            430,
+            342
+          ],
+          "text": "Alessandro Garcia\n\nPUC-Rio\n\nDe Janeiro, Rio de Janeiro, Brazil\nafgarcia@imf-puc-br.io",
+          "reading_order": 8,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            484,
+            285,
+            584,
+            341
+          ],
+          "text": "Rodrigo Bonifacio\n\nUniversity of Brasília\n\nBrasília, Brazil\nronbifacio@ubh.br",
+          "reading_order": 9,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            275,
+            352,
+            414,
+            407
+          ],
+          "text": "Baldoino Fonseca\n\nFederal University of Alagoas\n\nMaceio, Alagoas, Brazil\n\nbaldoino@i.ufral.br",
+          "reading_order": 10,
+          "tags": [
+            "author",
+            "author_affili",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            57,
+            414,
+            128,
+            428
+          ],
+          "text": "ABSTRACT",
+          "reading_order": 11,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            57,
+            430,
+            336,
+            719
+          ],
+          "text": "Code comprehension is crucial in software maintenance activities, \nthough it can be hindered by misunderstandings and confusion \npatterns, namely, atoms of confusion. They are small pieces of code \nusing specific programming language constructs, such as Condi- \ntional Operators and Comma Operators. A previous study showed \nthat code comparison was an independent variable to assess coding \ntime and accuracy, and increase code misunderstandings. However, \nempirical knowledge of the impact of such atoms on code compre- \nhension is still scarce, especially when it comes to analyzing that \nimpact on developers' visual attention. The present study evalu- \nates whether developers misunderstand the code in the presence \nof atoms of confusion with an eye tracker. For this purpose, we \nexamined the effect of code on the screen and analyzed them, and \nanalyze the distribution of visual attention. We conducted a \ncontrolled experiment with 30 students and software practitioners. \nWe ask the subjects to specify the output of three tasks with atoms \nand three without atoms randomly assigned using a L400 Square \ndesign. We use an eye-tracking camera to detect the visual atten- \ntion of each atom and note the times of each atom's attention. In this \nperspective, we observed an increase of 43.02% in the time taken \nto gaze transcode in code snippets with atoms. For accuracy, no \nstatistically significant difference was observed. We also confirm \nthat the regions that receive most of the eye attention were the",
+          "reading_order": 12,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            415,
+            634,
+            454
+          ],
+          "text": "regions with atoms. Our findings reinforce that actors hinder de-\nvelopment of technical comprehension. So, developers should\navoid writing code with ill-structured sentences.",
+          "reading_order": 13,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            356,
+            466,
+            453,
+            481
+          ],
+          "text": "CCS CONCEPTS",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            482,
+            634,
+            519
+          ],
+          "text": "• Software and its engineering → Maintaining software, Soft-\nware verification and validation, Abstraction, modelling and modu-\nlarity.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            356,
+            531,
+            431,
+            545
+          ],
+          "text": "KEYWORDS",
+          "reading_order": 16,
+          "tags": [
+            "paper_keywords"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            546,
+            599,
+            560
+          ],
+          "text": "Atoms of Confusion, Code Comprehension, Eye Tracking",
+          "reading_order": 17,
+          "tags": [
+            "paper_keywords"
+          ]
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            356,
+            566,
+            459,
+            579
+          ],
+          "text": "ACM Reference Format:",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            578,
+            634,
+            646
+          ],
+          "text": "Benedito de Oliveira, Márcio Ribeiro, José Alvar Silva da Costa, Rohit Ghey,\nRitshree Dinda, and Marcelo Cardemil. 19th IEEE International Conference on\nRodrigo Benevides and Baldoino Fonos. 2024. Asymposium of Conference of\nThe Eyes Do Not Lie. 4th Brazilian Symposium on Software Engineering (SES\n2024) , 256–257, 258–262. IEEE, New York, NY, USA, 10 pages.\nhttp://doi.org/10.1145/3422923.3422427",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            356,
+            660,
+            471,
+            676
+          ],
+          "text": "1  INTRODUCTION",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            678,
+            634,
+            804
+          ],
+          "text": "Code comprehension is a critical activity in software development,\nespecially in the maintenance and evolution processes. Developers\noften have to deal with maintaining or improving code that they\nhave not been written. Thus, when code changes, new\nopers have to understand it. Indeed, a previous study showed that\nmost of their time is spent on code comprehension activities [13] .\nHowever, the comprehension process can be hindered by aspects\nof the code that cause misunderstandings. For instance, previous\nresearch has shown that 5-12% of the code written in a business\nterm that contribute to the increase of the time and effort necessary",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            58,
+            729,
+            335,
+            764
+          ],
+          "text": "This article has been accepted for publication in a future issue of this journal, but has not been fully edited. Content may change prior to final publication. Citation information: DOI\n10.1109/ACCESS.2020.3021068, IEEE Access\n\nPlease cite this article as: Zhang, H., Huang, X., Li, B., et al., A survey on resource allocation in public cloud for large-scale\nnetworks, IEEE Public云, https://doi.org/10.1016/j.ptal.2020.10.004",
+          "reading_order": 22,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            58,
+            764,
+            189,
+            773
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Bra",
+          "reading_order": 23,
+          "tags": [
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            58,
+            774,
+            207,
+            804
+          ],
+          "text": "c 2020 Association for Computing Machinery\n108(1):342-353. https://doi.org/10.1145/3422542.3433637",
+          "reading_order": 24,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            203,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            582,
+            67,
+            632,
+            79
+          ],
+          "text": "Oliveira, et al.",
+          "reading_order": 1,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            58,
+            96,
+            335,
+            158
+          ],
+          "text": "to understand the code correctly. Examples of these small code pat-\nterns in imperative languages like C and C++, namely atoms of\nconfusion, include Conditional Operators, Commu Operators, Logic\nOperators, and Place Pairs, among others, and are often found in source code\nbases [10].",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            158,
+            335,
+            369
+          ],
+          "text": "In a previous study [4] , researchers conducted a controlled ex-\nperiment to compare the performance, i.e., time and accuracy of\nparticipants when dealing with code with and without atoms of\nconfusion. They have shown that the presence of atoms of confu-\nsion in the code increases misunderstandings and that, however,\nempirical knowledge on the impact of such atoms on code com-\nprehension is still scarce, given the difficulties in measuring code\ncomprehension [18] . On the other hand, the code comprehension\ntask has been gaining new highlighting from researchers in terms of\ntime and accuracy with eye-tracking devices [16] . For instance,\nknown which parts of the code receive more or less attention\ngiven a given task, we have seen that different parts of each atom's\nvisual effort, which is a dimension not considered before [4] or in\nany other study that we are aware. Although time and accuracy are\ngood estimators of code confusion, knowing precisely the regions\nthat participants paid attention, allows us to estimate their real\neffects.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            370,
+            335,
+            456
+          ],
+          "text": "Given this scenario, we use an eye tracker to evaluate whether\ndevelopers misunderstand the code in the presence of atoms of\nconfusion. For this purpose, we measure time, accuracy, and dis-\ntinctly from other studies, we also analyze the visual effort given to\nsatisfy the above criteria. The triangulation of these dimensions\nallows us to understand better the real effects of atoms of confusion\nin code comprehension.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            456,
+            335,
+            716
+          ],
+          "text": "In this controlled experiment, we selected six code snippets from\nreal open-source C/C++ systems of different domains containing\natoms of three different types ( Assignment as Value, Conditional\nOperator , and Logic as Control Flow ), being two snippets for each\ndomain. These snippets are chosen because they were the most\ncommonly found in industrial practice [10] . We then manually refac-\ntored the code to remove the atoms from the snippets and build our\ntasks. We also changed the function to remove several internal code\ndependencies so that the function can get more straightforward,\nbut we keep its primary structure. We executed the experiment\nwith 39 developers. The developers were asked to read, understand,\nand analyze the code, and we chose not to answer any question about\nthree with no atoms. We used the Latin Square design to assign the\ntasks randomly and minimize learning effects. We then measure\nthe completion time of tasks, as well as the number of incorrect an-\nswers. Besides, through the eye tracker, we captured the developers'\neyes coordinates while looking at the screen. These eye coordinates\nallowed us to build heatmaps, measure the number of times partici-\npants could be seen on each screen, and observe the number\nof gaze transitions, which are the transitions of the eyes from one\nlocation of the code to another.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            717,
+            335,
+            804
+          ],
+          "text": "When analyzing all tasks together, we found that the presence\nof atoms of confusion statistically significantly increased the time\nrequired to understand the code by 43.02 % . We could not find a\nstatistically significant difference for accuracy. When analyzing\nthe _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            96,
+            633,
+            146
+          ],
+          "text": "show that the regions that receive most of the attention are precisely\nthe ones where the atoms are placed. The regions with atoms have\nan increase of 56.8 % gap transitions. These results confirm and\nadd a new perspective to the previous study [4] .",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            146,
+            634,
+            221
+          ],
+          "text": "In conclusion, our findings reinforce that atoms of confusion\ncause confusion by hindering developers' performance and code\ncomprehension. They make the maintenance activity more time-\nconsuming and require more visual effort. We also show that the\neye-tracking methodology seems promising, revealing a new per-\nspective not seen in previous works.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            221,
+            633,
+            271
+          ],
+          "text": "In summary, this paper provides the following contribution: An\nempirical controlled experiment with the use of an eye tracker demon-\nstrates that the presence of atoms of confusion leads to more time to\nunderstand code and more visual effort.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            357,
+            284,
+            438,
+            298
+          ],
+          "text": "2   EXAMPLE",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            301,
+            634,
+            377
+          ],
+          "text": "Atoms of confusion frequently appear in open source repositories. A\nprevious study on their prevalence on 50 projects found more than\n109 thousand occurrences of 11 out of 12 atoms types considered,\nincluding the ones we focus on this paper: Conditional Operator\nwith 98 % of prevalence, Assignment as Value with 94 % of prevalence,\nand Logic as Control Flow with 50 % of prevalence [10] .",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            377,
+            633,
+            476
+          ],
+          "text": "Figure 1 illustrates two code snippets from function printIf\nwritten in C programming language. The left-hand side snippet\ncontains a function with an example of the atom of confusion called\nConditional Operator . 1 Notice the two nested ternary operators.\nAt the right-hand side, a developer refactored the function to re-\nmove the Conditional Operator atom by replacing it with a regular\nif-else statement. 2 For examples of Assignment as Value and Logic\nas Control flow see Figure 4 .",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            476,
+            634,
+            624
+          ],
+          "text": "According to Gopstein et al. [5] , there is empirical evidence\nthat atoms of confusion impact developers' performance, causing\nmisunderstanding, and that their removal makes code easier to\nreplace. However, just as that is true for new languages, the issue\nof such atoms on code comprehension, we need to assess other\ndimensions besides time and accuracy to draw more insights. In this\nscenario, eye-tracking devices come at home to allow us to locate\nwhere and for how long subjects are looking at the screen [17] .\nThese devices have been used before in the code comprehension\ntask. However, evaluation of such devices, like those that are designed\nfor accuracy to provide additional information related to visual\neffort [7, 12] .",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            624,
+            634,
+            751
+          ],
+          "text": "Thus, to gather more information on how atoms impact code\ncomprehension, we use an eye-tracking camera to analyze how\nthose atoms influence the focus of attention. By triangulating the\ntime, accuracy, and focus of the developers, we can better under-\nstand the impact of the atoms. For instance, it helps us to confirm\nwhether the regions of the code that receive most of the attention\nare the places where the atoms are positioned, how the focus of\nattention changes interacting with code elements, and whether\nremoving those patterns alleviates developers' effort from a visual\nperspective not considered in previous works.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            358,
+            783,
+            632,
+            794
+          ],
+          "text": "3 https://github.com/narnasr/printf/comm/s/b4f15e6ef454f1a2c820e88582844151dcb8e6c",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            357,
+            794,
+            633,
+            804
+          ],
+          "text": "2https://github.com/narnat/printf/commit/385233be85dd409c17be255b529e5b9ef14e29",
+          "reading_order": 16,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            197,
+            79
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            487,
+            67,
+            632,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 1,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_004_figure_002.png)",
+          "figure_path": "figures/atoms_confusion_page_004_figure_002.png",
+          "bbox": [
+            60,
+            92,
+            631,
+            256
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            154,
+            266,
+            536,
+            281
+          ],
+          "text": "Figure 1: A transformation removing an atom of confusion (Conditional Operator).",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            58,
+            299,
+            295,
+            314
+          ],
+          "text": "3   STUDY: CONTROLLED EXPERIMENT",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            317,
+            335,
+            343
+          ],
+          "text": "We now present our controlled experiment. We present the settings,\nexperimental units, execution, and data analysis procedures.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            59,
+            357,
+            169,
+            371
+          ],
+          "text": "3.1 Study Settings",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            374,
+            335,
+            448
+          ],
+          "text": "In this experiment, we analyze programs written in C with atoms\nof confusion and with no atoms of confusion using an eye-tracking\ncamera to investigate the effects of the presence of the atoms con-\ncerning time, accuracy, and focus of attention in solving \"specify\ncorrect output\" tasks from the point of view of developers in the\ncontext of code comprehension.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            71,
+            449,
+            263,
+            462
+          ],
+          "text": "We focus on the following research questions:",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            79,
+            467,
+            336,
+            804
+          ],
+          "text": ": RQ1: To what extent do atoms of confusion affect task com-\npletion time? To answer this question, we measure the total\ntime developers need to solve each task. Thus, our first null\nhypothesis (H0) is: there is no significant difference be-\ntween the time required to understand code with no atoms\nof confusion (the control treatment) and code with atoms of\nconfusion (the test-retest treatment). To answer this question,\n: RQ2: To what extent do atoms of confusion affect task accu-\nracy? To answer this question, we measure the number of\nerrors committed by developers while solving a task. Thus,\nour second null hypothesis (H2a) is: there is no significant\ndifference in the number of errors committed by developers\nwhen understanding code with no atoms of confusion (the\ncontrol treatment) and code with atoms of confusion (the\ntest-retest treatment). To answer this question, we measure\n: RQ3: To what extent do atoms of confusion affect the focus of\nattention? We measure the number of gaze points captured\nusing an eye-tracking system and generate heatmaps. The\nheatmaps of the aggregated tasks solved by the developers\nhelp us visualize possible differences in attention. Our third\nnull hypothesis (H3a) is: there is no significant difference\nin the number of gaze points when analyzing code with no\natoms of confusion (the control treatment) and code with\nno atoms of confusion (the test-retest treatment). Also,\nwe measure the number of gaze points inside the area of\nthe atom of confusion and compare it with the number of points\nin the region modified to remove the atom.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            300,
+            633,
+            413
+          ],
+          "text": "We use a Latin Square design of order two with replicas [2] in our\nexperiment, mainly because our goal is to compare two treatments\nand block two variables: (a) participant skill and engagement; and\n(b) two sets of comprehension tasks. Each Latin Square replica\ncomprises two participants and two sets of comprehension tasks\n(representing the columns of each square, i.e., S1 and S2). Each set\nof comprehension tasks contains one condition and one condition, one,\ncontaining an Assignment as Value , and one containing a Condition .\nOperator . Figure 2 presents the design of our experiment.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_004_figure_011.png)",
+          "figure_path": "figures/atoms_confusion_page_004_figure_011.png",
+          "bbox": [
+            356,
+            435,
+            631,
+            538
+          ],
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            366,
+            550,
+            621,
+            564
+          ],
+          "text": "Figure 2: Design of the experiment using Latin squares.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            588,
+            633,
+            662
+          ],
+          "text": "We also randomly set the treatments that each participant should\nuse in $ST_1$ and $ST_2$ . Each treatment appears once in each row and\ncolumn. This way, we block the two sources of variability: the\nparticipants and the two sets of tasks [9, 15] . The design also leads\nto one replica for each Latin Square (increasing the number of\nerrors' degrees of freedom) [14] .",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            356,
+            676,
+            497,
+            690
+          ],
+          "text": "3.2 Experimental Units",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            691,
+            635,
+            804
+          ],
+          "text": "In total, 30 subjects participated in the experiment. 9 undergradu-\nates, 17 masters, and 4 Ph.D. at Pontifical Catholic University of Rio\nde Janeiro (PUC-Rio). Out of the 30 subjects, 25 were men, while\n3 were women. Although we have used code structures common\nto most programming languages, prior knowledge in C, C++, or\nJavaScript were required to participate in the experiment. We\nrecruited 33 students. However, we had to discard 3 of them. We\ndiscarded the 33rd subject because we could not run the experiment\nwith the last Latin Square, lacking one subject. Then, we discarded",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            830,
+            353,
+            841
+          ],
+          "text": "245",
+          "reading_order": 16,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            203,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            584,
+            67,
+            632,
+            79
+          ],
+          "text": "Oliveira, et al.",
+          "reading_order": 1,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            59,
+            97,
+            335,
+            134
+          ],
+          "text": "another subject because he answered the cell phone while participating in\nsoccer. He said, \"I'm sorry, but I was also to discuss the other\nparticipant on his Latin Spanish test. I'm sorry.\"",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            134,
+            336,
+            321
+          ],
+          "text": "For the experiment execution, we have prepared a laptop with a\nsystem developed to control the experiment's execution flow. The\nsystem is a web application written in Python using the\nWeb Framework. All captured data was stored in a PostgreSQL data-\nbase to posterior analysis. The system showed the functions to the\nparticipants automatically when they finish a task based on the\nprevious Latin Squares randomization. Figure 3 illustrates our setup.\nTo find the two possible responses, the system will ask the partici-\npants to choose one of three possible responses: (1) answer the\nset of tasks (ST) comprising code with atoms of confusion, and (2)\nsolve the second set of tasks (ST2) comprising code with no atoms\nof confusion. Both sets contain three tasks: that is, ST1 contains the\ntasks T1, T2, and T3, while ST2 contains the tasks T4, T5, and T6.\nIn the second configuration, we invert our treatments, according to\nthe Latin Square design (Figure 3 ).",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_005_figure_004.png)",
+          "figure_path": "figures/atoms_confusion_page_005_figure_004.png",
+          "bbox": [
+            61,
+            335,
+            331,
+            446
+          ],
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            59,
+            456,
+            335,
+            505
+          ],
+          "text": "Figure 3: Structure of the experiment in terms of experimen-\ntal units. We have two Sets of Tasks (ST1 and ST2) that com-\nprehend Tasks 1 to 6 (T1, T2, ..., T4). Half of the tasks are with\natoms (WA) and half with no atoms (NA).",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            516,
+            335,
+            689
+          ],
+          "text": "To create the experiment's tasks, we mined the code of open\nsource projects to find functions containing atoms of confusion.\nThe selected functions were adapted and simplified to make them\nself-contained, fit them to our research scope, and reduce the time\nto analyze. We found that our coding approach was the most\ndifferent types of atoms (see Figure 4 ): Assignment as Value, Con-\nditional Operator, and Logic as Control Flow . Each task has one or\nmore pr if statements; each participant's assignment is to specify\nthe correct output to be printed on the standard output when the\ncode snippet is executed. We have selected six functions in total,\nand for each selected snippet, we created a refactored version by\nusing the atom of confusion and use it as a control treatment\ngroup. The tests have less than 30 LOC, so that small down could\nbe avoided.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            689,
+            335,
+            752
+          ],
+          "text": "The applied transformations used for the tasks consisted of main-\ntaining the same code except that the atom was replaced with a\nmore clarified code fragment. There is not only one way to perform\nthe transformation but also two ways to apply proposed transformations\nin [10] and proposed and evaluated in [4] .",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            59,
+            761,
+            315,
+            776
+          ],
+          "text": "3.3 Execution and Data Analysis Procedures",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            778,
+            335,
+            804
+          ],
+          "text": "We first randomly assigned the treatments (With Atom × with No\nAtom) to the 15 Latin square replicas. When a new participant",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            444,
+            633,
+            617
+          ],
+          "text": "starts the experiment execution, the system automatically assigns\nhim to the next available row in the Latin Square's lat. Before\nstarting the tasks, for each participant, the eye-tracking device is\nre-calibrated. This procedure is required because the calibration\ndevice (the joystick) will not be able to track the movements of\nother external characteristics such as the use of glasses positioning,\nand distance of the chair relative to the computer, participant's\nheight, among others. We have plugged the device at the bottom of\nthe laptop's screen to capture the points where the participant is\nlooking. Then, we stored the captured eye gaze points in a database.\nBefore executing the two sets of tasks, each participant completed a\nseries of tasks. By performing tasks in sequence, the user obtains\natoms of confusion to understand how the flow of the experiment\nworks and gets acquainted with the eye tracker equipment setup.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_005_figure_011.png)",
+          "figure_path": "figures/atoms_confusion_page_005_figure_011.png",
+          "bbox": [
+            364,
+            94,
+            622,
+            360
+          ],
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            356,
+            370,
+            633,
+            421
+          ],
+          "text": "Figure 4: Code snippets with the three types of atoms evalu-\nated in this study. At the left-hand side, we have the atom of\nconfusion (treatment group) and at the right-hand side we\nhave the same code with no atoms (control group).",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            618,
+            633,
+            679
+          ],
+          "text": "Once the Warm-Up is successfully done, the system allows the\nparticipant to execute the main tasks. When a participant believes\nto have the correct answer, he or she should click otherwise on\nthe screen that will present the result and show you the\nscreen that allows him or her to submit the answer.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            680,
+            633,
+            804
+          ],
+          "text": "If the participant's answer is wrong, the system increments the\nerror count for this execution and allows the user to get back to\nthe menu. Even if the user continues to enter an invalid command,\ncorrect answer, or is far to get, the next task the user asks is to\ntask' execution, the participants are allowed to pause anytime by\nclicking anywhere on the screen. The system collects the user's\nend time for the execution of each task and the complete experiment.\nWe monitor the amount of time the user takes to finish each task\nand thus during each provided answer. We considered that the\nexecution completed only when all tasks are correctly solved. To",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            338,
+            830,
+            353,
+            841
+          ],
+          "text": "246",
+          "reading_order": 15,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            58,
+            68,
+            196,
+            80
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            487,
+            68,
+            632,
+            80
+          ],
+          "text": "SBES 20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 1,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            58,
+            97,
+            334,
+            134
+          ],
+          "text": "avoid any inter-subject contamination, we instructed participants \nto share answers or explain anything about the experiment to \nthem.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            134,
+            334,
+            171
+          ],
+          "text": "We proceeded with an exploratory data assessment and tested\nthe normality of the data. Following the approach of Harrell (2017) ,\nwe follow a normal distribution, we used the Kruskal-Wallis test.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            57,
+            171,
+            334,
+            420
+          ],
+          "text": "We analyzed the eye gaze perspective using heatmaps, and we\nmeasured the number of gaze transitions, along with other metrics\nassociated with how gaze points are located inside or move between\nregions of the code. Heatmaps are static graphical representations\nin colors, and the intensity of the color represents the concentration\nof gaze points over a particular field. We aggregated the heatmaps\nof gaze points per eye by 15 discrete steps. The duration of\ngaze transitions adds a more dynamic perspective of analysis,\nexpressing how many transitions of the focus of attention occurred\nin the code. The eye tracker camera captures about 80 sample points\nper second, and tasks took from a few seconds to a few minutes\nto be answered. To ease the analysis, we computed the median\nof the coordinates x and y of these 80 points in one second. This\ncoordinate is the focus of attention per second . The transition of the\neyes from one focus to another is the gaze transition. We analyzed\nthe average number of times a participant spent looking at the\nend of all participants in the same task. To simplify the analyses, we\nconsidered only transitions that occur at least 1/3 at times. At least\n1/3 of the participants must have performed the same transition\nallowing us to observe a pattern.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            58,
+            432,
+            239,
+            447
+          ],
+          "text": "4 RESULTS AND DISCUSSION",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            450,
+            334,
+            476
+          ],
+          "text": "In this section, we present the results of our research questions\nalong with a discussion. $^3$",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            58,
+            488,
+            330,
+            519
+          ],
+          "text": "4.1 RQ1: To what extent do atoms of confusion\naffect task completion time?",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            521,
+            334,
+            558
+          ],
+          "text": "The boxplots of Figure 5 show some descriptive statistics related to\nthe total time spent by the participants to conclude the different\ntasks.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            558,
+            334,
+            706
+          ],
+          "text": "The Aggregate boxplot represents an aggregation of the tasks,\neither with atoms or with no atoms. When aggregated, the total\ntime median when analyzing code with atoms of confusion (294.5\nseconds) is shown. This is the case for the test task from task 1, but\nwith no atoms of confusion (178 seconds). The observations related\nto the total time to conclude all tasks, when analyzing code with\nno atoms of confusion, lie between 74 and 776 seconds; in contrast,\nthe observations when analyzing code with atoms of confusion\nlie between 91 and 736 seconds. There is only a small overlapping\nof the results, where it appears that the average time for correctly\nunderstanding code with atoms of confusion is more time consuming\nthan understanding code with no atoms of confusion.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            706,
+            334,
+            756
+          ],
+          "text": "We tested our first null hypothesis and found evidences for re-\njecting it (p-value = 0.001972 < 0.05 = α). This leads to the first\nconclusion of this study that atoms of confusion increases the time\nrequired to solve the tasks.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_006_figure_011.png)",
+          "figure_path": "figures/atoms_confusion_page_006_figure_011.png",
+          "bbox": [
+            356,
+            92,
+            632,
+            224
+          ],
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            356,
+            243,
+            633,
+            281
+          ],
+          "text": "Figure 5: Time to conclude on tasks. Aggregate + aggrega-\ntive (s) = Sequential Execution; Cyclic (c) = No-Data; CO = Conditional\nOperator; LAC = Logic as Control Flow.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            310,
+            633,
+            386
+          ],
+          "text": "Under an individual perspective, considering the hypothesis\ntest for each type of atom of confusion separately, we found di-\nverging results. Two atoms of confusion allowed us to reject the\nnull-hypothesis $H_0$ ; particularly, the atoms Assignment as Value\n(p-value = 0.008) and Logics as Control Flow and (p-value = 0.0001).\nIn both cases, they favored the code with no atoms.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            386,
+            633,
+            646
+          ],
+          "text": "Even though the size of the code can interfere with time, mak-\ning it longer to look at more elements is not necessarily true. For\ninstance, in Figure 4 , the number of elements added to remove the\natom is considerably higher, especially in the Conditional Operator\nwhen compared to the regular case. This phenomenon suggests a\nhigher productivity in terms of time in code with no atom rather\nthan in code with atom. The slight increase in the time for the Con-\nditional Operator with no atom can be explained by the relatively\nlarge amount of code added to remove such atom (see Figure 4 b).\nAll the three evaluated atoms were present in the data set of\nGopstein et al. [4] and are evaluated by them. The only bug that\nshould be removed from our analysis is the typo of the OpenMP\nwhich in their work showed statistical differences, but we could not\nobserve such effect. The discrepancy might be due to other factors\ninvolved, such as methodology. For instance, we have used code\nfrom real projects, we assigned fewer tasks to participants, and the\nparticipants were not exposed to the same code with atom and with\nno atom. Besides, in our case, it is also possible that both codes\nwere generated from the same source code but are written in different\nways that in the version with no atom, for Conditional Operator , we have\nmany more lines of code, which can affect time.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            646,
+            633,
+            796
+          ],
+          "text": "Previous studies have investigated the prevalence of errors on\nreal projects. Among the investigated atoms, Conditional Operator ,\nLast vs Central Flow , and Assignment as Value were on the top seven\nof the most error-laden items. This is consistent with [10] and\n[5] . On Medeiros et al. [10] , Conditional Operator and Assignment\nas Value were found on the top three most commonly used. Given\nthat Conditional Operator is commonly used on both evaluations,\nand we found conflicting results with Gopalan et al. [4] regarding\nits real effects, we need more studies on this topic. According to\nthese findings, in addition to the present set of projects, we need\nthree evaluated atoms in this study. However, at least a patch of\neach atom was also rejected.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            58,
+            783,
+            333,
+            803
+          ],
+          "text": "$^{1}$ All results are available at the GitHub repository website: https://github.com/easy-\nsoftware-utah/Analysis-of-Confusion-Experiment-Data",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            830,
+            353,
+            841
+          ],
+          "text": "247",
+          "reading_order": 17,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            203,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            584,
+            67,
+            632,
+            79
+          ],
+          "text": "Oliveira, et al.",
+          "reading_order": 1,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            60,
+            96,
+            333,
+            126
+          ],
+          "text": "Finding 1. The presence of atoms of confusion increases\n43.02% in time required to understand code correctly",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            59,
+            141,
+            331,
+            171
+          ],
+          "text": "4.2 RQ2: To what extent do atoms of confusion\naffect task accuracy?",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            173,
+            335,
+            338
+          ],
+          "text": "We followed a similar approach to investigate the second hypothesis,\nwhich relates to answers correctness or accuracy when analyzing\ncode with atoms of confusion. We first carry out an exploratory\ndata analysis. Figure 6 shows boxplots that present some descriptive\nstatistics related to the number of submitted answers to conclude\nall tasks under an aggregated and individual perspective. Under\nan aggregated perspective, the median number of answers when\nthe items are answered correctly is 3. This indicates that the\nmedian number of answers in code with no atoms. This result means\ngetting the task solved on the first try. They only differ in terms\nof discrepant values. The same applies to the atoms individually.\nConsequently, we cannot infer a sound conclusion about our second\nhypothesis $H_{2B}$ .",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_007_figure_005.png)",
+          "figure_path": "figures/atoms_confusion_page_007_figure_005.png",
+          "bbox": [
+            54,
+            343,
+            333,
+            474
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            56,
+            493,
+            335,
+            532
+          ],
+          "text": "Figure 6: Number of trials to conclude all tasks. Aggregate\nscores for each task indicate the average rank of the trial; CO -\nConditioned Operator; LACF - Logic as Control Flow.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            543,
+            335,
+            620
+          ],
+          "text": "One main reason why conclusive results could not be obtained\nby analyzing accuracy alone may rely on the fact that we have\nused simple tasks, with small pieces of code with a few operations.\nThus, the number of submitted answers did not vary so much. In\nGopstein et al. [4] , for instance, even though the tasks were also\nsmall, the number of tasks answered by participants was higher.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            68,
+            626,
+            323,
+            655
+          ],
+          "text": "Finding 2. We have not found evidence that the presence of\natoms of confusion impacts the accuracy.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            58,
+            670,
+            333,
+            701
+          ],
+          "text": "4.3 RQ: To what extent do atoms of confusion\naffect the focus of attention?",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            703,
+            335,
+            804
+          ],
+          "text": "In the heatmaps, blue (col) areas are areas of the code that did not\nreceive much attention, while red (hot) areas represent the areas\nthat received most of the attention. By the developers' distribution\nof visual attention, and how the focus of attention changes over dis-\ntinct code elements, we can infer whether a particular code element\nis confusing. The analysis of heatmaps can assess the distribution\nof attention.The colors in the heatmap represent the relative con-\ncentration of gaze points over an area, and the higher the amount",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            96,
+            633,
+            334
+          ],
+          "text": "of points on it, the more intense the color gets. If the atom of con-\nfusion areas require more attention from the participants, they are\nlikely to appear on more intense colors on the heatmaps, which is a\nphenomenon we are interested in investigating. Most importantly,\nwe aim to find out how well our participants can focus on and\nattention. Heatmaps are exceptionally helpful and useful, giving\nthe following reasons. First, they allow us to observe where the\nparticipants focused the most and with what intensity, and by doing\nso, we can see where most time and visual effort in task completion\ncan be found. Second, we can observe how well our participants\ndo not catch the attention of participants, which is also a relevant\ninformation. Third, they allow us to perform a sanity check so that\nwe can verify whether gaze samples were properly captured. To\nget more insights on this matter, we separated the areas of interest\nto perform more specific analysis. We have defined these Areas Of\nInterest (AOI) as the lines of code where the atom of confusion is\nexplicit. From this perspective, when the version with no sham In-\nFigure 4 , we present the areas of interest in the code, which are the\nareas in which both code differs.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            356,
+            344,
+            632,
+            395
+          ],
+          "text": "Table 1: Summarizing Metrics. Bold font denotes a signifi-\ncant statistical difference with a significance level of 5 % . Sig-\nnal $\\uparrow$ corresponds to an increase with atom while $\\downarrow$ corre-\nsponds to a reduction.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            361,
+            407,
+            631,
+            450
+          ],
+          "text": "<table><tr><td>Atoms</td><td>Time</td><td>Errors</td><td>Points in AO</td><td>Errors in AO</td><td>Gaze Trans.</td></tr><tr><td>AV</td><td>46.05%</td><td>16.7%</td><td>13.4%</td><td>17.9%</td><td>15.7%</td></tr><tr><td>EC</td><td>62.80%</td><td>15.60%</td><td>11.60%</td><td>16.10%</td><td>15.00%</td></tr><tr><td>LACF</td><td>91.7%</td><td>8.10%</td><td>28.2%</td><td>47.8%</td><td>22.7%</td></tr><tr><td>Aggregated</td><td>43.0%</td><td>16.2%</td><td>20.6%</td><td>49.3%</td><td>30.8%</td></tr></table>",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            468,
+            632,
+            530
+          ],
+          "text": "In Figures 7 , 8 , and 9 , we see a comparison of three heatmaps,\none of each evaluated atom, showing how the attention is dis-\nturbed over different parts of the program relative to time spent\nby the user. It can be seen that the majority of individual\nheatmaps of the participants who performed the same task,",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            531,
+            633,
+            654
+          ],
+          "text": "In Figure 7 , we have a more clear distinction in the heatmaps for\nLogic as Control Flow alone. We observe that the attention is mainly\nfocused on one main region where the atom is located while the\nrest of the image is missing. This is because the atom is located in\ntwo main regions, causing a higher distribution of attention over\ndistinct parts. With atom, the total time was increased by 91.7 % ,\nand, in it, participants focused on the area of the atom with 26.2 %\nmore points. Participants also needed to enter the atom area 36.5 %\nto avoid this effect. The fact that the participants still can observe\nus and indication that code with atom is more confusing.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            654,
+            633,
+            804
+          ],
+          "text": "In Figure 8 , we could not observe so much difference in the\nheatmaps for the Assignment as a Value atom. The developers tend\nto focus their attention on the atom region. When the atom is\nlocated, the distance to the nearest atom is measured and it is\nextracted. However, we observe that the attention is more restricted\nand focused on a relatively smaller area at the right-hand side of\nthe heatmap compared to a more sparse at the left-hand side. It is\nimportant to emphasize that the color intensity is relative to the\namount of time to solve the code. However, according to Table 1 ,\nin addition to the above observations, the results of the SIFT\nGopfinen et al. [4] have shown that this atom causes confusion, and\nby intense color on the atom area, we conclude that the participants",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            830,
+            353,
+            841
+          ],
+          "text": "248",
+          "reading_order": 17,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            58,
+            67,
+            197,
+            79
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            487,
+            67,
+            633,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 1,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_008_figure_002.png)",
+          "figure_path": "figures/atoms_confusion_page_008_figure_002.png",
+          "bbox": [
+            63,
+            87,
+            327,
+            287
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            67,
+            296,
+            324,
+            310
+          ],
+          "text": "Figure 7: Logic as Control Flow - With atom vs. No atom.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            58,
+            327,
+            335,
+            391
+          ],
+          "text": "are focusing on it because they are confused. However, in our\nresults, the number of points in this area is decreased by 34.5%,\nwhich means that other parts of the same code were also confuting.\nThe remaining regions are all within the same cluster, with 9.1% more\nentries in the atom area and 15.7% more transitions in the core.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_008_figure_005.png)",
+          "figure_path": "figures/atoms_confusion_page_008_figure_005.png",
+          "bbox": [
+            75,
+            399,
+            310,
+            640
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            67,
+            649,
+            324,
+            663
+          ],
+          "text": "Figure 8: Assignment as Value - With atom vs. No atom.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            679,
+            335,
+            803
+          ],
+          "text": "In Figure 9 , at the top, we observe that the attention is distributed\nmore horizontally while at the bottom, vertically. The visual dif-\nference is not so clear, however, in terms of the concentration of\npoints and the area of the figure. As can be seen in Figure 9 , the\nat [4] showed that the atom causes confusion, but, in our results,\ntime and accuracy did not support those results. However, the eye\ngaze metrics indeed support those results. There is a higher concen-\ntration of points on the atom region, 85 % more points, according to\nour results. On the contrary, the other metrics, like precision and\nf1, were significantly lower than our results.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            579,
+            633,
+            617
+          ],
+          "text": "in the atom area, which supports confusion associated with that\ntransition. However, by inspecting more than 20% of parts of the\ncode since we have 93.7% more transitions with atom",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_008_figure_009.png)",
+          "figure_path": "figures/atoms_confusion_page_008_figure_009.png",
+          "bbox": [
+            380,
+            90,
+            607,
+            516
+          ],
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            356,
+            525,
+            633,
+            551
+          ],
+          "text": "Figure 9: Conditional Operator - With atom (top) vs. No atom.\n(bottom)",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            618,
+            634,
+            803
+          ],
+          "text": "The code with the Conditional Operator atom required, on av-\nerage, less time to be solved but more visual effort due to some\nreasons. To discuss those reasons, we show an example of how\ntwo distinct participants solved the tasks. The first one solved the\ncode with an atom, and the second one solved the code with no\natom. For the participant who solved the task with an atom, we\ntook the code of the atom and its correspondent graph of\ngait transition, which can be seen in Figure 10 . at the top and\nin the bottom. Similarly, for the participant who solved the code\nfor this particular case, we examine the x-sine, representing how their\neyes moved back and forth horizontally over the distinct elements\nin the function of time. The red color represents eyes looking inside\nthe area of interest in the function of time. As we can see by the\nred colored line, this participant had to go back and forth several\ntimes at the time with the atom, going until the end and until the",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            830,
+            353,
+            841
+          ],
+          "text": "249",
+          "reading_order": 12,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            203,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            585,
+            67,
+            632,
+            79
+          ],
+          "text": "Oliveira, et al.",
+          "reading_order": 1,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            59,
+            97,
+            336,
+            221
+          ],
+          "text": "middle. The participant reached almost the end of the line 3 times, \nrepresented by the highest peak, 3 times about half of the line, \nand several smaller movements resembled by smaller peaks. The \nline was nearly completely filled with red dots. This is a hallmark \nof the atom, which indicates confusion. On the other hand, the \nsecond participant analyzed a code with no atom (illustrated in \nFigure 10, at the top, right-hand side). Here, the difference is that \nthe code with no atom has more lines of code. We can see a small \namount of variation in the number of times the participant spent in the \narea of interest (see the few red lines with respect to time).",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            221,
+            336,
+            333
+          ],
+          "text": "We also analyze the y-axis representing the visual effort verti-\ncally in the code (see the bottom of Figure 10 ). With no atom, the\nparticipant makes more gazes on the x-axis, going up and down\nmore often, with about 7 long peaks, and 5 of them touching the\narea of interest in about 30 seconds. However, the effort going amorti-\nzation of the y-axis indicates that on average, each participant\nstays in the area of interest for about 45 seconds. The natural dis-\npersion of the variations for x-axis and y-axis together shows a\nsymptom of confusion introduced by the atom.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            67,
+            340,
+            326,
+            379
+          ],
+          "text": "Finding 3. The presence of atoms of confusion increases the\namount of ambiguity in the prompt. This is usually the case of\nentries in ACL and 20.6% the number of points is above 100.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            59,
+            402,
+            219,
+            417
+          ],
+          "text": "5 THREATS TO VALIDITY",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            419,
+            334,
+            456
+          ],
+          "text": "We now discuss potential threats to the validity of our controlled\nalgorithm. We start with the threats using the classifica-\ntion of Woithlin et al. [21] .",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            456,
+            336,
+            654
+          ],
+          "text": "Conclusion Validity: Since our data do not follow a normal dis-\ntribution, our hypotheses tests are based on a nonparametric test\nnamed Kruskal-Wallis. This test can determine if there are statis-\ntically significant differences between two or more groups of an\nindependent variable on a continuous or ordinal dependent variable.\nHowever, we believe that the test will only detect statistically significant\neyes can gaze over areas out of the screen or out of the code, and\nthe eye tracker can still capture those points. We observed, by ana-\nlyzing the generated heatmaps, that some participants tend to look\ninto emptiness sometimes when they are thinking. However, this\nsituation is likely to occur in both treatments, i.e., with atoms and\nwith no atoms. Regarding the points captured, techniques are com-\nmonly employed to reduce their number, which the literature refers\nto as removing artifacts. However, the majority of the time and\npoints can also be used to generate the heatmaps once they show\nthe density of concentration of such points over distinct areas.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            654,
+            336,
+            803
+          ],
+          "text": "Internal Validity. There were some other threats to validity in\nthis study that we realized during the experiment execution, such\nas the rotating chair used by the participants. This rotating chair\naffected the eye tracking device so we contacted with the participant's\neyes. Additionally, we determined that each participant only tested\nthe eye tracker device for each participant right before executing\nthe experiment. The different potential luminosity between the\ntwo room environments we used to execute the experiment can\nalso be considered a threat since they can change the sensibility\nof the eyes of the participant. Since the experiment was not designed\nto minimize this threat, we closed all curtains to avoid the external\nluminosity. Also, the size of the font and style might influence the",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            641,
+            633,
+            716
+          ],
+          "text": "participant's attention. To mitigate this threat, we have chosen\na popular font style and a size that fits the screen. All tasks are\ndisplayed in the same font size, highlighted with a light theme, to\nmitigate possible effects. The time duration of the whole experi-\nment can also influence visual effort if it is too long. We mitigated\nit by using simpler and only a few tasks to not let participants tired.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/atoms_confusion_page_009_figure_010.png)",
+          "figure_path": "figures/atoms_confusion_page_009_figure_010.png",
+          "bbox": [
+            372,
+            94,
+            609,
+            582
+          ],
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            356,
+            594,
+            633,
+            621
+          ],
+          "text": "Figure 10: Conditional Operator transitions on $x$ -axis (two\ngraphs at the top) and $x$ -axis (two graphs at the bottom).",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            717,
+            635,
+            766
+          ],
+          "text": "Construct validity. Our controlled study can involve threats re-\ngarding mono-operation bias or possible effects of interaction be-\ntween treatments. To deal with and control these threats, we em-\nployed in our experiment the Latin Square design.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            357,
+            766,
+            633,
+            804
+          ],
+          "text": "External Viability: In our experiment, we have used programs\nwhich were originally written for use in laboratory laboratory\ncapa- tion capacity to other languages. However, we used simple code",
+          "reading_order": 13,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            68,
+            197,
+            80
+          ],
+          "text": "Atoms of Confusion: The Eyes Do Not Lie",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            488,
+            68,
+            632,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 1,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            58,
+            96,
+            335,
+            321
+          ],
+          "text": "snippets with constructs incorporated in several programming lan-\nguages, such as variable declarations and assignments and if-else\nstatements. Additionally, we cannot generalize the results of our\nexperiment to other code comprehension scenarios—although we\nexplored different types of atoms of confusion: Assignment as\nValue , and Confirmation of Value . By repeating this experiment\nwe generalizes our results to the professional developers' pop-\nulation since some of our experiment participants were graduate\nstudents. However, some students argue in favor of using students to\nconduct controlled experiments [19, 22] . Our strategy in this paper\nwas to conduct an empirical experiment that initially consisted of\na seek on open source repositories to find functions to the experi-\nment. Then we created a complete environment to make it possible\nto execute the experiment with the least possible interaction, and\nby making it possible to test for cases that might better cause\nrelationships of code comprehension of code engineers’ atten- tions of\nconfusion. This work aims to validate preexisting works favoring\ninternal validity.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            58,
+            333,
+            162,
+            348
+          ],
+          "text": "6 IMPLICATION",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            351,
+            334,
+            425
+          ],
+          "text": "Our results reveal and reinforce what a previous study has claimed\nregarding the impact of atoms on time [4] . From an additional\nperspective, which includes eye-tracking, the presence of atoms\ncan confuse, affecting developers' productivity, making them spend\nmore time and misjudge code behavior, and bringing effects to their\nattention, which makes them focus on the atom regions.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            425,
+            334,
+            500
+          ],
+          "text": "The catalogs of atoms of confusion created by previous works are\nnot yet widespread among software developers. Thus, developers\nneed to be aware of any possible atoms of confusion, which appear\nas bottlenecks in code comprehension. This way, we invite and\nsuggest the community to give a greater diffusion of these atoms\nand the negative effects of their presence on the code.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            500,
+            334,
+            587
+          ],
+          "text": "These results also motivate the development of plugins and tools\nin IDEs and code editors that can make it easier for programmers to\ndetect and refactor atoms of confusion. A good practice is also\nto make project managers and senior developers more concerned\nof their roles and more sensitive during code review and\naccepting contributions (e.g., merging pull requests in Diffku)\nfrom other developers.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            587,
+            334,
+            673
+          ],
+          "text": "The methodology we adopted by using an eye tracker to assess\nvisual attention is a promising alternative to analyzing code com-\nprehension in the presence of atoms of confusion. It reveals how a\nparticular atom can change the amount or direction of the attention,\nand how this activity might be affected by a more realistic\nidea of the impact of atoms. Previous works do not explore the eye\nperspective in the context of atoms of confusion.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            674,
+            335,
+            749
+          ],
+          "text": "Last but not least, in this work, we have found empirical evidence\nthat atoms of confusion increase time to comprehend the code and\nthat some types of atoms are more prejudicial than others. Thus, we\nencourage researchers, the academic community, and practitioners\nto conduct more controlled experiments, especially considering the\ntypes of atoms of confusion not explored in this paper.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            58,
+            760,
+            180,
+            776
+          ],
+          "text": "7 RELATED WORK",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            58,
+            778,
+            334,
+            804
+          ],
+          "text": "Code comprehension is often explored in computer science, partic-\nularly in the software engineering field, since a significant portion",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            96,
+            633,
+            159
+          ],
+          "text": "of the maintenance effort is dedicated to understanding existing\nsoftware. A considerable amount of effort to properly understand\ncode can be a problem not only for the business environment but\nalso for the development of software. In this work, we rely\non in assessments, mainly in the first years of graduation [16] .",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            159,
+            633,
+            245
+          ],
+          "text": "Some prior works [4, 5, 10] have studied some particular small-\ncode patterns which have a big potential to cause misunderstand-\nings. These code patterns were named as forms of confusion [4, 5, 10] or\nmisunderstanding patterns [10] . Such patterns can even lead to the\ngeneration of many errors. It is possible that the use of code as a\ncase of bug introduction related to the atom of confusion Dangfong\nEhe in a function used on a code library called OpenH264.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            246,
+            633,
+            531
+          ],
+          "text": "Gopstein et al. [4] have performed an experiment with 73 par-\nticipants and showed empirically that these atoms of confusion\ncould lead to a significantly increased rate of misunderstanding\nwhen compared with code without atoms of confusion. As they\nwere expected, the results were consistent: 70 out of 100, 92.5 %\nabout the behavior of a piece of code. These different conclusions\ncan naturally lead to bugs. Still, according to Gopstein et al. [4] ,\natoms of confusion can also cause diminished productivity, faulty\nproducts, and higher costs. They have also cataloged 15 atoms of\nconfusion and provided a methodology for empirically deriving\nthese complex atoms. In their study [4] , they have conducted two\nexperiments. One of them is similar to ours. However, we use an\nexperiment with just 120 minutes of coding. In addition to the\ndevelopers' attention, We observed an increase of 36.8 % of gaze\ntransitions in code snippets with atoms. In then, experiment. Cop-\nstein et al. [4] instructed subjects to step through the program if\nthey were the computer, execute each instruction in their mind, and\nrecord the standard output of the program. They also modified the\nexperiment's protocols to include only meaningful instructions. How\noftenly these are necessary? By repeating this experiment many\ntimes from the subject. Our experiment followed a very similar approach.\nThis approach was mixed with an eyeTracker device to record the\nsubjects' eye movements.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            531,
+            633,
+            617
+          ],
+          "text": "Other works [1, 3, 6, 8, 11] have studied the correlation and effec-\ntiveness of visual attention tracking on code and text understanding.\nThey have shown that a longer fixation on any specific part of the\ncode can indicate a higher cognitive workload trying to understand\neach line ofcode. In our study on our knowledge, no similar\nstudies with eye tracking were performed to investigate the impact\nof atoms of confusion in code comprehension.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            618,
+            633,
+            804
+          ],
+          "text": "Gospstein et al. [5] showed a strong correlation between atoms\nof confusion and bug fix commits and a tendency for atoms of\nconfusion to be commented. They also observed a higher rate of\nsecurity vulnerabilities in projects with more atoms. They did it by\nselecting 14 of the most representative and popular open-source C\nand C++ repositories to measure the prevalence and significance of\natoms of confusion. They correlate the occurrence of these atoms\nin the tested projects with the external ones. They find that the\ncomment rate highly related to the prevalence with more atoms tend to\nhave more CVEs (Common Vulnerabilities and Exposure) and bugs\nby domain. In this experiment, they did not analyze developers' per-\nformances or asked them about the code; they searched for atoms of\nconfusion in existing code. They analyzed the correlation between\nthe rate of atoms on these repositories with bugs' presence and\nwhether these codes were refactored, and the atoms were removed.",
+          "reading_order": 15,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            59,
+            67,
+            203,
+            79
+          ],
+          "text": "SBES '20, October 21-23, 2020, Natal, Brazil",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            585,
+            67,
+            631,
+            79
+          ],
+          "text": "Oliveira, et al.",
+          "reading_order": 1,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            59,
+            97,
+            335,
+            158
+          ],
+          "text": "from the code, among other questions. In our study, we include\nthe measurement of how long it takes to developers understand\ncode extracted from real open-source projects and which part of\ncode they understand correctly. Questions about the impact of\nthe difference in code understanding with and without atoms",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            158,
+            335,
+            346
+          ],
+          "text": "Another study conducted by Medeiros et al. [10] tried to better\nunderstand the occurrence and relevance of atoms of confusion by\nmining some repositories seeking for the occurrence of these atoms\nand also applied a survey with 93 developers. They found that the\natoms studied (92 % ) are highly used in practice and that developers\nagreed that 6 of the studied atoms hinder code understanding,\nrepresenting 50 % of the 12 atoms studied. They also showed that\nthe atoms are not frequently cited on guidelines. Our experiment\nof the above methods allowed us to probe how well our\ncode misunderstanding in practice. Moreover, it allows us to catalog\nwhich atoms cause confusion and propose a tool to indicate and\nrefactor them. Besides, we followed a more objective approach by\nusing an eye-tracker, which allowed us to compare the perception of\nprogrammers with quantitative data about real confusion generated\nby the atoms.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            59,
+            377,
+            225,
+            391
+          ],
+          "text": "8 CONCLUDING REMARKS",
+          "reading_order": 4,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            394,
+            335,
+            530
+          ],
+          "text": "In this paper, we presented a controlled experiment with an eye\ntracker with 30 participants to investigate the effects of atoms\nof confusion on code comprehension. In particular, we analyzed\nthe atoms' effects on time, accuracy, and participants' attention\nwhile specifying the output of six code tasks adapted from real\nopen-source systems. We found evidence that code with atoms\nof confusion is more time-consuming, unlike code with no\natom of confusion. This study was the first effort to do such\nattention on particular areas of the atoms more often. We observed\nan increase by 36.8 % of gaze transitions in code snippets with atoms,\nthus more visual effort.",
+          "reading_order": 5,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            531,
+            335,
+            678
+          ],
+          "text": "In previous work, Geppstein et al. [4] showed that the presence of\nthese patterns in the code affects developers' performance, i.e., time\nand accuracy, and increase code misunderstandings. We showed\nthat this bias, however, can be ameliorated by adding more\naccuracy, namely attention, should also be taken into considera-\ntion being affected by the presence of atoms. This was clear by the\nincrease in the number of points in AOI entries in AOI, and the\nnumber of gaze transitions, indicating more effort when analyzing\ncode with atoms of confusion. These nuances would not be possible\nto add more effort to the code, because it is generally considered\nsensitive to a perspective of analysis that contributes to more insights\ninto the atoms' impact on the attention.",
+          "reading_order": 6,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            59,
+            678,
+            335,
+            804
+          ],
+          "text": "For the developer community, we recommend avoiding writing\ncode with atoms of confusion since they can hamper code compre-\nhension. For the research community, we encourage more empirical\nstudy around the code of reference. However, the analysis of\nconfusion, since we have seen that some atoms can cause more\nnegative effects than others. Other comprehension code scenarios\nand activities should also be explored, and other eye-tracking met-\nrics should also be investigated. We believe that more empirical\nanalysis of code conflict can help inform future directions of work\nof confusion among software developers. We also recommend them",
+          "reading_order": 7,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            356,
+            97,
+            632,
+            122
+          ],
+          "text": "to propose and implement refactorings in IDEs to remove atoms of\nconfusion automatically.",
+          "reading_order": 8,
+          "tags": [
+            "paper_conclusion"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            357,
+            130,
+            440,
+            144
+          ],
+          "text": "REFERENCES",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            147,
+            631,
+            174
+          ],
+          "text": "[1] Roman Bedar and Markkin Tikkanen. 2009. An Eye-tracking Methodology\nfor Characterizing Process Performance. IEEE Transactions on User Interface\nEvaluation and Design, vol. 6, no. 3, pp. 152-167. IEEE, 2009.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            174,
+            631,
+            192
+          ],
+          "text": "[2] George E. P. Box, J. Stuart Hunter, and William G. Hunter. 2005. Statistics for\nExperiments: Design, innovation, and之道 . Wiley-Interscience.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            192,
+            631,
+            229
+          ],
+          "text": "10. Terasjuni, Roman, Andrew Arnold, Andrew Berg, Matschus, Jens, James Earl, and\nMichael C. Morin. 1997 Hub-5e Eval System Design. http://isl.speech.lv.uka.\nin Code Reading. Relating the Linear Order In Proceedings of the International\nSystems Engineering Conference, 1997, 23-26 June, 1997, St. Louis, Missouri.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            229,
+            631,
+            256
+          ],
+          "text": "41. Dan Gupta, Jake Iacinski, Yu Yan, Lori Allen Deloit, Yiyan Zhang, Mar-\ntin Westphal,\n\"Professional Quality of Life (PQQ) Measurement Scales.\"\nIn Proceedings of the Foundations of Software Engineering (FSE) 13(2):119-128,\n1997.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            256,
+            631,
+            283
+          ],
+          "text": "14 Dan Gupta, Hongwei Henry Zhou, Phyllia Frank and Justin Cuttone. 2018\nThe AI Ethical Society: Ethical AI for the Rest of Us. Cambridge University\nPress, Online. Proceedings of the Mining Software Reunion (SSR 2018) 281-291.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            283,
+            632,
+            319
+          ],
+          "text": "[7] Peter Green, Randall Hendrick, Markus Johnson, and Yoohyoung Lee.\n\"Learning psychology through play.\" 2019 International Journal of\nTracking and Gaming, Journal of Experimental Psychology: Learning, Memory,\nand Cognition, pp. 1-15.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            320,
+            632,
+            346
+          ],
+          "text": "[7] Ahmad Ihsan and Dr. G Feris Fettweis. 2017 . How programmers read regular code\neffectively . http://www.microsoft.com/en-us/library/dotnetmvc . Accessed: February 2018.\n(IEEE17/23) 712-713, 1404–1407.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            346,
+            631,
+            364
+          ],
+          "text": "[8] Marcel Just and Patricia Carpenter. 1965. A theory of reading: From eye fixation\nto comprehension. Psychological Review. Psychological Review, 329-354.",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            362,
+            364,
+            632,
+            408
+          ],
+          "text": "[9] Romero Maluquira, Mario Alberto, Rodrigo Benoit, Eduardo Monteiro,\nFlavio Medeiros, Alessandro Garcia, and José Benoit. 2017. The Discipline\nof Preprocessor-based Antennas Based on TGAUT-Commodities. Master in Pro-\nceedings of the International Conference on Field Performance (ICFP) . IEEE: 297–307.",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            409,
+            632,
+            445
+          ],
+          "text": "[8] Flavius Medenicki, Gabriel Lam, Guillemenceau Amed, Sven Apel, Christian Klein,\nTero Karras, and Jan Kramovek. Foundations of embedded system analysis: a\ncode pattern in C++ open source software projects. Improved Embedded Engineering\nSystems, volume 199 (2007).",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            445,
+            632,
+            472
+          ],
+          "text": "19 John Meltz, Clasme Brusseau, and Andrey Wokwuk. 2016. How Does the Department\nof Engineering School affect the quality of the International Conference\non Software Engineering (ICSE). 679-680",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            472,
+            632,
+            499
+          ],
+          "text": "[12] José Medel, Fábio Nabarro, Luis Huron, Clara Braimard, and Andrew Watson.\n\"Perseverance and Quality of Life among Patients with Parkinson's Disease\".\nInternational Conference on Program Comprehension (ICPC-17) , 44–49.",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            499,
+            631,
+            526
+          ],
+          "text": "[18] Robert Mundell, Andrea Mucci, and Michele Lanza. 1995 How you want that to\nhappen. http://islam.org/ISLAM.speech.lvcsr.html?doc=24361\nRobert Mundell, International Conference on Program Compensation (ICPC) 123–25,",
+          "reading_order": 22,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            526,
+            632,
+            543
+          ],
+          "text": "[14] Douglas C. Montgomery. 2006. Design and Analysis of Experiments . John Wiley\n& Sons.",
+          "reading_order": 23,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            543,
+            633,
+            571
+          ],
+          "text": "15 Mário Ribeiro, Paula Bobe, and Christian Kustner. 1994 Hub-5e Eval System\nEvaluation. http://isl.speech.lvcsr.edu/ISL.speech.lvcsr.html",
+          "reading_order": 24,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            571,
+            632,
+            598
+          ],
+          "text": "[16] Carsten Schütt, Tony Eick, Ahmad Taherzian, Tereen Bujshu, and Irfan Naz.\n2018. The 3000+ pages of scientific papers published by International Journal of\nScience Education. In Proceedings of the ITEC Working Group Meeting . 63–68.",
+          "reading_order": 25,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            598,
+            632,
+            625
+          ],
+          "text": "21 Zohreh Sharaf, Timothy Shatter, Bonar Sharaf, and Yarm-Chan Gutiérrez. 2015, in\nProceedings of the 13th IEEE International Conference on the Asia-Pacific\nEnergy Engineering Conference (APEC) , 196–195.",
+          "reading_order": 26,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            625,
+            632,
+            651
+          ],
+          "text": "[1] Janet Siegmund. 2016. Program comprehension. Past, present, and future. In\nProceedings of the Software Analysis, Evolution, and Reengineering (SAFER 2016) .\nhttp://www.speech.lvcsr.hu/~maria-szepesvari/",
+          "reading_order": 27,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            651,
+            632,
+            688
+          ],
+          "text": "Dan Sjörgren, Bente Espe, Erik Arekshin, Tore Dals, Mats Gjergsted, Anela\nGjergsted, Henrik Olsson, and Mats Westphal.\n\"Design of embedded systems for wireless sensor systems\", IEEE\nConference on Speech Communication, IEEE, 2004.",
+          "reading_order": 28,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            688,
+            632,
+            716
+          ],
+          "text": "29. Leigh Ann Sudd-Dealyer, Mark Steblik, and Sharon Carrero. 2012. Code Conven-\ntions: The World of Formal Methods, Formal Language, and Formal Interaction. Informa\nand Technology in Computer Science (IJFCS) 31: 81–86.",
+          "reading_order": 29,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            716,
+            632,
+            742
+          ],
+          "text": "[2] Clai Woulin, Per Brinten, Martin Hoet, Magnus L. Olsson, Bjørn Røgnell,\nTorbjørn Rasmussen. 2011. Experimentation in software engineering . Springer Science\n& Business Models.",
+          "reading_order": 30,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            361,
+            742,
+            632,
+            770
+          ],
+          "text": "[2] Marif Yeh, Yu Yan, Dan Gupta, and Yuan Zhang. 2017. Detection and\nidentification of Drought Biomass Erosion: a Comprehensive Using EEG for\nFrontiers in Education Conference (IEE) 17-1:5.",
+          "reading_order": 31,
+          "tags": []
+        }
+      ]
+    }
+  ]
+}
