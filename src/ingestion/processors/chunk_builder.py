@@ -23,7 +23,7 @@ def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, doc_
         "sec_2": sec_2,
         "section_context": contexto,
         "doc_type": doc_type,
-        "content": f"Context: {contexto}\n\n{texto}"
+        "content": f"{contexto}\n\n{texto}"
     }
 
 
