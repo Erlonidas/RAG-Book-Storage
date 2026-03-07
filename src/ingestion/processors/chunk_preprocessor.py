@@ -1,47 +1,90 @@
-from ..services.llm_factory import create_llm
-from chunk_builder import get_section_content
-from prompts import *
+from pathlib import Path
+import os
+import sys
+from src.services.llm_factory import create_llm
+from src.processors.chunk_builder import get_section_content
+from src.processors.prompts import *
 from PIL import Image
 import base64
 from io import BytesIO
-
 from langchain_core.messages import HumanMessage, SystemMessage
+from markdownify import markdownify as md
 
-class ContentAggregation:
+class ContentAggregator:
     def __init__(self):
         self.chat_llm = create_llm(model="gpt-4o")
+        self.project_root = Path(__file__).resolve().parents[3]
+
 
     def _find_url(self, content_with_url: str) -> str:
         pattern = r'!\[.*?\]\((.*?)\)'
-        urls = re.findall(pattern, text)
-        return urls
+        urls = re.findall(pattern, content_with_url)
+        return urls[0] if urls else ""
 
-    def centralize_section_context_for_element(self, complete_chunk_list: dict) -> dict:
-        all_special_chunks = []
-        for doc in complete_chunk_list:
-            if doc["doc_type"] != "text" and doc["doc_type"] == "figure" or doc["doc_type"] == "table":
-                all_special_chunks.append(doc)
 
-        for raw_chunk in all_special_chunks:  
-            type_content = raw_chunk["doc_type"]
-            context = raw_chunk["content"]
-            whole_section_content = get_section_content(
-                chunks = complete_chunk_list,
-                sec_1 = raw_chunk["sec_1"],
-                sec_2 = raw_chunk["sec_2"] if raw_chunk["sec_2"] else None,
-            )
-            match type_content:
-                case "figure":
-                    url_fig = self._find_url(context)
-                    user_message = HumanMessage(
-                        content=[
-                            {'type': 'text', 'text': "Por favor, encontre o prato de comida na imagem, e identifique os alimentos que compoem esta refeição"},
-                            {'type': 'image_url', 'image_url': {'url': f"data:image/jpeg;base64,{img_b64}"}}
-                        ]
-                    )
-                    ai_response = self.chat_llm.invoke([SystemMessage(SYSTEM_FIG_TREATMENT)]+[HumanMessage(USER_FIG_REQUEST)])
-                    pass
-                case "table":
-                    pass
-            pass
-        
+    def _resolve_image_path(self, relative_path_from_json: str) -> str:
+
+        # Monta o caminho: Raiz + data + raw + (figures/img.png)
+        full_path = self.project_root / "data" / "raw" / relative_path_from_json
+        return str(full_path)
+
+
+    def centralize_section_context_for_element(self, complete_chunk_list: list) -> list:
+        for index, doc in enumerate(complete_chunk_list):
+
+            if doc["doc_type"] in ["figure", "table"]:
+                type_content = doc["doc_type"]
+                context = doc["content"]
+                whole_section_content = get_section_content(
+                    chunks = complete_chunk_list,
+                    sec_1 = doc["sec_1"],
+                    sec_2 = doc.et("sec_2")
+                )
+                match type_content:
+                    case "figure":
+                        raw_url = self._find_url(context)
+                        url_fig = self._resolve_image_path(raw_url)
+                        if not os.path.exists(url_fig):
+                            print(f"Error: Figure imagem not found at: {url_fig}")
+                            continue
+
+                        chunk_fig = Image.open(url_fig)
+                        buffered = BytesIO()
+                        chunk_fig.save(buffered, format="PNG")
+                        fig_b64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
+
+                        system_message = SystemMessage(SYSTEM_FIG_TREATMENT)
+                        complete_user_prompt = USER_FIG_REQUEST.format(
+                            title=doc["sec_0"],
+                            curr_content=doc["content"],
+                            whole_section_content=whole_section_content
+                        )
+                        user_message = HumanMessage(
+                            content=[
+                                {'type': 'text', 'text': complete_user_prompt},
+                                {'type': 'image_url', 'image_url': {
+                                    'url': f"data:image/png;base64,{fig_b64}"
+                                    }}
+                            ]
+                        )
+                        ai_response = self.chat_llm.invoke([system_message, user_message])
+                        augmented_context = ai_response.content
+                        doc["image_metadata"] = url_fig
+                        doc["content"] = doc["section_context"] + "\n\n<VISUAL_DESCRIPTION>" + augmented_context + "\n</VISUAL_DESCRIPTION>"
+                        complete_chunk_list[index] = doc
+
+                    case "table":
+                        system_message = SystemMessage(SYSTEM_TABLE_TREATMENT)
+                        complete_user_prompt = USER_TABLE_REQUEST.format(
+                            title=doc["sec_0"],
+                            curr_content=doc["content"],
+                            whole_section_content=whole_section_content
+                        )
+                        user_message = HumanMessage(complete_user_prompt)
+                        ai_response = self.chat_llm.invoke([system_message, user_message])
+                        augmented_context = ai_response.content
+                        doc["table_metadata"] = doc["content"]
+                        doc["content"] = "<TABLE_DESCRIPTION>\n" + augmented_context + "\n</TABLE_DESCRIPTION>"
+                        complete_chunk_list[index] = doc
+        return complete_chunk_list
+            
