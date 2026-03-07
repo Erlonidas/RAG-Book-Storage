@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "rag-book-storage"
+version = "0.1.0"
+description = "Seu projeto de RAG"
+authors = ["Erlon"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+faiss-cpu = "^1.7.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
