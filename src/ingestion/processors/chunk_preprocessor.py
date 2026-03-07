@@ -38,7 +38,7 @@ class ContentAggregator:
                 whole_section_content = get_section_content(
                     chunks = complete_chunk_list,
                     sec_1 = doc["sec_1"],
-                    sec_2 = doc.et("sec_2")
+                    sec_2 = doc.get("sec_2")
                 )
                 match type_content:
                     case "figure":
