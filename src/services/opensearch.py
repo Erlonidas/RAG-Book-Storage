@@ -1,6 +1,3 @@
-"""
-Cliente OpenSearch para conexão e operações de índice.
-"""
 from opensearchpy import OpenSearch
 from typing import Optional, List, Dict, Any
 from src.config import (
