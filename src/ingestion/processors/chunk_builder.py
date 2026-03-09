@@ -9,7 +9,7 @@ from src.config import TAGS_IGNORADAS, setup_logger
 logger = setup_logger(__name__)
 
 
-def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, doc_type: str = "text") -> dict:
+def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, page_number: int, reading_order: int, doc_type: str = "text") -> dict:
     """
     Monta o documento final para ingestão no OpenSearch.
     """
@@ -23,6 +23,8 @@ def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, doc_
         "sec_2": sec_2,
         "section_context": contexto,
         "doc_type": doc_type,
+        "page_number": page_number,
+        "reading_order": reading_order,
         "content": f"{contexto}\n\n{texto}"
     }
 
@@ -86,10 +88,10 @@ def get_section_hierarchy(chunks: list[dict]) -> dict[str, list[str]]:
 
 
 def _flush_buffer(buffer: str | None, book_id: str, sec_0: str, sec_1: str, sec_2: str, 
-                  docs: list, doc_type: str = "text") -> None:
+                  docs: list, page_number: int, reading_order: int, doc_type: str = "text") -> None:
     """Salva o buffer no array de docs se ele não estiver vazio."""
     if buffer and buffer.strip():
-        docs.append(criar_doc(book_id, sec_0, sec_1, sec_2, buffer, doc_type))
+        docs.append(criar_doc(book_id, sec_0, sec_1, sec_2, buffer, page_number, reading_order, doc_type))
 
 
 def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
@@ -117,20 +119,22 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
     pages = dolphin_json.get('pages', [])
     for page in pages:
         elements = page.get('elements', [])
+        page_number = page.get("page_number")
         
         for item in elements:
             tipo = item.get('label', '')
             conteudo = item.get('text', '').strip()
+            reading_order = item.get("reading_order")
 
             if not conteudo and tipo not in ('tab', 'fig'):
                 logger.debug(f"Item sem conteúdo ignorado: tipo={tipo}")
                 continue
 
             if tipo == 'sec_0':
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
-                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order, "text")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
+                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                 buffer_code = None
                 buffer_para = None
                 buffer_table = None
@@ -140,10 +144,10 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 current_sec_0 = conteudo
 
             elif tipo == 'sec_1':
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
-                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
+                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                 buffer_code = None
                 buffer_para = None
                 buffer_table = None
@@ -154,10 +158,10 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 current_sec_2 = ""
 
             elif tipo == 'sec_2':
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
-                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
+                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                 buffer_code = None
                 buffer_para = None
                 buffer_table = None
@@ -167,10 +171,10 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 current_sec_2 = conteudo
 
             elif tipo == 'para':
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
+                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                 buffer_code = None
                 buffer_table = None
                 buffer_figure = None
@@ -187,9 +191,9 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 buffer_code = None
 
             elif tipo == 'fig':
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                 buffer_code = None
                 buffer_para = None
                 buffer_table = None
@@ -200,17 +204,17 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
             elif tipo == 'cap':    
                 if buffer_figure: # se tem fig antes en
                     buffer_figure += f"\n{conteudo}"
-                    _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
+                    _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
                     buffer_figure = None
 
                 else:
-                    _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
+                    _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
                     buffer_para = None
 
                     #new
                     if buffer_code:
                         buffer_code += f"\n{conteudo}"
-                        _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "code")
+                        _flush_buffer(buffer_code, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "code")
                         continue
 
                     buffer_table = conteudo
@@ -219,9 +223,9 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
             elif tipo == 'code':
                 buffer_table = None
                 
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
                 buffer_figure = None
-                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
+                _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
                 buffer_para = None
                 
                 codigo = f"```\n{conteudo}\n```"
@@ -237,8 +241,8 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                     buffer_para = conteudo
 
             elif tipo == 'list':
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
                 buffer_table = None
                 buffer_figure = None
                 
@@ -248,8 +252,8 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                     buffer_para = f"{conteudo}"
 
             elif tipo == 'equ':
-                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
+                _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+                _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
                 buffer_table = None
                 buffer_figure = None
                 
@@ -264,9 +268,9 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                 logger.warning(f"Tag desconhecida: tipo='{tipo}' em book_id={book_id}")
 
     # Saves final buffers
-    _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "text")
-    _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "table")
-    _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, "figure")
+    _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
+    _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
+    _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
 
     logger.info(f"book_id='{book_id}' → {len(docs_to_index)} chunks gerados.")
     return docs_to_index
