@@ -12,23 +12,30 @@
             "reading_order": {"type": "integer"},
             "image_metadata": {
                 "type": "text",
-                "index": false  
+                "index": false
             },
             "table_metadata": {
-                    "type": "text",
-                    "index": false 
-                },
+                "type": "text",
+                "index": false
+            },
             "vetor": {
                 "type": "knn_vector",
-                "dimension": -1 
+                "dimension": -1,
+                "method": {
+                    "name": "hnsw",
+                    "space_type": "cosinesimil",
+                    "engine": "lucene",
+                    "parameters": {
+                        "ef_construction": 100,
+                        "m": 16
+                    }
+                }
             }
         }
     },
-
     "settings": {
-        "index": {
-            "knn": true,
-            "number_of_shards": 2
-        }
+        "index.knn": true,
+        "knn.algo_param.ef_search": 100,
+        "number_of_shards": 2
     }
 }
