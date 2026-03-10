@@ -4,11 +4,10 @@ Carrega variáveis de ambiente e define constantes.
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-ENV_PATH = PROJECT_ROOT
-load_dotenv(ENV_PATH)
+load_dotenv(find_dotenv())
 
 OPENSEARCH_HOST = os.getenv("OPENSEARCH_HOST", "localhost")
 OPENSEARCH_PORT = int(os.getenv("OPENSEARCH_PORT", "9200"))
