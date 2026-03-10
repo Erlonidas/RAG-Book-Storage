@@ -21,6 +21,7 @@ langchain-openai = "0.3.27"
 sentence-transformers = "^5.2.3"
 pandas = "^3.0.1"
 markdownify = "^1.2.2"
+pillow = "^12.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
