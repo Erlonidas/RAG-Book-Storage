@@ -7,7 +7,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-ENV_PATH = PROJECT_ROOT / "src" / ".env"
+ENV_PATH = PROJECT_ROOT
 load_dotenv(ENV_PATH)
 
 OPENSEARCH_HOST = os.getenv("OPENSEARCH_HOST", "localhost")
@@ -18,14 +18,35 @@ OPENSEARCH_USE_SSL = os.getenv("OPENSEARCH_USE_SSL", "true").lower() == "true"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+OPENAI_EMBEDDING = os.getenv("OPENAI_EMBEDDING", "text-embedding-3-large")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
-EVERY_FIGS_PDF = RAW_DATA_DIR / "figs"
+EVERY_FIGS_PDF = RAW_DATA_DIR / "figures"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 
-METADATA_INDEX = "metadata-index"
-CONTENT_INDEX = "content-index"
+METADATA_INDEX = "metadata-pdfs"
+CONTENT_INDEX = "content-pdfs"
 
 TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header'}
+
+__all__ = [
+    "PROJECT_ROOT",
+    "OPENSEARCH_HOST",
+    "OPENSEARCH_PORT",
+    "OPENSEARCH_USER",
+    "OPENSEARCH_PASSWORD",
+    "OPENSEARCH_USE_SSL",
+    "OPENAI_API_KEY",
+    "OPENAI_MODEL",
+    "OPENAI_EMBEDDING",
+    "ANTHROPIC_API_KEY",
+    "DATA_DIR",
+    "RAW_DATA_DIR",
+    "EVERY_FIGS_PDF",
+    "PROCESSED_DATA_DIR",
+    "METADATA_INDEX",
+    "CONTENT_INDEX",
+    "TAGS_IGNORADAS",
+]
