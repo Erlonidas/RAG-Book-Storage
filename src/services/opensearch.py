@@ -16,7 +16,7 @@ class OpenSearchClient:
     
     def __init__(self):
         self.client = self._create_client()
-        self._validate_coinnection()
+        self._validate_connection()
     
 
     def _create_client(self) -> OpenSearch:

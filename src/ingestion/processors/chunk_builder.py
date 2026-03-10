@@ -1,7 +1,3 @@
-"""
-Construtor de chunks a partir do JSON do Dolphin.
-Anteriormente: FilterChunkGeneration.py
-"""
 from typing import Dict, Any, List, Optional
 from markdownify import markdownify as md
 from src.config import TAGS_IGNORADAS, setup_logger
@@ -9,9 +5,9 @@ from src.config import TAGS_IGNORADAS, setup_logger
 logger = setup_logger(__name__)
 
 
-def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, page_number: int, reading_order: int, doc_type: str = "text") -> dict:
+def create_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, page_number: int, reading_order: int, doc_type: str = "text") -> dict:
     """
-    Monta o documento final para ingestão no OpenSearch.
+    Build final document into OpenSearch.
     """
     partes_contexto = [p for p in [sec_1, sec_2] if p]
     contexto = " > ".join(partes_contexto) if partes_contexto else "Initial Session"
@@ -32,7 +28,7 @@ def criar_doc(book_id: str, sec_0: str, sec_1: str, sec_2: str, texto: str, page
 def get_section_content(chunks: list[dict], sec_1: str, sec_2: str = None, 
                        include_context: bool = False, doc_types: list[str] = None) -> str:
     """
-    Recupera todo o conteúdo de uma seção/subseção.
+    Retrieval content from section/subsection
     """
     filtered = [c for c in chunks if c["sec_1"] == sec_1]
     if sec_2:
@@ -54,19 +50,23 @@ def get_section_content(chunks: list[dict], sec_1: str, sec_2: str = None,
 
 def get_section_hierarchy(chunks: list[dict]) -> dict[str, list[str]]:
     """
-    Extrai a hierarquia de seções e subseções dos chunks.
-    
+    Extracts the hierarchy of sections and subsections from the chunks.
+
     Args:
-        chunks: Lista de chunks processados
-    
+        chunks: A list of processed chunks.
+
     Returns:
-        Dicionário onde a chave é sec_1 e o valor é uma lista de sec_2 (subseções)
-        Exemplo: {
+        A dictionary where the key is sec_1 (section) and the value is a list of 
+        sec_2 (subsections).
+        
+        Example: {
             "Introduction": ["", "Background", "Motivation"],
             "Methods": ["Data Collection", "Analysis"],
             "Results": [""]
         }
-        Nota: "" indica que há conteúdo diretamente na seção sem subseção
+        
+        Note: An empty string ("") indicates content exists directly within the 
+        section without a specific subsection.
     """
     hierarchy = {}
     
@@ -89,21 +89,21 @@ def get_section_hierarchy(chunks: list[dict]) -> dict[str, list[str]]:
 
 def _flush_buffer(buffer: str | None, book_id: str, sec_0: str, sec_1: str, sec_2: str, 
                   docs: list, page_number: int, reading_order: int, doc_type: str = "text") -> None:
-    """Salva o buffer no array de docs se ele não estiver vazio."""
+    """Save docs' array if its not empty"""
     if buffer and buffer.strip():
-        docs.append(criar_doc(book_id, sec_0, sec_1, sec_2, buffer, page_number, reading_order, doc_type))
+        docs.append(create_doc(book_id, sec_0, sec_1, sec_2, buffer, page_number, reading_order, doc_type))
 
 
 def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
     """
-    Processa o JSON do Dolphin e monta os chunks prontos para ingestão no OpenSearch.
+    Processes Dolphin JSON and assembles chunks ready for OpenSearch ingestion.
 
-    Padrões de agrupamento suportados:
+    Supported grouping patterns:
     - sec_1 > sec_2 > para (+ half_para, list, equ, code)
-    - Tabelas: chunks separados com doc_type="table" (concatena tab+tab se quebrada)
-    - Figuras: chunks separados com doc_type="figure"
-    
-    Tags ignoradas: foot, fnote, que, sec_0, header
+    - Tables: separate chunks with doc_type="table" (concatenates tab+tab if split)
+    - Figures: separate chunks with doc_type="figure"
+
+    Ignored tags: foot, fnote, que, sec_0, header
     """
     docs_to_index = []
 
@@ -127,7 +127,7 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
             reading_order = item.get("reading_order")
 
             if not conteudo and tipo not in ('tab', 'fig'):
-                logger.debug(f"Item sem conteúdo ignorado: tipo={tipo}")
+                logger.debug(f"Item with no content ignored: type={tipo}")
                 continue
 
             if tipo == 'sec_0':
@@ -263,14 +263,14 @@ def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
                     buffer_para = conteudo
 
             elif tipo in TAGS_IGNORADAS:
-                logger.debug(f"Tag ignorada: tipo={tipo}")
+                logger.debug(f"Ignored tag: type={tipo}")
             else:
-                logger.warning(f"Tag desconhecida: tipo='{tipo}' em book_id={book_id}")
+                logger.warning(f"Unknown tag: type='{tipo}' at book_id={book_id}")
 
     # Saves final buffers
     _flush_buffer(buffer_para, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "text")
     _flush_buffer(buffer_table, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "table")
     _flush_buffer(buffer_figure, book_id, current_sec_0, current_sec_1, current_sec_2, docs_to_index, page_number, reading_order,  "figure")
 
-    logger.info(f"book_id='{book_id}' → {len(docs_to_index)} chunks gerados.")
+    logger.info(f"book_id='{book_id}' → {len(docs_to_index)} chunks generated.")
     return docs_to_index
