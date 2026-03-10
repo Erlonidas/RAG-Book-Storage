@@ -1,14 +1,21 @@
 from pathlib import Path
 import os
-import sys
+import re
 from src.services.llm_factory import create_llm
-from src.processors.chunk_builder import get_section_content
-from src.processors.prompts import *
+from src.ingestion.processors.chunk_builder import get_section_content
+from src.ingestion.prompts.enhance_fig_tab_chunk import (
+    SYSTEM_FIG_TREATMENT,
+    SYSTEM_TABLE_TREATMENT,
+    USER_FIG_REQUEST,
+    USER_TABLE_REQUEST
+)
 from PIL import Image
 import base64
 from io import BytesIO
 from langchain_core.messages import HumanMessage, SystemMessage
-from markdownify import markdownify as md
+from src.config import setup_logger
+
+logger = setup_logger(__name__)
 
 class ContentAggregator:
     def __init__(self):
