@@ -8,22 +8,12 @@
             "combined_text": {"type": "text"},
             "vetor": {
                 "type": "knn_vector",
-                "dimension": -1,
-                "method": {
-                    "name": "hnsw",
-                    "space_type": "cosinesimil",
-                    "engine": "lucene",
-                    "parameters": {
-                        "ef_construction": 100,
-                        "m": 16
-                    }
+                "dimension": -1
                 }
             }
-        }
-    },
+        },
     "settings": {
         "index.knn": true,
-        "knn.algo_param.ef_search": 100,
-        "number_of_shards": 2
+        "number_of_shards": 1
     }
 }
