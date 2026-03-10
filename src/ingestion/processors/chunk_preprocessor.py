@@ -52,7 +52,7 @@ class ContentAggregator:
                         raw_url = self._find_url(context)
                         url_fig = self._resolve_image_path(raw_url)
                         if not os.path.exists(url_fig):
-                            print(f"Error: Figure imagem not found at: {url_fig}")
+                            print(f"Error: Figure not found at: {url_fig}")
                             continue
 
                         chunk_fig = Image.open(url_fig)
