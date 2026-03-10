@@ -94,7 +94,7 @@ def _flush_buffer(buffer: str | None, book_id: str, sec_0: str, sec_1: str, sec_
         docs.append(create_doc(book_id, sec_0, sec_1, sec_2, buffer, page_number, reading_order, doc_type))
 
 
-def processar_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
+def process_json_dolphin(dolphin_json: dict, book_id: str) -> list[dict]:
     """
     Processes Dolphin JSON and assembles chunks ready for OpenSearch ingestion.
 
