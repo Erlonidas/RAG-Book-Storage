@@ -1,0 +1,19 @@
+{
+    "mappings": {
+        "properties": {
+            "book_id": {"type": "keyword"},
+            "title": {"type": "text"},
+            "abstract": {"type": "text"},
+            "authors": {"type": "text"},
+            "combined_text": {"type": "text"},
+            "vetor": {
+                "type": "knn_vector",
+                "dimension": -1
+                }
+            }
+        },
+    "settings": {
+        "index.knn": true,
+        "number_of_shards": 1
+    }
+}

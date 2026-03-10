@@ -2,6 +2,7 @@
 Módulo de configurações do projeto.
 """
 from .settings import (
+    PROJECT_ROOT,
     OPENSEARCH_HOST,
     OPENSEARCH_PORT,
     OPENSEARCH_USER,
@@ -9,6 +10,7 @@ from .settings import (
     OPENSEARCH_USE_SSL,
     OPENAI_API_KEY,
     OPENAI_MODEL,
+    OPENAI_EMBEDDING,
     ANTHROPIC_API_KEY,
     DATA_DIR,
     RAW_DATA_DIR,
@@ -20,6 +22,7 @@ from .settings import (
 from .logger import setup_logger
 
 __all__ = [
+    "PROJECT_ROOT",
     "OPENSEARCH_HOST",
     "OPENSEARCH_PORT",
     "OPENSEARCH_USER",
@@ -27,6 +30,7 @@ __all__ = [
     "OPENSEARCH_USE_SSL",
     "OPENAI_API_KEY",
     "OPENAI_MODEL",
+    "OPENAI_EMBEDDING",
     "ANTHROPIC_API_KEY",
     "DATA_DIR",
     "RAW_DATA_DIR",

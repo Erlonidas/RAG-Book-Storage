@@ -1,6 +1,3 @@
-"""
-Configuração centralizada de logs.
-"""
 import logging
 import sys
 

@@ -1,6 +1,3 @@
-"""
-Cliente OpenSearch para conexão e operações de índice.
-"""
 from opensearchpy import OpenSearch
 from typing import Optional, List, Dict, Any
 from src.config import (
@@ -16,13 +13,13 @@ logger = setup_logger(__name__)
 
 
 class OpenSearchClient:
-    """Cliente reutilizável para operações no OpenSearch."""
     
     def __init__(self):
         self.client = self._create_client()
+        self._validate_connection()
     
+
     def _create_client(self) -> OpenSearch:
-        """Cria conexão com OpenSearch."""
         return OpenSearch(
             hosts=[{'host': OPENSEARCH_HOST, 'port': OPENSEARCH_PORT}],
             http_auth=(OPENSEARCH_USER, OPENSEARCH_PASSWORD),
@@ -31,78 +28,120 @@ class OpenSearchClient:
             ssl_show_warn=False,
         )
     
+
+    def _validate_connection(self) -> None:
+        try:
+            info = self.client.info()
+            logger.info(f"Connection with OpenSearch has been achieved. Version: {info['version']['number']}")
+        except Exception as e:
+            logger.critical(f"Fail to connect to OpenSearch with credentials -> {OPENSEARCH_HOST}:{OPENSEARCH_PORT} → {e}")
+            raise
+
+
     def create_index(self, index_name: str, body: Dict[str, Any]) -> bool:
         """
-        Cria um índice no OpenSearch.
-        
         Args:
-            index_name: Nome do índice
-            body: Configuração do índice (mappings, settings)
+            index_name: index name
+            body: Chunks' schema (mappings, settings)
         
         Returns:
-            True se criado com sucesso
+            return True if the index is already created or successfully created a new one.
         """
         try:
             if self.client.indices.exists(index=index_name):
-                logger.info(f"Índice '{index_name}' já existe")
+                logger.info(f"Index '{index_name}' already exists")
                 return True
             
             self.client.indices.create(index=index_name, body=body)
-            logger.info(f"Índice '{index_name}' criado com sucesso")
+            logger.info(f"Index '{index_name}' successfully created")
             return True
         except Exception as e:
-            logger.error(f"Erro ao criar índice '{index_name}': {e}")
+            logger.error(f"Error when trying to creating index '{index_name}': {e}")
             return False
-    
+
+
     def bulk_insert(self, index_name: str, documents: List[Dict[str, Any]]) -> int:
         """
-        Insere documentos em lote no OpenSearch.
+        Insert package block documents in parallel
         
         Args:
-            index_name: Nome do índice
-            documents: Lista de documentos para inserir
+            index_name: Index's name
+            documents: List of documents to insert
         
         Returns:
-            Número de documentos inseridos com sucesso
-        """
-        from opensearchpy.helpers import bulk
-        
-        actions = [
-            {
-                "_index": index_name,
-                "_source": doc
-            }
-            for doc in documents
-        ]
-        
+            Number of documents inserted
+        """      
         try:
-            success, failed = bulk(self.client, actions, raise_on_error=False)
-            logger.info(f"Bulk insert: {success} sucessos, {len(failed)} falhas")
-            return success
+            data = list()
+            for doc in documents:
+                data.append({"index": {"_index":index_name}})
+                data.append(doc)
+            self.client.bulk(body=data)
+            self.client.indices.refresh(index=index_name)
+            logger.info(f"{len(documents)} documents inserted into index: '{index_name}'")
+            return len(documents)
+
         except Exception as e:
-            logger.error(f"Erro no bulk insert: {e}")
+            logger.error(f"Error during bulk insert: {e}")
             return 0
     
-    def search(self, index_name: str, query: Dict[str, Any], size: int = 10) -> List[Dict[str, Any]]:
-        """
-        Busca documentos no OpenSearch.
-        
-        Args:
-            index_name: Nome do índice
-            query: Query DSL do OpenSearch
-            size: Número máximo de resultados
-        
-        Returns:
-            Lista de documentos encontrados
-        """
-        try:
-            response = self.client.search(index=index_name, body=query, size=size)
-            hits = response.get('hits', {}).get('hits', [])
-            return [hit['_source'] for hit in hits]
-        except Exception as e:
-            logger.error(f"Erro na busca: {e}")
-            return []
+
+    def search(self, index_name: str,
+                query_vector: List[float], book_id: str,
+                k: int = 7, min_score: float = 0.4
+                ) -> List[Dict]:
+                
+                """
+                Busca chunks por similaridade semântica, ordenados por posição no documento.
+
+                Args:
+                    index_name: Nome do índice
+                    query_vector: Vetor da pergunta gerado pelo embedding
+                    book_id: Filtro pelo livro/paper específico
+                    k: Quantidade de chunks mais similares a retornar
+                    min_score: Score mínimo de similaridade
+
+                Returns:
+                    Lista de chunks ordenados por page_number e reading_order
+                """
+                try:
+                    search_body = {
+                        "min_score": min_score,
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "knn": {
+                                            "vetor": {
+                                                "vector": query_vector,
+                                                "k": k
+                                            }
+                                        }
+                                    }
+                                ],
+                                "filter": [
+                                    {"term": {"book_id": book_id}}
+                                ]
+                            }
+                        },
+                        "sort": [
+                            {"page_number": {"order": "asc"}},
+                            {"reading_order": {"order": "asc"}}
+                        ],
+                        "size": k
+                    }
+
+                    response = self.client.search(index=index_name, body=search_body)
+                    hits = response["hits"]["hits"]
+
+                    logger.info(f"{len(hits)} chunks encontrados no índice '{index_name}' para book_id='{book_id}'")
+                    return hits
+
+                except Exception as e:
+                    logger.error(f"Erro durante a busca no índice '{index_name}': {e}")
+                    return []
     
+
     def delete_index(self, index_name: str) -> bool:
         """Deleta um índice."""
         try:
