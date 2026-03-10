@@ -1,0 +1,29 @@
+{
+    "mappings": {
+        "properties": {
+            "book_id": {"type": "keyword"},
+            "title": {"type": "text"},
+            "abstract": {"type": "text"},
+            "authors": {"type": "text"},
+            "combined_text": {"type": "text"},
+            "vetor": {
+                "type": "knn_vector",
+                "dimension": -1,
+                "method": {
+                    "name": "hnsw",
+                    "space_type": "cosinesimil",
+                    "engine": "lucene",
+                    "parameters": {
+                        "ef_construction": 100,
+                        "m": 16
+                    }
+                }
+            }
+        }
+    },
+    "settings": {
+        "index.knn": true,
+        "knn.algo_param.ef_search": 100,
+        "number_of_shards": 2
+    }
+}
