@@ -1,12 +1,26 @@
 [tool.poetry]
 name = "rag-book-storage"
 version = "0.1.0"
+package-mode = false
 description = "Seu projeto de RAG"
 authors = ["Erlon"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 faiss-cpu = "^1.7.4"
+opensearch-py = "^3.1.0"
+python-dotenv = "^1.2.2"
+ipykernel = "^7.2.0"
+langgraph = "0.4.8"
+langgraph-prebuilt = "0.2.2"
+langgraph-sdk = "0.1.70"
+langchain = "0.3.26"
+langchain-core = "0.3.66"
+langchain-community = "0.3.26"
+langchain-openai = "0.3.27"
+sentence-transformers = "^5.2.3"
+pandas = "^3.0.1"
+markdownify = "^1.2.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
