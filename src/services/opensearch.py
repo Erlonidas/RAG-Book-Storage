@@ -87,60 +87,74 @@ class OpenSearchClient:
     
 
     def search(self, index_name: str,
-                query_vector: List[float], book_id: str,
-                k: int = 7, min_score: float = 0.4
-                ) -> List[Dict]:
-                
-                """
-                Busca chunks por similaridade semântica, ordenados por posição no documento.
+           query_vector: List[float], book_id: str,
+           query_text: str = None,
+           k: int = 7, min_score: float = 0.4
+           ) -> List[Dict]:
+        """
+        Busca chunks por similaridade semântica ou híbrida (semântica + BM25),
+        ordenados por posição no documento.
 
-                Args:
-                    index_name: Nome do índice
-                    query_vector: Vetor da pergunta gerado pelo embedding
-                    book_id: Filtro pelo livro/paper específico
-                    k: Quantidade de chunks mais similares a retornar
-                    min_score: Score mínimo de similaridade
+        Args:
+            index_name: Nome do índice
+            query_vector: Vetor da pergunta gerado pelo embedding
+            book_id: Filtro pelo livro/paper específico
+            query_text: Texto da pergunta para busca híbrida (opcional)
+            k: Quantidade de chunks mais similares a retornar
+            min_score: Score mínimo de similaridade
 
-                Returns:
-                    Lista de chunks ordenados por page_number e reading_order
-                """
-                try:
-                    search_body = {
-                        "min_score": min_score,
-                        "query": {
-                            "bool": {
-                                "must": [
-                                    {
-                                        "knn": {
-                                            "vetor": {
-                                                "vector": query_vector,
-                                                "k": k
-                                            }
-                                        }
-                                    }
-                                ],
-                                "filter": [
-                                    {"term": {"book_id": book_id}}
-                                ]
-                            }
-                        },
-                        "sort": [
-                            {"page_number": {"order": "asc"}},
-                            {"reading_order": {"order": "asc"}}
-                        ],
-                        "size": k
+        Returns:
+            Lista de chunks ordenados por page_number e reading_order
+        """
+        try:
+            should_clauses = [
+                {
+                    "knn": {
+                        "vector": {
+                            "vector": query_vector,
+                            "k": k
+                        }
                     }
+                }
+            ]
 
-                    response = self.client.search(index=index_name, body=search_body)
-                    hits = response["hits"]["hits"]
+            if query_text:
+                should_clauses.append({
+                    "match": {
+                        "content": query_text
+                    }
+                })
 
-                    logger.info(f"{len(hits)} chunks encontrados no índice '{index_name}' para book_id='{book_id}'")
-                    return hits
+            search_body = {
+                "min_score": min_score,
+                "size": k,
+                "track_scores": True,
+                "query": {
+                    "bool": {
+                        "should": should_clauses,
+                        "minimum_should_match": 1,
+                        "filter": [
+                            {"term": {"book_id": book_id}}
+                        ]
+                    }
+                },
+                "sort": [
+                    {"page_number": {"order": "asc"}},
+                    {"reading_order": {"order": "asc"}}
+                ]
+            }
 
-                except Exception as e:
-                    logger.error(f"Erro durante a busca no índice '{index_name}': {e}")
-                    return []
-    
+            response = self.client.search(index=index_name, body=search_body)
+            hits = response["hits"]["hits"]
+
+            modo = "hybrid" if query_text else "semantic"
+            logger.info(f"{len(hits)} chunks found at index '{index_name}' | mode: {modo} | book_id: '{book_id}'")
+            return hits
+
+        except Exception as e:
+            logger.error(f"Error during search at index '{index_name}': {e}")
+            return []
+        
 
     def delete_index(self, index_name: str) -> bool:
         """Deleta um índice."""
