@@ -31,7 +31,6 @@ class ContentAggregator:
 
     def _resolve_image_path(self, relative_path_from_json: str) -> str:
 
-        # Monta o caminho: Raiz + data + raw + (figures/img.png)
         full_path = self.project_root / "data" / "raw" / relative_path_from_json
         return str(full_path)
 

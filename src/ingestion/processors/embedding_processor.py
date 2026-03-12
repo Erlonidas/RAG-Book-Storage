@@ -16,7 +16,7 @@ class VectorProcessor:
         )
         test_vector = self.embedding_model.embed_query("test")
         self.dimension = len(test_vector)
-        logger.info(f"Embed Model successfully loades. Its dimensions is: {self.dimension}")
+        logger.info(f"Embed Model successfully loaded. Its dimensions is: {self.dimension}")
 
     def add_vectors_to_chunks(self, chunks: List[Dict]) -> List[Dict]:
         logger.info(f"Generating embeddings for {len(chunks)} docs...")
@@ -24,8 +24,8 @@ class VectorProcessor:
         try:
             vectors = self.embedding_model.embed_documents(texts)
             for i, doc in enumerate(chunks):
-                doc["embedding_vector"] = vectors[i]
+                doc["vector"] = vectors[i]
             return chunks
         except Exception as e:
-            logger.error(f"Falha ao gerar embeddings: {e}")
+            logger.error(f"Error when tried to generate embeddings: {e}")
             raise
