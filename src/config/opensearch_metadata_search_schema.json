@@ -6,7 +6,7 @@
             "abstract": {"type": "text"},
             "authors": {"type": "text"},
             "combined_text": {"type": "text"},
-            "vetor": {
+            "vector": {
                 "type": "knn_vector",
                 "dimension": -1
                 }

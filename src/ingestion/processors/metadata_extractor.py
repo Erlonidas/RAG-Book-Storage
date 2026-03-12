@@ -28,7 +28,7 @@ def extract_article_metadata(dolphin_json: dict, book_id: str) -> Optional[dict]
             "title": str,
             "abstract": str,
             "authors": str | None,
-            "combined_text": str
+            "content": str
         }
         Returns None if title or abstract not found
     """
@@ -99,7 +99,7 @@ def extract_article_metadata(dolphin_json: dict, book_id: str) -> Optional[dict]
         "title": title,
         "abstract": abstract,
         "authors": authors,
-        "combined_text": combined_text
+        "content": combined_text
     }
 
     logger.info(f"book_id='{book_id}': Metadata extracted successfully")

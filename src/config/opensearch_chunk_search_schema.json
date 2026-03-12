@@ -18,7 +18,7 @@
                 "type": "text",
                 "index": false
             },
-            "vetor": {
+            "vector": {
                 "type": "knn_vector",
                 "dimension": -1,
                 "method": {
