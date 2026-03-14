@@ -86,7 +86,7 @@ class OpenSearchClient:
             return 0
     
 
-    def search(self, index_name: str,
+    def semantic_search(self, index_name: str,
            query_vector: List[float], book_id: str,
            query_text: str = None, k: int = 7, 
            min_score: float = 0.4, sorted_output=True
@@ -154,7 +154,44 @@ class OpenSearchClient:
         except Exception as e:
             logger.error(f"Error during search at index '{index_name}': {e}")
             return []
-        
+
+
+    def collect_all(self, index_name, pdf_name=None, exclude_fields=None):
+        """
+        Retrieve all chunks from an specific index. You can filter the chunks by pdf_name.
+        Use 'exclude_fields' (list of strings) to prevent downloading heavy fields like vectors.
+        """
+        try:
+            if pdf_name:
+                query_body = {
+                    "query": {
+                        "term": {
+                            "book_id": pdf_name
+                        }
+                    }
+                }
+            else:
+                query_body = {
+                    "query":{
+                        "match_all": {}
+                    }
+                }
+            
+            if exclude_fields:
+                query_body["_source"] = {
+                    "excludes": exclude_fields
+                }
+
+            retrieval = self.client.search(index=index_name, body=query_body, size=10000)
+            hits = retrieval['hits']['hits']
+
+            logger.info(f"{len(hits)} chunks retrieved from index '{index_name}'" + (f" filtered by pdf_name='{pdf_name}'" if pdf_name else ""))
+            return hits
+            
+        except Exception as e:
+            logger.error(f"Error retrieving chunks from index '{index_name}': {e}")
+            return []
+
 
     def delete_index(self, index_name: str) -> bool:
         """Deleta um índice."""
