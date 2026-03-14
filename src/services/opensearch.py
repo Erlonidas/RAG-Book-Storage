@@ -88,23 +88,21 @@ class OpenSearchClient:
 
     def search(self, index_name: str,
            query_vector: List[float], book_id: str,
-           query_text: str = None,
-           k: int = 7, min_score: float = 0.4
+           query_text: str = None, k: int = 7, 
+           min_score: float = 0.4, sorted_output=True
            ) -> List[Dict]:
         """
-        Busca chunks por similaridade semântica ou híbrida (semântica + BM25),
-        ordenados por posição no documento.
+        Search chunks by semantic or hybrid (semantic + BM25) similarity.
 
         Args:
-            index_name: Nome do índice
-            query_vector: Vetor da pergunta gerado pelo embedding
-            book_id: Filtro pelo livro/paper específico
-            query_text: Texto da pergunta para busca híbrida (opcional)
-            k: Quantidade de chunks mais similares a retornar
-            min_score: Score mínimo de similaridade
+            query_text: Optional text for hybrid search (BM25 + vector)
+            k: Number of chunks to return
+            min_score: Minimum similarity score threshold
+            sorted_output: If True, sorts by page_number then reading_order.
+                           If False, returns by relevance score (OpenSearch default).
 
         Returns:
-            Lista de chunks ordenados por page_number e reading_order
+            List of matching chunks
         """
         try:
             should_clauses = [
@@ -137,12 +135,14 @@ class OpenSearchClient:
                             {"term": {"book_id": book_id}}
                         ]
                     }
-                },
-                "sort": [
+                }
+            }
+
+            if sorted_output:
+                search_body["sort"] = [
                     {"page_number": {"order": "asc"}},
                     {"reading_order": {"order": "asc"}}
                 ]
-            }
 
             response = self.client.search(index=index_name, body=search_body)
             hits = response["hits"]["hits"]
