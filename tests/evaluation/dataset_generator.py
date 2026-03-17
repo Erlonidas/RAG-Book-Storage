@@ -93,7 +93,8 @@ def select_random_context(window_chunks: List[Dict], max_chunks: int = 7) -> Lis
 def feed_dataset(
     batch_responses: List[Union[EvalOutputStructured, Exception]],
     target_chunks: List[List[dict]],
-    destiny_directory) -> None:
+    destiny_directory, 
+    book_id) -> None:
     """
     Appends new data to the final evaluation dataset.
     This dataset is a .csv file, generated using pandas dataframe.
@@ -123,10 +124,10 @@ def feed_dataset(
         # 3. CONTEXTO E METADADOS: Extrai o texto limpo e rastreabilidade
         contexts_list = []
         metadata_list = []
-        
         for chunk in chunks:
             source = chunk.get("_source", {})
             content = source.get("content")
+            
             
             if content:
                 contexts_list.append(content)
@@ -138,6 +139,7 @@ def feed_dataset(
         
         # 4. MONTAGEM: O schema universal que o RAGAS/Phoenix ama + Debug
         records.append({
+            "book": book_id,
             "question": question,
             "ground_truth": ground_truth,
             "contexts": contexts_list,
@@ -212,7 +214,7 @@ def main(file_json: str, batch_size: int = 5):
             return_exceptions=True)
         
         # Salva os resultados no dataset
-        feed_dataset(batch_responses, list_set_chunks_used, EVAL_DATA_DIR)
+        feed_dataset(batch_responses, list_set_chunks_used, EVAL_DATA_DIR, file_json)
     logger.info("DATASET AUGMENTED WITH NEW PDF")
 
 
