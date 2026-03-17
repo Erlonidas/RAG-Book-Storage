@@ -1,0 +1,2702 @@
+{
+  "source_file": "s00521-025-11716-2.pdf",
+  "total_pages": 18,
+  "pages": [
+    {
+      "page_number": 1,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            32,
+            313,
+            49
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 0,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            87,
+            170,
+            102
+          ],
+          "text": "ORIGINAL ARTICLE",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "sec_0",
+          "bbox": [
+            54,
+            119,
+            567,
+            175
+          ],
+          "text": "Integrating multi-camera surveillance with transductive\nlearning for duplicate removal",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            191,
+            598,
+            245
+          ],
+          "text": "Jorge Batista · Tatiane N. Rios · Matheus Guimarães · Jorge Nery · Cassio V. S. Prazeres ·\nRubisley Lemes · Maycon L. Peixoto · Gustavo B. Figueiredo · Frederico A. Durão ·\nEduardo S. Almeida · Ivan C. Machado · Hérsio M. Iwamoto · Ricardo A. Rios",
+          "reading_order": 3,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            265,
+            451,
+            291
+          ],
+          "text": "Received: 11 June 2025 / Accepted: 1 December 2025 / Published online: 17 February 2026\n\nc The Author(s) 2026",
+          "reading_order": 4,
+          "tags": [
+            "meta_pub_date"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            306,
+            106,
+            322
+          ],
+          "text": "Abstract",
+          "reading_order": 5,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            322,
+            619,
+            524
+          ],
+          "text": "Video surveillance has benefited greatly from advances in artificial intelligence, particularly in computer vision,\nand the number of monitored environments has consequently increased, creating new challenges in extracting\nrelevant information. When multiple cameras cover adjacent areas, overlapping fields of view can cause the\nsame subject to be detected across cameras, introducing duplicate counts. Although the literature offers estab-\nlished solutions, many rely on high-quality recordings and complex, computationally intensive methods, limit-\ning their use on resource-constrained devices. In this work, we address these challenges with a solution that\nleverages minimal information about target subjects and uses a transductive strategy to detect duplicates based\non interactions within overlapping fields of view. Experiments in real-world settings show that our approach\nsuppresses duplicates effectively, making it suitable for deployment on resource-limited hardware. We evaluate\nstate-of-the-art lightweight models with high inference speed, as well as classical re-identification methods,\nin scenarios with low-quality video and constrained devices. The results underscore the effectiveness of the\nproposed approach and motivate exploration of re-ID with domain adaptation, as well as anchor-free methods\nwith weak or semi-supervised learning.",
+          "reading_order": 6,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            536,
+            599,
+            553
+          ],
+          "text": "Keywords Multi-camera surveillance · Transductive learning · Duplicate removal · Deep neural network",
+          "reading_order": 7,
+          "tags": [
+            "paper_keywords"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            581,
+            158,
+            601
+          ],
+          "text": "1 Introduction",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            613,
+            619,
+            692
+          ],
+          "text": "Video surveillance systems consist of cameras specifically configured to monitor activities in both public and\nprivate settings while subjects act naturally [ 1 ] . The adoption of such systems has been widely increasing to sup-\nport several monitoring tasks such as security in general [ 2 ] , accident detection [ 3 ] , urban mobility [ 4 ] , personal\nprotection equipments [ 5 ] , and costumer behaviors [ 6 ] . Due to the massive number of recorded scenes continu-\nously monitored, it is imperative to use computer vision techniques to extract useful information automatically.",
+          "reading_order": 9,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            154,
+            52
+          ],
+          "text": "48   Page 2 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            68,
+            618,
+            283
+          ],
+          "text": "Another relevant challenge is the integration of multiple cameras in the same area, monitoring the same sub-\njects [ 7 ] . In this situation, the recorded scenes may provide different perspectives and possibly duplicated data.\nTherefore, a relevant research question is the identification of duplicate targets to avoid redundancies and present\nconcise information. To overcome this problem, it is possible to use well-known Deep Neural Network (DNN)\nmodels, including face recognition to detect the same person in different cameras as well as person re-identifi-\ncation techniques [ 8 – 12 ] . Besides using DNN, authors have also published related works focused on extracting\ndistinctive invariant features from images to perform reliable matching between different views of objects and\nscenes [ 13 – 15 ] . These models have proven highly effective across various contexts; however, their performance\ncan be significantly influenced by factors such as infrastructure limitations, video quality, subject positioning, and\nthe distance between subjects and cameras. Furthermore, as emphasized in the literature, key challenges include\nhandling occlusions, varying viewpoints, and changes in appearance over time–issues highlighted by recent\nstudies published in top-tier computer vision conferences and journals over the past two years [ 16 – 20 ] . In such\nscenarios, beyond the computational cost of image processing, the feature vectors extracted from detected faces\nmay vary substantially, even when representing the same individual.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            284,
+            618,
+            487
+          ],
+          "text": "In this work, we decided to tackle these problems from a different perspective, using fewer details about sub-\njects and creating a semi-supervised approach using transductive learning to detect duplicates according to their\ninteraction in overlapped fields of view captured by cameras. In a nutshell, our approach is based on a primary\nstage, which runs a supervised method to detect target subjects in multiple scenes recorded from different cam-\neras. Secondly, subjects are mapped as points distributed on a space to be later analyzed by a regression method,\nwhose outputs are used as delimiters to the transition regions. By using delimiters, one can identify overlapped\nregions and discard multiple detections for the same subjects. There are several situations where this issue occurs,\nsuch as counting cars on streets, people in stadiums and shows, animals in wild areas, and more. In this work,\nwe have made some assumptions to assess our proposal carefully: (i) cameras are in fixed positions; (ii) no pre-\ndefined positions are necessary for the cameras; (iii) high-quality videos are not required; (iv) subjects move\nfreely in the monitored area; and (v) overlapped areas between cameras may exist, potentially showing duplicated\nsubjects. In this context, we collected and analyzed videos recorded indoors with multiple cameras positioned to\nmonitor people in overlapping fields of view.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            69,
+            487,
+            379,
+            502
+          ],
+          "text": "The contributions of this work can be summarized as follows:",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "list",
+          "bbox": [
+            54,
+            508,
+            619,
+            571
+          ],
+          "text": "• New approach to detect duplicated subjects in multi-camera monitoring;\n• By combining classification and regression methods, fewer subject-specific details are required, eliminating\nthe need for high-quality recordings or complex models to perform face recognition;\n• Our contribution is suitable for resource-constrained devices, such as those used in edge computing.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            574,
+            618,
+            621
+          ],
+          "text": "The remaining of this manuscript is organized as follows: we first introduce the problem statement; next, in\nSect. 3 , we present our proposed approach; Sect. 4 shows the experimental setup and the obtained results; finally,\nin Sect. 5 , we draw conclusions and discuss future work.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            54,
+            649,
+            614,
+            669
+          ],
+          "text": "2 Case study analysis: removing duplicate users in indoor and outdoor environments",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            681,
+            618,
+            760
+          ],
+          "text": "Before providing details about our approach, it is important to detail the environments where the experimental\nsetup was defined. To carefully analyze our results in both qualitative and quantitative ways, we collected record-\nings from indoor and outdoor scenarios. The indoor one was a computer laboratory, a controlled environment\nwhere users (subjects) work and freely move between desks. The space has two blocks (left and right) with\nmonitoring cameras to cover the entire area. As illustrated in Fig. 1 , the camera responsible for monitoring the",
+          "reading_order": 8,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            293,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            519,
+            36,
+            616,
+            52
+          ],
+          "text": "Page 3 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            334,
+            120
+          ],
+          "text": "Fig. 1 A simplified top view of the space showing the blocks\nand the FOV of both cameras. Each camera is pointed at its\nrespective block, but the right one covers an area already\ncovered by the left one",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_003_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_003_figure_003.png",
+          "bbox": [
+            348,
+            67,
+            617,
+            236
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            242,
+            190,
+            318
+          ],
+          "text": "Fig. 2 View of both cameras:\nleft camera on the top and\nright camera on the bottom.\nIn red, the visual representa-\ntion of selected edges from a\npair of cameras",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_003_figure_005.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_003_figure_005.png",
+          "bbox": [
+            203,
+            240,
+            619,
+            362
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            383,
+            186,
+            409
+          ],
+          "text": "Fig. 3 Passengers in a given\nBRT station",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_003_figure_007.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_003_figure_007.png",
+          "bbox": [
+            204,
+            383,
+            618,
+            503
+          ],
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            522,
+            619,
+            600
+          ],
+          "text": "left block (in red) can capture all users in that region. However, the camera in the right block (in blue) captures\nnot only users in that region but also those from the left one positioned in the overlapped field of view (FOV), as\na correspondence problem. As a simple task to show the impact of this issue, by automatically counting subjects\nusing DNN-based models, wrong results are obtained due to the sum of the same users detected in left (correct)\nand right (duplicated) blocks.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            601,
+            619,
+            677
+          ],
+          "text": "Figure 2 exemplifies our indoor environment, highlighting important challenges tackled by our proposal.\nFirstly, there is a relevant distance between some subjects and the camera, especially those at the end of the\nspace. Secondly, occlusions may occur when users are partially hidden behind screens or not directly looking at\nthe cameras. These challenges affect the performance of approaches using face recognition to discard the same\nfaces in both cameras.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            678,
+            619,
+            756
+          ],
+          "text": "The second experimental environment focused on removing duplicate users across multiple cameras monitor-\ning passengers at bus stops. This study was conducted in the context of the Bus Rapid Transit (BRT) system in\nSalvador, Brazil. The BRT system serves approximately 30,000 passengers daily, and currently operates with\naround 40 buses distributed across three lines and 20 stations. The decision-making process for scheduling bus\ndepartures relies on counting the number of passengers at each station. As illustrated in Fig. 3 , this counting is",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            55,
+            829,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 11,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_003_figure_012.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_003_figure_012.png",
+          "bbox": [
+            565,
+            829,
+            617,
+            845
+          ],
+          "reading_order": 12,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            154,
+            52
+          ],
+          "text": "48   Page 4 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            68,
+            618,
+            99
+          ],
+          "text": "influenced by data from multiple cameras. Following the validation of our proposal in an indoor environment, we\ndeployed it in a more complex setting to support the BRI system's operations.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            54,
+            127,
+            203,
+            146
+          ],
+          "text": "3 Proposed approach",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            159,
+            618,
+            221
+          ],
+          "text": "This section describes our proposed approach, which consists of two main stages, as detailed in Algorithm 1 .\nIn the first stage, we train a supervised model to detect the target subjects, i.e., users who move freely through\nindoor and outdoor environments, specifically a computer laboratory and bus stations. The second stage focuses\non automatically generating delimiters that highlight transition regions where user duplication is likely to occur.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            222,
+            618,
+            283
+          ],
+          "text": "Along with our contribution, we also present in this section a strategy using a DNN model trained to crop\nregions in images using predefined bounding boxes previously defined by specialists, thus explicitly removing\noverlapped fields of view. Our approach does not directly use this strategy; it was implemented as a baseline in\nour comparison.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            55,
+            298,
+            231,
+            316
+          ],
+          "text": "3.1 First stage—face detection",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            328,
+            618,
+            437
+          ],
+          "text": "The detection used in this stage depends on the problem under investigation (e.g., objects, cars, or animals) and\ncan be modified according to the readers' needs. Once the focus of our investigation is on users, we could con-\nsider both person or face detection. We opted for face detection in this approach due to the presence of numerous\nobjects in the environment that often occlude people, but leaving mostly their faces visible. All faces in the col-\nlected videos were manually annotated, resulting in 2,414 bounding boxes—approximately 600 faces per video.\nNext, we employed YOLO (You Only Look Once) [ 21 ] version 11, from the Ultralytics library, in our experi-\nments. Table 1 summarizes the key architectural parameters of this model.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            437,
+            618,
+            499
+          ],
+          "text": "YOLO is a family of real-time object detection models known for treating detection as a single regression\nproblem, directly predicting bounding boxes and class probabilities from full images in one evaluation. This uni-\nfied and efficient approach makes YOLO particularly suitable for tasks requiring high-speed inference. As shown\nin Fig. 4 , YOLO models are generally organized into three major components: backbone, neck, and head.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            500,
+            618,
+            578
+          ],
+          "text": "The backbone, highlighted in blue in Fig. 4 (Backbone), refers to the portion of the network responsible for\nextracting general visual features from the input image. These features encode information about edges, textures,\nshapes, and more complex patterns as the network deepens. In YOLOv11, the backbone employs a module\nknown as C3k2, which builds upon the Cross Stage Partial (CSP) design and uses small convolutional kernels to\nreduce computational load while preserving expressive power.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            609,
+            177,
+            649
+          ],
+          "text": "Table 1 Summary of key\nobjectives and research goals\nin the YOLOv-H model",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            199,
+            611,
+            616,
+            737
+          ],
+          "text": "<table><tr><td>Attribute</td><td>Value</td><td>Description</td></tr><tr><td>Input Shape</td><td>[B, 3, 640, 640]</td><td>B: batch size; 3: number of RGB channels; 640 $\\times$ 640: input image resolution in pixels</td></tr><tr><td>Output Shape</td><td>[B, 5, 8400]</td><td>B: Resample input resolution (x, y, z, w, h, objectness); 8400: number of predictions per image</td></tr><tr><td>Number of Layers</td><td>181</td><td>Total number of layers, including convolutional, normalization, and activation layers</td></tr><tr><td>Parameters</td><td>2,590,035</td><td>Total number of trainable parameters in the model</td></tr><tr><td>GFLOPs</td><td>6.4</td><td>Giga memory bandwidth per image during a forward pass with 640 $\\times$ 640 input</td></tr></table>",
+          "reading_order": 11,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            35,
+            293,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            520,
+            36,
+            616,
+            51
+          ],
+          "text": "Page 5 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            192,
+            83
+          ],
+          "text": "Fig. 4 YOLOv11 architecture",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_005_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_005_figure_003.png",
+          "bbox": [
+            348,
+            66,
+            617,
+            294
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            310,
+            617,
+            389
+          ],
+          "text": "The neck, shown in green in Fig. 4 (Neck), is responsible for refining and aggregating the features extracted by\nthe backbone to enhance the model's ability to detect objects at different scales. It typically aggregates informa-\ntion from different layers or scales to improve the model's capacity to detect objects of varying sizes and contexts.\nYOLOv11 uses the Spatial Pyramid Pooling – Fast (SPPF) module in this stage. The SPPF pools features across\nmultiple receptive fields, enhancing the network's ability to localize small or partially occluded objects.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            390,
+            617,
+            482
+          ],
+          "text": "Finally, the head, illustrated by the red box in Fig. 4 (Neck), is the task-specific part of the architecture that\ngenerates the final predictions. In object detection, this includes estimating bounding box coordinates, objectness\nscores, and class probabilities. YOLOv11's head incorporates a Convolutional block with Parallel Spatial Atten-\ntion (C2PSA), which improves the model's focus on the most relevant spatial areas in the image, thus refining\ndetection performance across different tasks, including object detection, segmentation, and pose estimation. The\nfull structure of YOLOv11, including the backbone, the neck, and the head components, is illustrated in Fig. 4 .",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            483,
+            617,
+            576
+          ],
+          "text": "As discussed later, YOLOv11 is available in several variants (yolo11n, yolo11s, yolo11m, yolo11l, and yolo11x)\neach offering different trade-offs between performance and computational cost. According to benchmark reports\nfrom Ultralytics, the yolo11m variant achieves a mean Average Precision (mAP) of 51.5 % on the COCO dataset\nwhile utilizing approximately 22 % fewer parameters than YOLOv8m. This reduction in model size, coupled\nwith competitive performance, positions YOLOv11 as a promising candidate for deployment in both resource-\nconstrained and high-performance environments.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            55,
+            589,
+            447,
+            607
+          ],
+          "text": "3.2 Second stage—semi-supervised field of view projection estimation",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            620,
+            618,
+            730
+          ],
+          "text": "As previously discussed, the proposed approach begins by aligning frames from different cameras and detecting\nbounding boxes around each identified face to serve as coordinate references (Algorithm 1 — Lines 1 to 5). Next,\nthe coordinates are modeled by regressors to create delimiters for the transition regions between fields of view\n(FOV) monitored by a set of surveillance cameras $S = \\{s_1, s_2, \\dots, s_k\\}$ . Hence, considering a scenario with two\ncameras as stated in our case study, FOV for a camera $s_1$ is projected to recordings from $s_2$ , and vice versa. In\nsummary, each delimiter works as a separator to avoid repeatedly considering the same subject in different cam-\neras, i.e., the same target subject can be detected in multiple cameras; however, it is analyzed only once.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            55,
+            829,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 9,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_005_figure_010.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_005_figure_010.png",
+          "bbox": [
+            567,
+            830,
+            616,
+            846
+          ],
+          "reading_order": 10,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            154,
+            52
+          ],
+          "text": "48   Page 6 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            616,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            68,
+            618,
+            192
+          ],
+          "text": "In practice, the subject detection in overlapping regions can present some imprecision caused by the devia-\ntions in the FOV lines or the parallax effect when the subject appears to have a different position relative to the\nbackground between the views of each camera. To attenuate this problem, in our case study, a good estima-\ntor for the number of users (U) can be obtained by $U = \\sum_{i=1}^{n} D_i - E[O]$ , in which $D = \\{d_1, d_2, \\dots, d_i\\}$ and\n$O = \\{o_1, o_2, \\dots, o_n\\}$ are the total number of detected faces and detected faces inside the overlapping region for\nall cameras in S. If the analysis is computed between pairs of cameras and the presence of users inside their FOV\nhas the same probability, the number of users is estimated by the difference between the sum of the difference\ndetected and the expected users in FOV.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_3",
+          "bbox": [
+            55,
+            205,
+            254,
+            221
+          ],
+          "text": "3.2.1 Initial setup and finding matches",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            235,
+            618,
+            344
+          ],
+          "text": "Considering our case study, the red edges in the left and right blocks, illustrated in Fig. 2 , define how the cam-\neras must be integrated into our proposed approach. To estimate the FOV delimiter on Camera $s_1$ , we monitor\nCamera $s_2$ , looking for detections of people entering the frame of Camera $s_3$ through one of its red edges (Algo-\nrithm 1—Line 6). When this happens, the person detected entering the frame of camera $s_2$ should also be present\nin the frame of camera $s_1$ , approximately along the FOV delimiter line of Camera $s_1$ that we want to estimate.\nTherefore, we want to record the coordinates of this person on Camera $s_1$ to use this information in the estimation\nprocess (Algorithm 1—Lines 7 to 11).",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            344,
+            618,
+            437
+          ],
+          "text": "In the best-case scenario, when a person is detected entering the frame of Camera $s_2$ through one of its red\nedges, there will only be one person present in Camera $s_1$ , allowing us to confidently identify them as the same\nindividual (Fig. 5 a). However, in typical conditions, there may be multiple people present in Camera $s_1$ (Fig. 5 b).\nSince no re-identification technique is employed, it is impossible to determine which individual corresponds\nto the person detected in Camera $s_2$ , leading to ambiguity. Thus, when a person enters the frame of Camera $s_2$\nthrough one of its red edges, we record the coordinates of each person detected in Camera $s_1$ as a possible match,",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            464,
+            194,
+            517
+          ],
+          "text": "Fig. 5 Two example scenarios\nfor matching when a detec-\ntion occurs on an selected\nedge in $s_2$",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_006_figure_007.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_006_figure_007.png",
+          "bbox": [
+            205,
+            463,
+            618,
+            746
+          ],
+          "reading_order": 7,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            293,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            519,
+            36,
+            617,
+            52
+          ],
+          "text": "Page 7 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            332,
+            97
+          ],
+          "text": "Fig. 6 Movement status of tracked instances. Moving\ninstances in green, stationary instances in red",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_007_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_007_figure_003.png",
+          "bbox": [
+            349,
+            67,
+            618,
+            222
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            228,
+            192,
+            257
+          ],
+          "text": "Fig. 7 FOV lines estimated\nthrough RANSAC regression",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_007_figure_005.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_007_figure_005.png",
+          "bbox": [
+            204,
+            227,
+            618,
+            369
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            373,
+            617,
+            408
+          ],
+          "text": "along with an attribute $p = \\frac{1}{J}$ for each set of coordinates, with $J$ being a given number of detections present in $s_{12}$\nto represent the probability of each one of these detections being a true match.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            409,
+            618,
+            471
+          ],
+          "text": "As a person crossing a red edge to appear in the image of Camera $s_2$ is in motion, the candidate detections\nfor matching in $s_1$ must also be moving. Through tracking, we can identify the detected instances in $s_1$ that are\nnearly stationary and eliminate them as potential matches, excluding them from the probability calculations for\nthe remaining detections. An example of this situation is shown in Fig. 6 .",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            471,
+            618,
+            533
+          ],
+          "text": "To estimate the FOV delimiter on Camera $s_2$ , we follow the same procedure, recording possible matches in $s_2$\nfor any person entering the frame of $s_1$ through one of its red edges (Algorithm 1—Lines 13 to 18). After process-\ning the frames of both cameras, we end up with a collection of possible matches for each camera, as illustrated\nby the blue-scaled dots in Fig. 7 .",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_3",
+          "bbox": [
+            56,
+            546,
+            238,
+            562
+          ],
+          "text": "3.2.2 Weighted RAMSAC regression",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            576,
+            619,
+            671
+          ],
+          "text": "Lastly, we execute the regression method called Weighted Random Sample Consensus (WRANSC) [ 22 ] on a\nset of possible matches collected from the previous step (Algorithm 1—Lines 21 and 22). This regression is a\nrobust technique used to model datasets with a significant number of outliers. To best fit inliers, WRANSC runs\nan interactive process that randomly samples a subset of data to train a classification model. Next, the classifier\npredicts the remaining data as inliers and outliers. The process is interactively repeated, keeping the final model\nwith the greatest number of inliers. An important contribution of our work is to set weights to all data with the",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            56,
+            829,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 11,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_007_figure_012.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_007_figure_012.png",
+          "bbox": [
+            566,
+            829,
+            618,
+            845
+          ],
+          "reading_order": 12,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            153,
+            52
+          ],
+          "text": "48    Page 8 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            67,
+            618,
+            99
+          ],
+          "text": "probabilities obtained for each possible match. In Fig. 7 , we illustrate the execution of wRANSAC on a set with\npossible matches collected from two cameras in our case study.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "code",
+          "bbox": [
+            55,
+            109,
+            653,
+            559
+          ],
+          "text": "Algorithm 1 Semi-supervised Field-of-View (FOV) Delimiter Estimation\nInput: Synchronized video streams captured by camera objects s1, s2\nOutput: Estimated FOV delimiter lines for each camera\nData:\ns1: Camera 1\ns2: Camera 2\n1 detections.s1 ← empty list;\n2 detections.s2 ← empty list;\n3 foreach synchronized frame pair (f1, f2) from (s1, s2) do\n4 | faces.s1 ← YOLOv11(f1);\n5 | faces.s2 ← YOLOv11(f2);\n6 foreach face entering s2 through red edge do\n7 | candidates.s1 ← MovingFaces(faces.s1);\n8 | j ← length(candidates.s1);\n9 | foreach candidate in candidates.s1 do\n10 | | detections.s1.append((candidate.coordinates, 1/j));\n11 | end\n12 | end\n13 foreach face entering s1 through red edge do\n14 | candidates.s2 ← MovingFaces(faces.s2);\n15 | j ← length(candidates.s2);\n16 foreach candidate in candidates.s2 do\n17 | | detections.s2.append((candidate.coordinates, 1/j));\n18 | end\n19 | end\n20 end\n21 FOV.line.s1 ← wRANSAC(detections.s1);\n22 FOV.line.s2 ← wRANSAC(detections.s2);\n23 return FOV.line.s1, FOV.line.s2",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            55,
+            597,
+            277,
+            614
+          ],
+          "text": "3.3 Supervised baseline: area detection",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            627,
+            619,
+            721
+          ],
+          "text": "According to the literature, in addition to face recognition, some authors address this problem using overlapping\narea detection. In our experiments, the proposed approach was evaluated by integrating the recorded areas from\nmultiple cameras using Deep Neural Networks (DNNs). Similar to the face detection stage, we created bounding\nboxes to highlight regions of interest (ROIs) in all images from the right camera block, as illustrated in Fig. 8 . We\nthen trained a DNN to identify similar ROIs in new video frames and to discard any faces detected outside these\nregions–assumed to be duplicates originating from the left camera block.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            722,
+            618,
+            769
+          ],
+          "text": "The main advantage of this approach is its simplicity, which makes it easily implemented in different contexts\nand infrastructures. On the other hand, its main disadvantages are the requirement for a specific ROI defined in\nadvance for all application and the need to redefine and retrain the ROI when the camera position changes.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_008_figure_007.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_008_figure_007.png",
+          "bbox": [
+            55,
+            830,
+            106,
+            847
+          ],
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            412,
+            829,
+            617,
+            845
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 8,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            35,
+            293,
+            51
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            520,
+            36,
+            616,
+            50
+          ],
+          "text": "Page 9 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            332,
+            108
+          ],
+          "text": "Fig. 8 Examples of area detection — the right block detec-\ntion results for a $0.56\\times 0.56$ $m^2$ box with four correctly\nboxes representing duplicated and correct faces, respectively",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_009_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_009_figure_003.png",
+          "bbox": [
+            348,
+            67,
+            619,
+            222
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            242,
+            122,
+            260
+          ],
+          "text": "4 Results",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            274,
+            617,
+            338
+          ],
+          "text": "The analyses performed to assess the proposed following conventional practices in the field of Computer Vision \n(CV) for object detection tasks, which is based on the Intersect over Union (IoU) ratio, $IoU = \\frac{GrP}{IoU}$ . It essentially \ncomputes the performance by comparing the overlapped areas between an expected (ground truth) bounding box \n(G) and the predicted one (P).",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            338,
+            617,
+            447
+          ],
+          "text": "During inference, the confidence $C$ of a bounding box is defined by $C = Pr(Class_i|object) \\times Pr(object_i)$ .\nBy choosing a threshold $\\tau_1 \\in [0, 1]$ for $C \\geq \\tau_1$ , we decide whether we should consider the predicted bounding\nbox as a detected object from Class $i, i=1...N$ . By choosing a threshold $\\tau_2 \\in [0, 1]$ for IoU $\\geq \\tau_2$ , we can deter-\nmine whether there is sufficient overlap between a predicted bounding box and a ground truth box of the same\nclass to consider the detection a True Positive (TP). If a predicted bounding box does not sufficiently overlap any\nground truth box (i.e., IoU $< \\tau_2$ ), it is counted as a False Positive (FP). Conversely, if a ground truth object is not\nmatched by any prediction with IoU $\\geq \\tau_2$ , it is considered a False Negative (FN).",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            448,
+            617,
+            617
+          ],
+          "text": "After calculating the number of TP, FN, and FP, we can derive important measures such as Precision, Recall,\nand F1-Score. In summary, Precision assesses the exactitude of the model by computing the rate of correctly pre-\ndicted detections over the number of predicted detections, while Recall evaluates the completeness of the model\nby computing the rate of correctly predicted detections over the number of elements expected to be detected.\nF1-Score represents a harmonic mean of Precision and Recall. The Average Precision (AP) is a metric that com-\nbines Precision and Recall values over a range of $\\tau_1$ , given a fixed $\\tau_2$ . Two other metrics, based on AP, that are\nwidely used to compare performance between models are mAP@50 and mAP@50-95. The mAP@50 (mean\nAverage Precision at IoU = 0.50) considers a detection correct if the IoU is at least 0.50, providing a smoother\nevaluation. In contrast, mAP@50-95 is a more comprehensive metric that averages AP across multiple IoU\nthresholds, from 0.50 to 0.95 in steps of 0.05, offering a more stringent and balanced assessment of detection\naccuracy.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            617,
+            617,
+            711
+          ],
+          "text": "We started our experiments by evaluating different pre-trained YOLOv11 architectures (yolo11n, yolo11s,\nyolo11m, yolo11l, and yolo11x) on a Raspberry Pi 4, a limited device usually considered in Edge Computing\napplications. The first analysis was focused on assessing the overall performance of such models in detecting\nlabeled faces in our dataset. According to the curve F1-score $\\times$ confidence (Fig. 9a ), all models presented great\nperformance varying from 0.87 to 0.91, showing no significant difference between them. A similar behavior was\nnoticed in the Precision-Recall curve shown in Fig. 9b .",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            712,
+            617,
+            773
+          ],
+          "text": "Next, we analyzed such models in terms of mean inference time, memory usage, and CPU consumption.\nAccording to the results presented in Table 2 , yolo11n demonstrated the fastest mean inference time (0.507 s)\nwith a memory footprint of 345 MB and a CPU usage of 319 % . Given our objective of running our proposal on\nresource-constrained hardware, we selected yolo11n to proceed with our experiments.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            773,
+            617,
+            804
+          ],
+          "text": "In the next phase of our investigation, we fine-tuned the yolo11n model using images from our dataset. To\nensure robust and generalizable results, we adopted a 4-fold cross-validation strategy, where each fold comprised",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            55,
+            830,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 11,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_009_figure_012.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_009_figure_012.png",
+          "bbox": [
+            565,
+            830,
+            617,
+            846
+          ],
+          "reading_order": 12,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            159,
+            52
+          ],
+          "text": "48   Page 10 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": [
+            "meta_doi"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            68,
+            194,
+            121
+          ],
+          "text": "Fig. 9 a F1-confidence curves\nand b precision-recall curves\nfor five YOLO model evalu-\nated on the validation data",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_010_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_010_figure_003.png",
+          "bbox": [
+            201,
+            67,
+            623,
+            251
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            281,
+            184,
+            321
+          ],
+          "text": "Table 2 Comparison of\nNetwork Architectures on\nRaspberry Pi 4",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            196,
+            283,
+            616,
+            363
+          ],
+          "text": "<table><tr><td>Architecture</td><td>Time (s)</td><td>Memory (MB)</td><td>CPU (%)</td></tr><tr><td>yolo11n</td><td>0.507</td><td>345</td><td>319</td></tr><tr><td>yolo11s</td><td>1.118</td><td>505</td><td>360</td></tr><tr><td>yolo11m</td><td>4.823</td><td>651</td><td>379</td></tr><tr><td>yolo11l</td><td>5.707</td><td>848</td><td>379</td></tr><tr><td>yolo11x</td><td>16.212</td><td>1191</td><td>384</td></tr></table>",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            390,
+            366,
+            404
+          ],
+          "text": "Table 3 Training results after fine-tuning the model with our dataset",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            55,
+            405,
+            616,
+            472
+          ],
+          "text": "<table><tr><td>Fold</td><td>$\\tau_{1}$</td><td>F1-Score</td><td>Precision</td><td>Recall</td><td>mAP(%)</td><td>mAP0.95</td></tr><tr><td>1</td><td>0.373</td><td>0.932</td><td>0.950</td><td>0.915</td><td>0.967</td><td>0.587</td></tr><tr><td>2</td><td>0.182</td><td>0.930</td><td>0.951</td><td>0.911</td><td>0.965</td><td>0.607</td></tr><tr><td>3</td><td>0.496</td><td>0.889</td><td>0.890</td><td>0.889</td><td>0.958</td><td>0.649</td></tr><tr><td>4</td><td>0.487</td><td>0.924</td><td>0.953</td><td>0.897</td><td>0.957</td><td>0.481</td></tr></table>",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            493,
+            618,
+            524
+          ],
+          "text": "videos from a distinct location. This setup allowed for a balanced trade-off between having a sufficient number of\nimages for both training and testing while maintaining diversity across folds.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            524,
+            618,
+            634
+          ],
+          "text": "Each fold was trained with a batch size equal to 16, an optimizer based on a stochastic gradient descent method\n(AdamW algorithm), and a learning rate equal to 0.01 for 100 epochs. After completing the training, we selected\nthe value of $\\tau_1$ that showed the highest F1-Score for each fold. For F1-Score, Precision, and Recall, a $\\tau_2=0.7$\nwas empirically considered to maximize the results. As shown in Table 4 , the final model exhibited a substantial\nimprovement in detection performance following fine-tuning with our dataset. Notably, yolo11n was approxi-\nmately 30 times faster than yolo11x (16.212s vs. 0.507s, as shown in Table 2 ) and achieved a higher F1-score\nafter fine-tuning (Table 3 ) than all versions without fine-tuning (Fig. 8 ).",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            634,
+            618,
+            711
+          ],
+          "text": "While the previous results demonstrate the feasibility of deploying YOLOv11n on resource-constrained\ndevices, we also replicated the experiments using NanoDet [ 23 ] , a fully convolutional, one-stage, anchor-free\nobject detector. NanoDet's main advantage is its lightweight design and high inference speed, which make it\nwell suited for embedded and mobile scenarios. Table 4 reports NanoDet's performance across the same cross-\nvalidation folds used for YOLOv11n, enabling a direct comparison under identical conditions.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            711,
+            618,
+            773
+          ],
+          "text": "In our experimental setup, YOLOv1n achieved considerably better results. Given its favorable CPU utiliza-\ntion, memory footprint, and inference time on the Raspberry Pi 4, we selected YOLOv1n for the subsequent\nevaluation stages. Nonetheless, based on our findings, NanoDet remains a highly suitable alternative, especially\nfor deployments on more constrained devices.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            773,
+            618,
+            804
+          ],
+          "text": "The experiments designed to evaluate our contribution followed a four-step methodology: (i) users were manu-\nally labeled in both camera views to establish the ground truth; (ii) a face recognition model was assessed to",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_010_figure_013.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_010_figure_013.png",
+          "bbox": [
+            55,
+            831,
+            104,
+            847
+          ],
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            412,
+            830,
+            617,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 14,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date",
+            "meta_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            293,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            512,
+            37,
+            616,
+            52
+          ],
+          "text": "Page 11 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            56,
+            71,
+            239,
+            84
+          ],
+          "text": "Table 4 Results for the NanoDet model",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            56,
+            85,
+            615,
+            153
+          ],
+          "text": "<table><tr><td>Fold</td><td>$\\tau_{1}$</td><td>F1-Score</td><td>Precision</td><td>Recall</td><td>mAP50</td><td>mAP95.0</td></tr><tr><td>1</td><td>0.517</td><td>0.525</td><td>0.660</td><td>0.436</td><td>0.853</td><td>0.374</td></tr><tr><td>2</td><td>0.513</td><td>0.768</td><td>0.803</td><td>0.818</td><td>0.900</td><td>0.486</td></tr><tr><td>3</td><td>0.462</td><td>0.777</td><td>0.817</td><td>0.741</td><td>0.959</td><td>0.540</td></tr><tr><td>4</td><td>0.456</td><td>0.671</td><td>0.771</td><td>0.594</td><td>0.906</td><td>0.491</td></tr></table>",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            175,
+            192,
+            278
+          ],
+          "text": "Fig. 10 Users monitored by\ntwo different cameras: a left\nview and b right view. This\nexperiment was conducted to\nevaluate the effectiveness of\nface recognition in detecting\nduplicate user representations\nacross cameras",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_011_figure_005.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_011_figure_005.png",
+          "bbox": [
+            203,
+            174,
+            619,
+            307
+          ],
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            329,
+            617,
+            375
+          ],
+          "text": "determine its ability to identify the same individual across different cameras; (iii) a baseline model based on area\ndetection, commonly used in the literature on correspondence problems, was executed; and (iv) our proposed\napproach was applied to automatically integrate scenes and eliminate duplicate user representations.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            376,
+            617,
+            421
+          ],
+          "text": "Figure 10 illustrates a teaching scenario in which two cameras monitor the same space with a partially over-\nlapping field of view. Our objective is to evaluate whether students captured by the left camera, Fig. 10a , can be\naccurately recognized by the right camera, Fig. 10b .",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            422,
+            618,
+            624
+          ],
+          "text": "The experiment began by detecting all faces in both camera views. Subsequently, each detected face was con-\nverted into an embedding vector using the VGG-Face model as a feature extractor. In the next step, embedding\nvectors from the left camera were compared to those from the right camera using the Euclidean distance metric, as\ncommonly adopted in the literature. The VGG-Face model considered in our experiments was accessed through\nthe DeepFace library [ 24 ] . Figure 11 presents the distances between pairs of faces. Due to space constraints, only\nthe 10 closest matches are highlighted. Given the distance between the subjects and the cameras, none of the faces\ncaptured by the left camera were correctly matched with those from the right camera. This outcome is expected,\nas the same faces are captured from different angles by the two cameras, which significantly affects the similar-\nity between their corresponding embeddings. This experiment underscores the limitations of using classical face\nrecognition as a re-identification (re-ID) method in settings with low-quality cameras or when subjects are far\nfrom the sensors. Even in the absence of occlusions, small face sizes, pose and illumination changes, and motion\nblur reduce the discriminative content of the extracted embeddings, leading to low match rates and failure to cor-\nrectly resolve multiple entries.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            624,
+            618,
+            732
+          ],
+          "text": "Given the insufficient results previously presented, we investigated the feasibility of removing duplicates by\nemploying an area detection model for people counting. Figure 12 shows the actual and estimated numbers of\nusers, represented by the yellow and blue lines, respectively. As one may notice, this approach effectively pro-\nduces results that align closely with the expected behavior. It is important to note that this model detects regions\nof interest that are manually defined during the training phase. Its main limitation, however, is the need to manu-\nally annotate the overlapping regions whenever the monitored scenario changes, which in turn requires retraining\nthe detection model.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            733,
+            618,
+            794
+          ],
+          "text": "In the second experiment, we assessed the performance of our approach by automatically detecting transition\nregions between fields of view (FOV). The obtained results are presented in Fig. 13 . By visually analyzing these\nplots, it is possible to notice that our approach outperforms the area detection in Fold 1 and presents similar\nresults to the remaining ones.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            56,
+            830,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 11,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_011_figure_012.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_011_figure_012.png",
+          "bbox": [
+            565,
+            828,
+            617,
+            846
+          ],
+          "reading_order": 12,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            159,
+            53
+          ],
+          "text": "48   Page 12 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            616,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            185,
+            219
+          ],
+          "text": "Fig. 11 Analysis of corre-\nsponding faces captured by the\nleft and right cameras.\nThe plot shows pairwise\ncorresponding features and\nembeddings, with only the 1\nclosest matches highlighted\ndue to space constraints. No\ncorrect matches were found.\nFigure 12 shows the plots\nbetween subjects and the\ncameras",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_012_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_012_figure_003.png",
+          "bbox": [
+            202,
+            68,
+            619,
+            493
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            511,
+            617,
+            605
+          ],
+          "text": "An additional evaluation was conducted using the estimated FOV lines to perform the counting on the manu-\nlarly annotated users instead of the detections generated by the face detection model used in our proposal. In sum-\nmary, we want to determine whether errors in counting users were caused by the automatic detection of lines or\nby user detection errors. Results presented in Fig. 14 emphasize that some errors are indeed caused by the model\nused to detect users, suggesting that our approach may provide superior results with an improved version of the\nuser detection model.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            606,
+            617,
+            714
+          ],
+          "text": "Finally, in addition to visually analyzing the results, we employed the following regression validation metrics\nto evaluate our findings: Mean Absolute Error, Mean Squared Error, Root Mean Squared Error, and Mean Abso-\nlute Percentage Error. The obtained results are shown in Table 5 . The significant outcomes of our approach are\nillustrated by its predictions, which closely align with the manual annotations of regions of interest and field of\nview (FOV) lines. Thus, our proposal was successfully deployed into a resource-constrained device, typically\nused in Edge Computing applications, providing significant results in detecting duplicated subjects in multi-\ncamera monitoring without requiring high-quality recordings or user identification.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            715,
+            617,
+            808
+          ],
+          "text": "After fine-tuning the best model in the indoor environment, we evaluated the performance of our proposal in\nreal-world scenarios supporting the BRT system. In Fig. 3 , we illustrate this application, including the FOV line\n(right-most image) generated by our approach. Consistent with the previous results, Fig. 15a and b highlight the\nperformance of our method in a given station within a specific time interval. The strong performance of our solu-\ntion underscores its significance, while the mean discrepancies in the real count (Fig. 15a ) are attributed to image\nquality issues, as the system may not detect passengers located far from the camera. In summary, our approach",
+          "reading_order": 6,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 13,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            293,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            512,
+            37,
+            616,
+            53
+          ],
+          "text": "Page 13 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            194,
+            121
+          ],
+          "text": "Fig. 12. Comparison between\nthe real person count and\ncounting made using the Area\nDetection Approach",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_013_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_013_figure_003.png",
+          "bbox": [
+            205,
+            68,
+            619,
+            443
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            463,
+            619,
+            511
+          ],
+          "text": "provided MAE = 1.220, MAPE = 0.255, MSE = 2.820, and RMSE = 1.679, and the annotations' metrics were\nMAE = 0.060, MAPE = 0.005, MSE = 0.100, and RMSE = 0.316. These results confirm the effectiveness and\nhigh quality of our proposed method.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            54,
+            538,
+            163,
+            557
+          ],
+          "text": "5 Final remarks",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            572,
+            618,
+            648
+          ],
+          "text": "In this work, we address the challenging task of reducing the impact of duplicated information in multi-camera\nsurveillance systems. This problem arises when the system monitors the same space, creating overlap in regions\ncovered by two or more cameras. In the literature, there are well-known approaches to overcome this situation,\nsuch as subjects' re-identification to detect duplicates. However, the performance of such models can be signifi-\ncantly affected by factors like the analyzed target, video quality, and the distance between subjects and cameras.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            649,
+            618,
+            757
+          ],
+          "text": "Our contribution introduces an efficient and adaptable approach for automatically detecting overlapping fields\nof view (FOV) without relying on high-quality recordings or subject re-identification. By combining classifica-\ntion and regression methods, our method significantly reduces the need for detailed subject features, making it\nsuitable for both indoor and outdoor environments and especially valuable in resource-constrained devices, such\nas those used in edge computing. The results demonstrate that our method achieves performance levels compara-\nble to manually labeled models, while maintaining flexibility: if monitoring cameras are repositioned, the system\nautomatically recalculates the FOV lines, ensuring adaptability to dynamic environments.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            758,
+            618,
+            804
+          ],
+          "text": "As highlighted in our experiments, yolo11n was approximately 30 times faster than yolo11x and achieved a\nhigher F1-score after fine-tuning with our approach than all versions of YOLOv11 without fine-tuning, reinfore-\ning the efficiency and accuracy of our detection pipeline. Besides, an additional evaluation was conducted by",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            55,
+            829,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 9,
+          "tags": [
+            "meta_pub_date",
+            "meta_subject",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_013_figure_010.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_013_figure_010.png",
+          "bbox": [
+            565,
+            830,
+            617,
+            846
+          ],
+          "reading_order": 10,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 14,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            159,
+            52
+          ],
+          "text": "48   Page 14 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            616,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            190,
+            133
+          ],
+          "text": "Fig. 13 Comparison between\nthe real person count and\ncounting misusers by\ndifferent FOV, and the\ndetections from our model.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_014_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_014_figure_003.png",
+          "bbox": [
+            204,
+            66,
+            620,
+            443
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            464,
+            617,
+            541
+          ],
+          "text": "using the estimated FOV lines to count manually annotated users instead of relying on the outputs of the face\ndetection model. As shown in our results, this analysis revealed that some counting errors were due to inaccu-\nracies in user detection rather than in FOV estimation. This suggests that our approach could yield even more\naccurate results when integrated with a more precise user detection model, further demonstrating the robustness\nand potential of our proposed solution.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            542,
+            618,
+            712
+          ],
+          "text": "As future work, we plan to evaluate our approach using alternative regression methods. Although wrANSCAN\noffers a simple and effective solution, it operates as a linear model to detect overlapping regions. However,\ndepending on the spatial distribution of subjects, a non-linear mapping may yield better results, particularly as\nthe number of monitored cameras increases. Another promising avenue for future work is the adoption of weak\nsupervision or semi-supervised learning, which can markedly reduce labeling effort, especially in non-stationary\nsettings where class patterns evolve over time. To this end, a lightweight face detector can propose candidate\nboxes, high-confidence detections can be retained with temporal smoothing, and object trackers can propagate\nboxes across frames. An active-learning loop can include a human in the loop to resolve uncertain cases. For FOV\nboundaries, candidate lines can be estimated from motion-density heatmaps and optical-flow discontinuities, fol-\nlowed by targeted spot checks where uncertainty remains high. This strategy can substantially reduce annotation\ncosts while preserving accuracy.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            712,
+            618,
+            805
+          ],
+          "text": "Our pipeline currently assumes that a subject crossing the edge will reappear in the adjacent camera, an\nassumption that may not hold under severe occlusion or complex multi-camera geometry. As future work, this\nhandoff can be generalized from a deterministic rule to a probabilistic mechanism that fuses scene topology and\ntracklet evidence, improving robustness across layouts. This can be achieved by adding short-horizon trajectory\nextrapolation to bridge missed detections during occlusions. As discussed by Lin et al. [ 25 ] , single-frame location\nanticipation has shown that subsequent locations can be predicted from a static keyframe by exploiting smooth",
+          "reading_order": 6,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 15,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            56,
+            36,
+            293,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            512,
+            36,
+            616,
+            51
+          ],
+          "text": "Page 15 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            68,
+            192,
+            133
+          ],
+          "text": "Fig. 14 Comparison between\nthe rent person count and\ncounting made using the esti-\nmated RUVs times on manual\nannotation",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_015_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_015_figure_003.png",
+          "bbox": [
+            205,
+            67,
+            619,
+            444
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            469,
+            514,
+            482
+          ],
+          "text": "Table 5 Validation metrics for all experiments: area detection, our approach, and manual annotations",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            56,
+            482,
+            615,
+            723
+          ],
+          "text": "<table><tr><td colspan=\"5\">Supervised integration: area detection</td></tr><tr><td>Fold</td><td>MAE</td><td>MAPE</td><td>MSE</td><td>RMSE</td></tr><tr><td>1</td><td>1.520</td><td>0.072</td><td>3.480</td><td>1.865</td></tr><tr><td>2</td><td>1.280</td><td>0.041</td><td>3.080</td><td>1.755</td></tr><tr><td>3</td><td>1.340</td><td>0.141</td><td>2.740</td><td>1.655</td></tr><tr><td>4</td><td>0.980</td><td>0.046</td><td>1.620</td><td>1.273</td></tr><tr><td colspan=\"5\">Our approach + face detection</td></tr><tr><td>Lecture</td><td>MAE</td><td>MAPE</td><td>MSE</td><td>RMSE</td></tr><tr><td>1</td><td>0.900</td><td>0.042</td><td>1.660</td><td>1.288</td></tr><tr><td>2</td><td>1.280</td><td>0.041</td><td>2.920</td><td>1.709</td></tr><tr><td>3</td><td>1.260</td><td>0.123</td><td>2.660</td><td>1.631</td></tr><tr><td>4</td><td>0.920</td><td>0.043</td><td>1.400</td><td>1.183</td></tr><tr><td colspan=\"5\">Our approach + manual annotations</td></tr><tr><td>Lecture</td><td>MAE</td><td>MAPE</td><td>MSE</td><td>RMSE</td></tr><tr><td>1</td><td>0.300</td><td>0.015</td><td>0.420</td><td>0.648</td></tr><tr><td>2</td><td>0.940</td><td>0.030</td><td>1.540</td><td>1.241</td></tr><tr><td>3</td><td>0.580</td><td>0.051</td><td>0.580</td><td>0.762</td></tr><tr><td>4</td><td>0.100</td><td>0.004</td><td>0.100</td><td>0.316</td></tr></table>",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            55,
+            744,
+            616,
+            775
+          ],
+          "text": "motion. Adapting this idea allows us to keep tracklets alive through occlusions and postpone duplicate suppres-\nsion until the predicted reappearance window expires, which directly targets the observed failure mode.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            775,
+            617,
+            806
+          ],
+          "text": "Finally, while we explored a classical face-based re-identification approach, the lower performance highlights\nthe need to extend our pipeline with domain adaptation and anchor-free detection. For re-ID, promising directions\nin the field of computer vision continue to be identified.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            55,
+            830,
+            260,
+            844
+          ],
+          "text": "Neural Computing and Applications (2026) 38:48",
+          "reading_order": 8,
+          "tags": [
+            "meta_subject",
+            "meta_pub_date",
+            "meta_num"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_015_figure_009.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_015_figure_009.png",
+          "bbox": [
+            565,
+            830,
+            617,
+            846
+          ],
+          "reading_order": 9,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 16,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            36,
+            159,
+            53
+          ],
+          "text": "48   Page 16 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            53
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            68,
+            194,
+            196
+          ],
+          "text": "Fig. 15 a Comparison\nbetween the real person count\nand counting made using\nthe estimated FOV lines on\ndetections from the model.\nb Comparison between the\nreal person count and count-\ning made using the esti-\nmated FOV lines on manual\nannotations",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_016_figure_003.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_016_figure_003.png",
+          "bbox": [
+            205,
+            67,
+            620,
+            249
+          ],
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            268,
+            618,
+            361
+          ],
+          "text": "include lightweight backbones with unsupervised adaptation to new camera domains, leveraging pseudo-labels\nand temporal consistency to reduce supervision while respecting resource constraints. For detection and track-\ning, adopted anchor-free heads that directly predict object centers and sizes can simplify hyperparameter tuning\nand reduce latency on edge devices. Together, these extensions aim to improve robustness across layouts and\nillumination conditions, including viewpoint and scale changes, while preserving the efficiency that motivates\nour deployment.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            372,
+            618,
+            424
+          ],
+          "text": "Acknowledgements This work was supported by CNPq (Brazilian National Council for Scientific and Technological\nDevelopment), UBPA/CNPq 68/2022 - MAIDAI, Maria Emília Foundation grant to 01/2023, INCITE FAPESB (Bahia\nResearch Foundation) grant TO PIE0002/2022, and CAPES (Coordination for the Improvement of Higher Education Per-\nsonnel -- Brazil) Finance Code 001.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            435,
+            618,
+            476
+          ],
+          "text": "Author Contributions: All authors contributed to the conception and design of the study. Material preparation and data col-\nlection: All authors made the material and data available for the study. Methodology and method design were conducted by\nJorge Batista. All authors read and approved the final manuscript.",
+          "reading_order": 6,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            486,
+            618,
+            514
+          ],
+          "text": "Funding The Article Processing Charge (APC) for the publication of this research was funded by the Coordenação de\nAperfeiçoamento de Pessoas de Nível Superior - Brasil (CAPES) (ROR identifier: 003ma614).",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            524,
+            618,
+            616
+          ],
+          "text": "Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use,\nsharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the\noriginal author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The\nimages or other third party material in this article are included in the article's Creative Commons licence, unless indicated\nor requested by the senior author or publisher. If material is not included in the article's Creative Commons licence and your\nintended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly\nfrom the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            54,
+            643,
+            130,
+            662
+          ],
+          "text": "References",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            61,
+            675,
+            616,
+            699
+          ],
+          "text": "1. Elharrouss O, Almammed N, Al-Maadeed S (2021) A review of video surveillance systems. J Vis Commun Image\nRepresent 77:103116",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            61,
+            700,
+            616,
+            725
+          ],
+          "text": "2. Sultani W, Chen C, Shah M (2018) Real-world anomaly detection in surveillance videos. In: 2018 IEEE/CVF conference\non computer vision and pattern recognition. pp 6479–6488. https://doi.org/10.1109/CVPR.2018.00678",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            61,
+            725,
+            616,
+            749
+          ],
+          "text": "3. Yang H, Jang H, Kim T, Lee B (2019) Non-temporal lightweight fire detection network for intelligent surveillance\nsystems. IEEE Access 7:169257–169266. https://doi.org/10.1109/ACCESS.2019.2953558",
+          "reading_order": 12,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 17,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            55,
+            35,
+            293,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            512,
+            37,
+            615,
+            51
+          ],
+          "text": "Page 17 of 18    48",
+          "reading_order": 1,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            68,
+            617,
+            106
+          ],
+          "text": "4. Kanangallu S, Kedan P, Kiran K, Rajalingam S. 2023. Firefight surveillance and urban mobility with\nsolar cell based PV installation in India: experience, challenges, computation, automation and networking.\n(ICSCAN), pp. 1-6. https://doi.org/10.1109/ICSCAN58655.2023.10394964",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            105,
+            617,
+            130
+          ],
+          "text": "5. Cheng JP, Wong PK-Y, Luo H, Wang M, Leung PH (2022) Vision-based monitoring of site safety compliance based on\nworker re-identification and personal protective equipment classification. Autom Constr 139:104312",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            61,
+            130,
+            616,
+            155
+          ],
+          "text": "6. Liu J, Gu Y, Kamji S (2017) Customer behavior classification, using surveillance camera for marketing. Multimedia\nTools Appl 7(6):5659–6622. https://doi.org/10.1007/s11042-016-3342-1",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            61,
+            155,
+            617,
+            191
+          ],
+          "text": "7. Li J, Huang L, Liu C (2012) People counting across multiple cameras for intelligent video surveillance. In: 2012 IEEE\n9th international conference on advanced video and signal-based surveillance, pp 178–183. https://doi.org/10.1109/AVS.\n2012.6243471",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            192,
+            617,
+            230
+          ],
+          "text": "8. Wang S, Li R, Lv X, Zhang X, Zhu J, Dong J (2018) People counting based on head detection and reidentification in\npersonnel biometrics. IEEE Transactions on Conference on security, pattern analysis, and cybernetics (SPAC), pp\n47–51. https://doi.org/10.1109/SPAC46244.2018.8965468",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            230,
+            406,
+            243
+          ],
+          "text": "9. Cheng Z, Zhu X, Gong S (2018) Surveillance face recognition challenge",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            242,
+            592,
+            256
+          ],
+          "text": "10. Xu X, Liu W-Q, Li L (2014) Low resolution face recognition in surveillance systems. J Comput Commun 2:70–77",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            256,
+            616,
+            280
+          ],
+          "text": "11. Lu, Z., Jiang, X., Kot, A. (2018) Deep coupled resnet for low-resolution face recognition. IEEE Signal Process Lett.\n25(4):526–530. https://doi.org/10.1109/LSP.2018.2810121",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            279,
+            616,
+            304
+          ],
+          "text": "22. Yu H-X, Wu A, Zheng W-S (2018) Unsupervised person re-identification by deep asymmetric metric embedding. IEEE\nTrans Pattern Anal Mach Intell 42(4):956–973",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            305,
+            550,
+            318
+          ],
+          "text": "13. Lowe DG (2004) Distinctive image features from scale-invariant keypoints. Int J Comput Vis 60:91–110",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            318,
+            616,
+            342
+          ],
+          "text": "14. Bay H, Tuytelaars T, Van Gool L(2006) Surf: speeded up robust features. In: Computer Vision–ECCV 2006: 9th European\nconference on computer vision, Graz, Austria, May 7-13, 2006. Proceedings, Part I 9, p 404–417. Springer",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            342,
+            617,
+            367
+          ],
+          "text": "15. Ruliee E, Rabaud V, Konolige K, Bradski G (2011) Orb: an efficient alternative to sift or surf. In: 2011 International\nconference on computer vision, pp 2564–2571. IEEE",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            367,
+            617,
+            416
+          ],
+          "text": "16. Suttiichaya V, Cherudhakulchai R, Phimsri S, Trairattanapu V, Tungsinthub S, Kudhistanlet W, Kiawjak P, Thamwiathanwa\nE, Borisutsawat P, Tosawadi T, et al (2024) Online multi-camera people tracking with spatial-temporal mechanism and\nanchor-feature hierarchical clustering. In: Proceedings of the IEEE conference on computer vision and pattern recognition\n(CVPR), vol 7",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            415,
+            618,
+            453
+          ],
+          "text": "17. Kim J, Shin W, Park H, Back J (2023) Addressing the occlusion problem in multi-camera people tracking with human\npose estimation. In: Proceedings of the IEEE conference on computer vision and pattern recognition (CVPR), pp 5463–\n5472. https://doi.org/10.1109/cvpr49181.2023.2947042",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            453,
+            617,
+            492
+          ],
+          "text": "18. Nguyen QO-V, Le HD-A, Chan T-T, Lu DT, Chung NM, Ha SV-U (2023) Multi-camera people tracking with mixture\ntemporal features based on keypoint knowledge. In: Proceedings of the IEEE conference on computer vision and pattern recognition\n(CVPR), pp 5496–5506",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            492,
+            617,
+            527
+          ],
+          "text": "19. Yoshida R, Okubo J, Fujii J, Amakata M, Yamashita F (2024) Overlap suppression clustering for offline multi-camera\npeople tracking. In: Proceedings of the IEEE conference on computer vision and pattern recognition (CVPR), pp 7153–\n7162. https://doi.org/10.1109/ICPRW.2024.00242",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            527,
+            617,
+            553
+          ],
+          "text": "20. Guan Z, Wang Z, Zhang G, Li L, Zhang M, Shi Z, Jiang N (2025) Multi-object tracking review: retrospective and\nemerging trend. Artif Intell Rev 58(8):1–46",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            553,
+            616,
+            579
+          ],
+          "text": "21. Redmon J, Divvala S, Girshick R, Farhadi A (2016) You only look once: unified, real-time object detection. In: Proceedings\nof the IEEE conference on computer vision and pattern recognition (CVPR)",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            579,
+            616,
+            604
+          ],
+          "text": "22. Fischer MA, Bolles RC (1981) Random sample consensus: a paradigm for model fitting with applications to image\nanalysis and automated cartography. Commun ACM 24(6):381–395",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            604,
+            617,
+            629
+          ],
+          "text": "23. Rangli (2021) NanoDet-Plus: Super fast and high accuracy lightweight anchor-free object detection model. https://gi\nthub.com/Rangli/yu-nanodet",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            55,
+            629,
+            616,
+            653
+          ],
+          "text": "24. Serengil S, Ozpinar A (2024) A benchmark of facial recognition pipelines and co-usability performances of modules. J\nInform Tech 17(2):95–107. https://doi.org/10.17671/jazgizbl.1399077",
+          "reading_order": 22,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            56,
+            653,
+            616,
+            690
+          ],
+          "text": "26. Liu X, Nejadals FK, Gemert JC, Boouj O, Pinter SL (2023) Objects not disappear: video object detection by single-\nobject location anticipation. In: Proceedings of the IEEE/CVF international conference on computer vision, pp\n2950–2961. https://doi.org/10.1109/icv.2023.3279747",
+          "reading_order": 23,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            704,
+            618,
+            731
+          ],
+          "text": "Publisher's Note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional\naffiliations.",
+          "reading_order": 24,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "page_number": 18,
+      "elements": [
+        {
+          "label": "header",
+          "bbox": [
+            54,
+            36,
+            159,
+            53
+          ],
+          "text": "48   Page 18 of 18",
+          "reading_order": 0,
+          "tags": [
+            "page_num"
+          ]
+        },
+        {
+          "label": "header",
+          "bbox": [
+            379,
+            36,
+            617,
+            52
+          ],
+          "text": "https://doi.org/10.1007/s00521-025-11716-2",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            67,
+            214,
+            85
+          ],
+          "text": "Authors and Affiliations",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            97,
+            593,
+            167
+          ],
+          "text": "Jorge Batista1 · Tatiane N. Rios1 · Matheus Guimarães1 · Jorge Nery1 ·\nCassio V. S. Prazeres1 · Rubisley Lemes2 · Maycon L. Peixoto1 · Gustavo B. Figueiredo1 ·\nFrederico A. Durão1 · Eduardo S. Almeida1 · Ivan C. Machado1 · Hérsio M. Iwamoto2 ·\nRicardo A. Rios2",
+          "reading_order": 3,
+          "tags": [
+            "author"
+          ]
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/s00521-025-11716-2_page_018_figure_004.png)",
+          "figure_path": "figures/s00521-025-11716-2_page_018_figure_004.png",
+          "bbox": [
+            57,
+            184,
+            69,
+            197
+          ],
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            71,
+            186,
+            205,
+            594
+          ],
+          "text": "Ricardo A. Rios\nricardoa@ufba.br\nJorge Batista\njorgebatista@ufba.br\nTatiane N. Rios\ntatiane.nogueira@ufba.br\nMatheus Guimarães\nguimarues.matheus@ufba.br\nJorge Nery\njorgenery@ufba.br\nCassio V. S. Prazeres\nprazeses@ufba.br\nRubisley Lemes\nrubisley@ufba.br\nMaycon L. Peixoto\nmaycon.leone@ufba.br\nGustavo B. Figueiredo\ngustavobi@ufba.br\nFrederico A. Durão\nfduras@ufba.br\nEduardo S. Almeida\nesa@ufba.br\nIvan C. Machado\nivan.machado@ufba.br\nHérisio M. Iwamoto\nhersio@positivo.com.br",
+          "reading_order": 5,
+          "tags": [
+            "author",
+            "author_mail"
+          ]
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            56,
+            603,
+            524,
+            630
+          ],
+          "text": "1 Institute of Computing, Federal University of Bahia (UFBA), Av. Milton Santos, s/n, Salvador, BA\n40170-110, Brazil",
+          "reading_order": 6,
+          "tags": [
+            "author_affili"
+          ]
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            55,
+            634,
+            207,
+            648
+          ],
+          "text": "2 Positivo, Curitiba, PR, Brazil",
+          "reading_order": 7,
+          "tags": [
+            "author_affili"
+          ]
+        }
+      ]
+    }
+  ]
+}
