@@ -24,7 +24,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 JSON_EXTRACTED_CONTENT = RAW_DATA_DIR / "json_extraction"
 EVERY_FIGS_PDF = RAW_DATA_DIR / "figures"
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
+EVAL_DATA_DIR = DATA_DIR / "dataset_evalation"
 
 METADATA_INDEX = "metadata-pdfs"
 CONTENT_INDEX = "content-pdfs"
@@ -46,7 +46,7 @@ __all__ = [
     "RAW_DATA_DIR",
     "JSON_EXTRACTED_CONTENT",
     "EVERY_FIGS_PDF",
-    "PROCESSED_DATA_DIR",
+    "EVAL_DATA_DIR",
     "METADATA_INDEX",
     "CONTENT_INDEX",
     "TAGS_IGNORADAS",
