@@ -137,11 +137,17 @@ ANTHROPIC_API_KEY=your_key_here
 - [x] Docker Compose for OpenSearch
 - [x] Chunk builder processor
 - [x] Metadata extractor
-- [ ] Index creation scripts (metadata + content)
-- [ ] Bulk ingestion to OpenSearch
-- [ ] Embedding generation
+- [x] Index creation scripts (metadata + content)
+- [x] Bulk ingestion to OpenSearch
+- [x] Embedding generation
 
-### 📋 Phase 3: RAG Agent Workflow (LangGraph) - PLANNED
+### ✅ Phase 3: Evaluation Dataset (Ground Truth) - COMPLETED
+- [x] Dataset generator with LLM (gpt-4o-mini)
+- [x] Question-answer pair generation from indexed chunks
+- [x] RAGAS/Phoenix compatible CSV output
+- [x] Batch processing with page windowing
+
+### 📋 Phase 4: RAG Agent Workflow (LangGraph) - PLANNED
 - [ ] State definition
 - [ ] Router node (decomposer)
 - [ ] Worker nodes (retrievers)
