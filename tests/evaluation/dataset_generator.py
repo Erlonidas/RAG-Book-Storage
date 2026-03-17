@@ -2,13 +2,14 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from src.services.opensearch import OpenSearchClient
 from src.services.llm_factory import create_llm
 from src.config import JSON_EXTRACTED_CONTENT, CONTENT_INDEX, EVAL_DATA_DIR, setup_logger
-from test.evaluation.prompts_eval import *
-from test.evaluation.output_strutured import EvalOutputStructured
+from tests.evaluation.prompts_eval import *
+from tests.evaluation.output_strutured import EvalOutputStructured
 from pathlib import Path
 import pandas as pd
 import json
 import random
 from typing import List, Dict, Union
+import argparse
 
 logger = setup_logger(__name__)
 opensearch_client = OpenSearchClient()
@@ -129,7 +130,6 @@ def feed_dataset(
             
             if content:
                 contexts_list.append(content)
-                # Salva de onde esse chunk veio para debug futuro
                 metadata_list.append({
                     "chunk_id": chunk.get("_id", ""),
                     "page_number": source.get("page_number"),
@@ -141,7 +141,7 @@ def feed_dataset(
             "question": question,
             "ground_truth": ground_truth,
             "contexts": contexts_list,
-            "metadata": metadata_list  # <--- SEU SALVA-VIDAS AQUI
+            "metadata": metadata_list
         })
         
     # Se todos os itens falharam, não faz nada
@@ -152,21 +152,23 @@ def feed_dataset(
     # Converte para DataFrame
     df = pd.DataFrame(records)
     
-    # Garante que o diretório de destino existe (cria se não existir)
+    # Serializa listas e dicts pra JSON antes de salvar no CSV
+    df["contexts"] = df["contexts"].apply(json.dumps)
+    df["metadata"] = df["metadata"].apply(json.dumps)
+    
+    # Garante que o diretório de destino existe
     dest_path = Path(destiny_directory)
     dest_path.mkdir(parents=True, exist_ok=True)
     
     file_path = dest_path / "ground_truth_dataset.csv"
     
-    # 5. APPEND INTELIGENTE NO CSV
+    # Append se já existir, cria se não existir
     if file_path.exists():
-        # Se já existe, anexa no final (mode='a') e não repete o cabeçalho (header=False)
-        df.to_csv(file_path, mode='a', header=False, index=False, encoding='utf-8')
-        logger.info(f"Adicionados {len(df)} novos registros ao dataset existente.")
+        df.to_csv(file_path, mode='a', header=False, index=False)
+        logger.info(f"{len(records)} records appended to '{file_path}'")
     else:
-        # Se é a primeira vez, cria o arquivo e coloca o cabeçalho (header=True)
-        df.to_csv(file_path, mode='w', header=True, index=False, encoding='utf-8')
-        logger.info(f"Novo dataset criado com {len(df)} registros.")
+        df.to_csv(file_path, mode='w', header=True, index=False)
+        logger.info(f"Dataset created with {len(records)} records at '{file_path}'")
 
 
 def main(file_json: str, batch_size: int = 5):
@@ -211,3 +213,14 @@ def main(file_json: str, batch_size: int = 5):
         
         # Salva os resultados no dataset
         feed_dataset(batch_responses, list_set_chunks_used, EVAL_DATA_DIR)
+    logger.info("DATASET AUGMENTED WITH NEW PDF")
+
+
+if __name__ == "__main__":
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file_json", type=str, help="Path to the Dolphin JSON file")
+    parser.add_argument("--batch_size", type=int, default=5)
+    args = parser.parse_args()
+    
+    main(file_json=args.file_json, batch_size=args.batch_size)
