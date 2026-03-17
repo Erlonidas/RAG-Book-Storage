@@ -5,7 +5,7 @@ from typing import List, Dict, Any
 from src.config import RAW_DATA_DIR, METADATA_INDEX, CONTENT_INDEX, PROJECT_ROOT, setup_logger
 from src.services import OpenSearchClient
 from src.ingestion.processors import (
-    processar_json_dolphin,
+    process_json_dolphin,
     extract_article_metadata,
 )
 from src.ingestion.processors.embedding_processor import VectorProcessor

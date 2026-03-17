@@ -5,6 +5,9 @@ package-mode = false
 description = "Seu projeto de RAG"
 authors = ["Erlon"]
 
+[tool.poetry.scripts]
+run-ingestion = "src.ingestion.run_ingestion:main"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 faiss-cpu = "^1.7.4"

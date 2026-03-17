@@ -39,7 +39,7 @@ rag_book_challenge/
 
 ### 1. Prerequisites
 
-- Python 3.10+
+- Python 3.11+
 - Docker and Docker Compose
 - Google Account (for Colab PDF extraction)
 
@@ -50,11 +50,12 @@ rag_book_challenge/
 git clone <repo-url>
 cd rag_book_challenge
 
-# Create virtual environment
+# Install dependencies with Poetry
+poetry install
+
+# Or create virtual environment manually
 python -m venv _venv
 source _venv/bin/activate  # Windows: _venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
 
 # Configure environment variables
@@ -79,11 +80,26 @@ Follow the guide in `docs/GUIA_COLAB_DOLPHIN.md` to:
 2. Download generated JSONs
 3. Place them in `data/raw/json_extraction/`
 
-### 5. Run Ingestion (Coming Soon)
+### 5. Run Ingestion
 
 ```bash
-python -m src.ingestion.main
+# Using Poetry script (recommended)
+poetry run run-ingestion
+
+# Or using Python module
+poetry run python -m src.ingestion.run_ingestion
+
+# If using venv directly (not recommended)
+python -m src.ingestion.run_ingestion
 ```
+
+This will:
+1. Process all JSONs from `data/raw/json_extraction/`
+2. Extract metadata and generate chunks
+3. Enhance chunks with section context
+4. Generate embeddings
+5. Create OpenSearch indexes
+6. Bulk insert documents into OpenSearch
 
 ## 📚 Documentation
 
@@ -132,12 +148,38 @@ ANTHROPIC_API_KEY=your_key_here
 - [ ] Aggregator node (synthesizer)
 - [ ] End-to-end query pipeline
 
-## 🧪 Testing
+## 🧪 Evaluation Dataset Generation
+
+To support experimental analysis of the RAG pipeline using **RAGAS** and **ARIZE Phoenix**, there's a dataset generator that automatically creates question-answer pairs from indexed chunks.
+
+It works by iterating over the pages of an ingested document (in groups of 3 pages), randomly sampling chunks from each window, and using an LLM (`gpt-4o-mini`) to generate a question and a ground truth answer. Results are saved as a CSV at `data/dataset_evaluation/ground_truth_dataset.csv`.
+
+The output schema is compatible with RAGAS and Phoenix:
+
+| Column | Description |
+|---|---|
+| `book` | Source document identifier |
+| `question` | Generated question |
+| `ground_truth` | Expected answer |
+| `contexts` | List of chunks used (JSON) |
+| `metadata` | Chunk traceability info (JSON) |
+
+### Running
+
+Make sure the document is already ingested into OpenSearch, then:
 
 ```bash
-# Run test notebooks
-jupyter notebook test/random_test/
+poetry run python .\tests\evaluation\dataset_generator.py <file.json> --batch_size 5
 ```
+
+Example:
+
+```bash
+poetry run python .\tests\evaluation\dataset_generator.py atoms_confusion.json --batch_size 5
+```
+
+- `file.json`: the Dolphin JSON filename inside `data/raw/json_extraction/`
+- `--batch_size`: number of questions generated per page window (default: 5)
 
 ## 📦 Main Dependencies
 
