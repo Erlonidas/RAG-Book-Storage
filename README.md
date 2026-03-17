@@ -148,12 +148,38 @@ ANTHROPIC_API_KEY=your_key_here
 - [ ] Aggregator node (synthesizer)
 - [ ] End-to-end query pipeline
 
-## 🧪 Testing
+## 🧪 Evaluation Dataset Generation
+
+To support experimental analysis of the RAG pipeline using **RAGAS** and **ARIZE Phoenix**, there's a dataset generator that automatically creates question-answer pairs from indexed chunks.
+
+It works by iterating over the pages of an ingested document (in groups of 3 pages), randomly sampling chunks from each window, and using an LLM (`gpt-4o-mini`) to generate a question and a ground truth answer. Results are saved as a CSV at `data/dataset_evaluation/ground_truth_dataset.csv`.
+
+The output schema is compatible with RAGAS and Phoenix:
+
+| Column | Description |
+|---|---|
+| `book` | Source document identifier |
+| `question` | Generated question |
+| `ground_truth` | Expected answer |
+| `contexts` | List of chunks used (JSON) |
+| `metadata` | Chunk traceability info (JSON) |
+
+### Running
+
+Make sure the document is already ingested into OpenSearch, then:
 
 ```bash
-# Run test notebooks
-jupyter notebook test/random_test/
+poetry run python .\tests\evaluation\dataset_generator.py <file.json> --batch_size 5
 ```
+
+Example:
+
+```bash
+poetry run python .\tests\evaluation\dataset_generator.py atoms_confusion.json --batch_size 5
+```
+
+- `file.json`: the Dolphin JSON filename inside `data/raw/json_extraction/`
+- `--batch_size`: number of questions generated per page window (default: 5)
 
 ## 📦 Main Dependencies
 
