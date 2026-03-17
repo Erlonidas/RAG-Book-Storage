@@ -3,7 +3,7 @@ from src.services.opensearch import OpenSearchClient
 from src.services.llm_factory import create_llm
 from src.config import JSON_EXTRACTED_CONTENT, CONTENT_INDEX, EVAL_DATA_DIR, setup_logger
 from test.evaluation.prompts_eval import *
-from test.evaluation.output_structured import EvalOutputStructured
+from test.evaluation.output_strutured import EvalOutputStructured
 from pathlib import Path
 import pandas as pd
 import json
@@ -11,6 +11,7 @@ import random
 from typing import List, Dict, Union
 
 logger = setup_logger(__name__)
+opensearch_client = OpenSearchClient()
 
 
 def get_all_chunks_from_pdf(json_file: str):
@@ -169,42 +170,44 @@ def feed_dataset(
 
 
 def main(file_json: str, batch_size: int = 5):
-    opensearch_client = OpenSearchClient()
-    chat = create_llm(model="got-4o-mini")
+    chat = create_llm(model="gpt-4o-mini")
     structured_chat = chat.with_structured_output(EvalOutputStructured)
     chunks, max_pages = get_all_chunks_from_pdf(json_file=file_json)
 
     logger.info("Generating question-answer data...")
-    total_chunks = len(chunks)
     pages_to_group_by = 3
 
-    for sliced_set in range(0, total_chunks, pages_to_group_by):
+    # Itera sobre as páginas (não sobre chunks)
+    for start_page in range(1, max_pages + 1, pages_to_group_by):
         batch_input_prompts_list = list()
         list_set_chunks_used = list()
 
+        # Seleciona chunks das páginas do intervalo atual
         target_chunks = select_chunks_by_pages(
-            start_page=sliced_set,
+            start_page=start_page,
             groupby=pages_to_group_by,
-            last_page=total_chunks,
+            last_page=max_pages,
             chunks=chunks
         )
 
+        # Gera batch_size perguntas para este intervalo de páginas
         system_prompt = [SystemMessage(EVAL_DATA_GEN_SYS)]
         for index in range(batch_size):
-
-            #chunks for this batch
+            # Seleciona chunks aleatórios do intervalo
             chunks_set = select_random_context(window_chunks=target_chunks)
             list_set_chunks_used.append(chunks_set)
 
-            window_list = [content["content"] for content in chunks_set]
-            formatted_user_prompt = [USER_QA_TASK.format(chunk_list=window_list)]
-            user_request_prompt =  system_prompt + formatted_user_prompt
-            batch_input_chunks.append(user_request_prompt)
+            # Extrai o conteúdo dos chunks
+            window_list = [chunk["_source"]["content"] for chunk in chunks_set]
+            formatted_user_prompt = [HumanMessage(USER_QA_TASK.format(chunk_list=window_list))]
+            user_request_prompt = system_prompt + formatted_user_prompt
+            batch_input_prompts_list.append(user_request_prompt)
+        
+        # Processa o batch de perguntas
         batch_responses = structured_chat.batch(
-            batch_input_chunks, 
+            batch_input_prompts_list, 
             config={"max_concurrency": 5},
             return_exceptions=True)
-        feed_dataset(batch_responses, chunks_set)
-            
-
-        pass
+        
+        # Salva os resultados no dataset
+        feed_dataset(batch_responses, list_set_chunks_used, EVAL_DATA_DIR)
