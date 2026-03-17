@@ -24,12 +24,12 @@ DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 JSON_EXTRACTED_CONTENT = RAW_DATA_DIR / "json_extraction"
 EVERY_FIGS_PDF = RAW_DATA_DIR / "figures"
-EVAL_DATA_DIR = DATA_DIR / "dataset_evalation"
+EVAL_DATA_DIR = DATA_DIR / "dataset_evaluation"
 
 METADATA_INDEX = "metadata-pdfs"
 CONTENT_INDEX = "content-pdfs"
 
-TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header'}
+TAGS_IGNORADAS = {'foot', 'fnote', 'que', 'sec_0', 'header', 'reference'}
 
 __all__ = [
     "PROJECT_ROOT",
