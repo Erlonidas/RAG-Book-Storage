@@ -9,7 +9,7 @@ from src.ingestion.processors import (
     extract_article_metadata,
 )
 from src.services.embedding_processor import VectorProcessor
-from src.ingestion.processors.chunk_preprocessor import ContentAggregator
+from src.ingestion.processors.chunk_postprocessor import ContentAggregator
 
 logger = setup_logger(__name__)
 
