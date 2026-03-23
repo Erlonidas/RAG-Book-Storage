@@ -8,7 +8,7 @@ from src.ingestion.processors import (
     process_json_dolphin,
     extract_article_metadata,
 )
-from src.ingestion.processors.embedding_processor import VectorProcessor
+from src.services.embedding_processor import VectorProcessor
 from src.ingestion.processors.chunk_preprocessor import ContentAggregator
 
 logger = setup_logger(__name__)
