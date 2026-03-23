@@ -12,6 +12,7 @@ class Rag2Report(TypedDict):
     book_id: str
     sub_question: str
     rag_report: str
+    retrieved_contexts: Optional[List[str]]
 
 
 class InputRag(TypedDict):

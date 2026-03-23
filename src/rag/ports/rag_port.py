@@ -1,3 +1,5 @@
+from typing import List
+
 def list_content(chunks):
     all_content = []
     for chunk in chunks:
