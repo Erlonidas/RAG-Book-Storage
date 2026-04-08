@@ -1,4 +1,6 @@
 """
 Módulo RAG (Retrieval-Augmented Generation).
-Implementação futura do LangGraph com router e agents.
 """
+from .build_graph import build_rag_graph
+
+__all__ = ["build_rag_graph"]

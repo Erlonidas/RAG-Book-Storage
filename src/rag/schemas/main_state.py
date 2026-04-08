@@ -29,4 +29,5 @@ class MainState(MessagesState):
     decomposed_queries: List[Dict]
     retrieval_rag_input: InputRag
     retrieval_reports: Annotated[List[Rag2Report], add]
+    guardrail_allowed: bool
 # </Considering only RAG step 2>
