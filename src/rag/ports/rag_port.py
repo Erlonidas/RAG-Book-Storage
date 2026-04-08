@@ -11,7 +11,8 @@ def list_content(chunks):
 def rag_search(adapter_search_client):
     def search(
         index_name: str, query_vector: List[float],
-        book_id: str, query_text: str = None):
+        book_id: str, k: int = 7,
+        min_score: float = 0.4, query_text: str = None):
         """
         <Args>:
             index_name: index should perform the search (required)
@@ -23,7 +24,9 @@ def rag_search(adapter_search_client):
             index_name=index_name,
             query_vector=query_vector,
             book_id=book_id,
-            query_text=query_text
+            query_text=query_text,
+            k = k,
+            min_score = min_score
         )
         all_content = list_content(chunk_list)
         return all_content

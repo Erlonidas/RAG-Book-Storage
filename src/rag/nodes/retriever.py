@@ -1,4 +1,3 @@
-from src.rag.schemas.main_state import MainState
 from langchain_core.messages import (
     SystemMessage,
     HumanMessage
@@ -8,7 +7,8 @@ from src.rag.prompts.retriever_prompt import (
     ROUTER_QUESTION_TEMPLATE
 ) 
 
-def retriever_rag(state, rag_port, chat_port):
+
+def retriever_rag(state, rag_port, chat_port, k = 7, min_score = 0.4):
     input_rag = state["retrieval_rag_input"]
     router_question_vector = input_rag["query_vector"]
     router_question_text = input_rag["query_text"]
@@ -20,13 +20,19 @@ def retriever_rag(state, rag_port, chat_port):
         index_name=data_index,
         query_vector=router_question_vector,
         book_id=pdf_id,
-        query_text= hybrid_text
+        query_text= hybrid_text,
+        k = k,
+        min_score = min_score
     )
     ROUTER_PROMPT = ROUTER_QUESTION_TEMPLATE.format(
         router_question=router_question_text,
         all_chunks=matched_chunks)
     
-    ai_response = chat_port.invoke([RETRIEVER_CONTEXT_SYS, ROUTER_PROMPT])
+    ai_response = chat_port.invoke([
+        SystemMessage(RETRIEVER_CONTEXT_SYS), 
+        HumanMessage(ROUTER_PROMPT)
+        ]
+    )
     main_state_update = {
         "retrieval_reports":[{
             "book_id": pdf_id,
