@@ -13,3 +13,7 @@ sentence-transformers
 pandas
 markdownify
 pillow
+ragas==0.0.20
+datasets
+matplotlib
+seaborn
