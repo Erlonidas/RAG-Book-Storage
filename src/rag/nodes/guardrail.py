@@ -2,12 +2,6 @@ from langchain_core.messages import AIMessage
 
 
 def guardrail(state, guardrail_port) -> dict:
-    """
-    Nó de segurança — primeira barreira do grafo.
-    Extrai o texto da última HumanMessage e executa a validação via guardrail_port.
-    Retorna 'guardrail_allowed' para o roteamento condicional.
-    Se bloqueado, injeta uma AIMessage com o motivo no histórico.
-    """
     last_human = next(
         (m for m in reversed(state["messages"]) if m.type == "human"),
         None,
@@ -19,7 +13,7 @@ def guardrail(state, guardrail_port) -> dict:
     if not result["allowed"]:
         return {
             "guardrail_allowed": False,
-            "messages": [AIMessage(content=f"Solicitação bloqueada: {result['reason']}")],
+            "messages": [AIMessage(content=f"Request blocked: {result['reason']} {result['blocked_at']}")]
         }
 
     return {"guardrail_allowed": True}

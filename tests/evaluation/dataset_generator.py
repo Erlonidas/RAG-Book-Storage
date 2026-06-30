@@ -108,12 +108,10 @@ def feed_dataset(
     
     for response, chunks in zip(batch_responses, target_chunks):
         
-        # 1. DEFESA: Ignora se o LangChain retornou erro de rede/API neste item específico do batch
         if isinstance(response, Exception):
             logger.warning(f"LLM call could not resolve this question in generation process of data: {response}")
             continue
             
-        # 2. EXTRAÇÃO: Pega os dados do Pydantic (com fallback para dict caso mude no futuro)
         try:
             question = response.question if hasattr(response, 'question') else response.get("question")
             ground_truth = response.ground_truth_answer if hasattr(response, 'ground_truth_answer') else response.get("ground_truth_answer")
@@ -121,7 +119,6 @@ def feed_dataset(
             logger.error("Unexpected attribute in output structure of the LLM (question/ground_truth_answer).")
             continue
 
-        # 3. CONTEXTO E METADADOS: Extrai o texto limpo e rastreabilidade
         contexts_list = []
         metadata_list = []
         for chunk in chunks:
