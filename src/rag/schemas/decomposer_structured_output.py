@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
-from typing import List, TypedDict, Optional
+# from typing import List, TypedDict, Optional
+from typing import List, Optional
+from typing_extensions import TypedDict 
 
 class SubQueries(TypedDict):
     book_id: str = Field(description="exact book_id that you what make a search")
