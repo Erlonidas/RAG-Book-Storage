@@ -194,7 +194,7 @@ class OpenSearchClient:
 
 
     def delete_index(self, index_name: str) -> bool:
-        """Deleta um índice."""
+        """Delete an index"""
         try:
             if self.client.indices.exists(index=index_name):
                 self.client.indices.delete(index=index_name)
@@ -204,3 +204,40 @@ class OpenSearchClient:
         except Exception as e:
             logger.error(f"Erro ao deletar índice: {e}")
             return False
+
+    
+    def list_books(self, index_name: str, size: int = 100) -> List[Dict[str, str]]:
+        """
+        Retrieve all available books (book_id and abstract) from the metadata index.
+
+        Args:
+            index_name: Metadata index name
+            size: Max number of books to retrieve
+
+        Returns:
+            List of dicts with 'book_id' and 'abstract'.
+        """
+        try:
+            query_body = {
+                "query": {"match_all": {}},
+                "_source": ["book_id", "abstract"],
+                "size": size,
+            }
+
+            response = self.client.search(index=index_name, body=query_body)
+            hits = response["hits"]["hits"]
+
+            books = []
+            for hit in hits:
+                source = hit["_source"]
+                books.append({
+                    "book_id": source.get("book_id", ""),
+                    "abstract": source.get("abstract", "").strip(),
+                })
+
+            logger.info(f"{len(books)} books retrieved from index '{index_name}'")
+            return books
+
+        except Exception as e:
+            logger.error(f"Error listing books from index '{index_name}': {e}")
+            return []
