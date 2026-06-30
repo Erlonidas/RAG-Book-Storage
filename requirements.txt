@@ -17,3 +17,4 @@ ragas==0.0.20
 datasets
 matplotlib
 seaborn
+langfuse 
