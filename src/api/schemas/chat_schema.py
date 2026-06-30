@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing_extensions import TypedDict
 
 class Titles(TypedDict):
     title: str
