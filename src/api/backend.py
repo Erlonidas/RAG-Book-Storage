@@ -3,11 +3,13 @@ from pydantic import BaseModel
 from langfuse.langchain import CallbackHandler
 from src.rag.build_graph import build_rag_graph
 from src.api.schemas.chat_schema import ChatRequest
+from src.services.opensearch import OpenSearchClient
 from src.services.messages_converter import convert_messages_to_langchain
 
 
 app = FastAPI(title="API Multi-Agentes RAG")
 app_graph = build_rag_graph()
+client = OpenSearchClient()
 langfuse_handler = CallbackHandler()
 
 
@@ -41,7 +43,7 @@ def chat_endpoint(request: ChatRequest):
 @app.get("/books")
 def list_books_endpoint():
     try:
-        books = opensearch_client.list_books(index_name="metadata-pdfs")
+        books = client.list_books(index_name="metadata-pdfs")
         return {"books": books}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
